@@ -55,9 +55,9 @@ export class SchemaMarkdownDoc {
      * @param {?string} [defaultTypeModelURL=null] - Optional default JSON type model resource URL
      * @returns {SchemaMarkdownDoc}
      */
-    static run(window, defaultTypeModelURL = null) {
+    static async run(window, defaultTypeModelURL = null) {
         const app = new SchemaMarkdownDoc(window, defaultTypeModelURL);
-        app.render();
+        await app.render();
         window.addEventListener('hashchange', () => app.render(), false);
         return app;
     }
@@ -114,7 +114,7 @@ export class SchemaMarkdownDoc {
         if (typeModelURL !== null) {
             const response = await this.window.fetch(typeModelURL);
             if (!response.ok) {
-                throw new Error(`Could not fetch '${typeModelURL}'${response.statusText.length ? `, "${response.statusText}"` : ''}`);
+                throw new Error(`Could not fetch '${typeModelURL}', '${response.statusText}'`);
             }
             typeModel = smd.validateTypeModel(await response.json());
         }
