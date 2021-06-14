@@ -19,7 +19,7 @@ GHPAGES_SRC := build/app/
 include Makefile.base
 
 # Set minimum unit test coverage
-C8_ARGS := $(C8_ARGS) --branches 80.95 --lines 67.59
+C8_ARGS := $(C8_ARGS) --branches 98.06 --lines 96.83
 
 # Add README.md to jsdoc args
 JSDOC_ARGS := $(JSDOC_ARGS) README.md

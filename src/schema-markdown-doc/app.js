@@ -2,6 +2,7 @@
 // https://github.com/craigahobbs/schema-markdown/blob/main/LICENSE
 
 import * as smd from 'schema-markdown/index.js';
+import {UserTypeElements} from './userTypeElements.js';
 import {renderElements} from 'element-model/index.js';
 
 
@@ -105,7 +106,7 @@ export class SchemaMarkdownDoc {
         // Application command?
         if ('cmd' in this.params) {
             // 'help' in this.params.cmd
-            return [appTitle, (new smd.UserTypeElements(this.params)).getElements(schemaMarkdownDocTypes, 'SchemaMarkdownDoc')];
+            return [appTitle, (new UserTypeElements(this.params)).getElements(schemaMarkdownDocTypes, 'SchemaMarkdownDoc')];
         }
 
         // Load the type model JSON resource
