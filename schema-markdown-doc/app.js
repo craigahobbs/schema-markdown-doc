@@ -2,6 +2,7 @@
 // https://github.com/craigahobbs/schema-markdown/blob/main/LICENSE
 
 import * as smd from '../schema-markdown/index.js';
+import {UserTypeElements} from './userTypeElements.js';
 import {renderElements} from '../element-model/index.js';
 
 
@@ -55,9 +56,9 @@ export class SchemaMarkdownDoc {
      * @param {?string} [defaultTypeModelURL=null] - Optional default JSON type model resource URL
      * @returns {SchemaMarkdownDoc}
      */
-    static run(window, defaultTypeModelURL = null) {
+    static async run(window, defaultTypeModelURL = null) {
         const app = new SchemaMarkdownDoc(window, defaultTypeModelURL);
-        app.render();
+        await app.render();
         window.addEventListener('hashchange', () => app.render(), false);
         return app;
     }
@@ -92,7 +93,7 @@ export class SchemaMarkdownDoc {
             // Render the application elements
             [appTitle, appElements] = await this.appElements(appTitle);
         } catch ({message}) {
-            appElements = SchemaMarkdownDoc.errorElements(message);
+            appElements = {'html': 'p', 'elem': {'text': `Error: ${message}`}};
         }
 
         // Render the application
@@ -100,17 +101,12 @@ export class SchemaMarkdownDoc {
         renderElements(this.window.document.body, appElements);
     }
 
-    // Generate an error page's elements
-    static errorElements(message) {
-        return {'html': 'p', 'elem': {'text': `Error: ${message}`}};
-    }
-
     // Generate the Markdown application's element model
     async appElements(appTitle) {
         // Application command?
         if ('cmd' in this.params) {
             // 'help' in this.params.cmd
-            return [appTitle, (new smd.UserTypeElements(this.params)).getElements(schemaMarkdownDocTypes, 'SchemaMarkdownDoc')];
+            return [appTitle, (new UserTypeElements(this.params)).getElements(schemaMarkdownDocTypes, 'SchemaMarkdownDoc')];
         }
 
         // Load the type model JSON resource
@@ -119,8 +115,7 @@ export class SchemaMarkdownDoc {
         if (typeModelURL !== null) {
             const response = await this.window.fetch(typeModelURL);
             if (!response.ok) {
-                const message = `Could not fetch '${typeModelURL}'${response.statusText.length ? `, "${response.statusText}"` : ''}`;
-                return [appTitle, SchemaMarkdownDoc.errorElements(message)];
+                throw new Error(`Could not fetch '${typeModelURL}', '${response.statusText}'`);
             }
             typeModel = smd.validateTypeModel(await response.json());
         }
@@ -128,7 +123,7 @@ export class SchemaMarkdownDoc {
         // Type name specified?
         if ('name' in this.params) {
             if (!(this.params.name in typeModel.types)) {
-                return [appTitle, SchemaMarkdownDoc.errorElements(`Unknown type name '${this.params.name}'`)];
+                throw new Error(`Unknown type name '${this.params.name}'`);
             }
             return [typeModel.title, this.typeElements(typeModel, this.params.name)];
         }
