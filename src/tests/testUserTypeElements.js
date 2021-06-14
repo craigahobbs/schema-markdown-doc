@@ -4,10 +4,10 @@
 /* eslint-disable id-length */
 /* eslint-disable max-len */
 
-import {validateElements, validateTypeModelTypes} from 'schema-markdown/index.js';
+import {nbsp, validateElements} from 'element-model/index.js';
 import {UserTypeElements} from '../schema-markdown-doc/index.js';
-import {nbsp} from 'element-model/index.js';
 import test from 'ava';
+import {validateTypeModelTypes} from 'schema-markdown/index.js';
 
 
 test('UserTypeElements, getElements struct', (t) => {
