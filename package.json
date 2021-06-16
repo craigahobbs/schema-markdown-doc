@@ -22,7 +22,7 @@
     "dependencies": {
         "element-model": "~0.9",
         "markdown-model": "~0.9",
-        "schema-markdown": "~0.9"
+        "schema-markdown": "~1.0"
     },
     "devDependencies": {
         "ava": "4.0.0-alpha.2",
