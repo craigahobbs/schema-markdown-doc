@@ -1,3 +1,7 @@
+## 0.9.4 (2021-06-17)
+
+- [7287093](https://github.com/craigahobbs/schema-markdown-doc/commit/7287093) - updates from javascript-app template
+
 ## 0.9.3 (2021-06-17)
 
 - [d36c7a4](https://github.com/craigahobbs/schema-markdown-doc/commit/d36c7a4) - 100% unit test coverage
