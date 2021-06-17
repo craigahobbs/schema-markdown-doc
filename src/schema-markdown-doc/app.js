@@ -1,5 +1,5 @@
 // Licensed under the MIT License
-// https://github.com/craigahobbs/schema-markdown/blob/main/LICENSE
+// https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
 import * as smd from 'schema-markdown/index.js';
 import {UserTypeElements} from './userTypeElements.js';
@@ -7,7 +7,7 @@ import {renderElements} from 'element-model/index.js';
 
 
 // The application's hash parameter type model
-const schemaMarkdownDocTypes = (new smd.SchemaMarkdownParser(`\
+const appHashTypes = (new smd.SchemaMarkdownParser(`\
 # The Schema Markdown documentation application hash parameters struct
 struct SchemaMarkdownDoc
 
@@ -20,7 +20,7 @@ struct SchemaMarkdownDoc
     # Optional command
     optional Command cmd
 
-# Schema Markdown documentation application command union
+# Application command union
 union Command
 
     # Render the application's hash parameter model documentation
@@ -34,7 +34,6 @@ union Command
  * @property {Object} window - The web browser window object
  * @property {?string} defaultTypeModelURL - The default JSON type model resource URL
  * @property {Object} params - The validated hash parameters object
- * @private
  */
 export class SchemaMarkdownDoc {
     /**
@@ -73,7 +72,7 @@ export class SchemaMarkdownDoc {
         const params = smd.decodeQueryString(paramStrActual);
 
         // Validate the params
-        this.params = smd.validateType(schemaMarkdownDocTypes, 'SchemaMarkdownDoc', params);
+        this.params = smd.validateType(appHashTypes, 'SchemaMarkdownDoc', params);
     }
 
     // Render the Markdown application
@@ -106,7 +105,7 @@ export class SchemaMarkdownDoc {
         // Application command?
         if ('cmd' in this.params) {
             // 'help' in this.params.cmd
-            return [appTitle, (new UserTypeElements(this.params)).getElements(schemaMarkdownDocTypes, 'SchemaMarkdownDoc')];
+            return [appTitle, (new UserTypeElements(this.params)).getElements(appHashTypes, 'SchemaMarkdownDoc')];
         }
 
         // Load the type model JSON resource

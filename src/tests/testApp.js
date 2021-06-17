@@ -11,20 +11,20 @@ import test from 'ava';
 
 test('SchemaMarkdownDoc, constructor', (t) => {
     const window = new Window();
-    const markdownApp = new SchemaMarkdownDoc(window, 'my-type-model.json');
-    t.is(markdownApp.window, window);
-    t.is(markdownApp.defaultTypeModelURL, 'my-type-model.json');
-    t.is(markdownApp.params, null);
+    const app = new SchemaMarkdownDoc(window, 'my-type-model.json');
+    t.is(app.window, window);
+    t.is(app.defaultTypeModelURL, 'my-type-model.json');
+    t.is(app.params, null);
 });
 
 
 test('SchemaMarkdownDoc.run, help command', async (t) => {
     const window = new Window();
     window.location.hash = '#cmd.help=1';
-    const markdownApp = await SchemaMarkdownDoc.run(window);
-    t.is(markdownApp.window, window);
-    t.is(markdownApp.defaultTypeModelURL, null);
-    t.deepEqual(markdownApp.params, {'cmd': {'help': 1}});
+    const app = await SchemaMarkdownDoc.run(window);
+    t.is(app.window, window);
+    t.is(app.defaultTypeModelURL, null);
+    t.deepEqual(app.params, {'cmd': {'help': 1}});
     t.is(window.document.title, 'SchemaMarkdownDoc');
     t.true(window.document.body.innerHTML.startsWith(
         '<h1 id="cmd.help=1&amp;type_SchemaMarkdownDoc"><a class="linktarget">SchemaMarkdownDoc</a></h1>'
@@ -35,10 +35,10 @@ test('SchemaMarkdownDoc.run, help command', async (t) => {
 test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
     const window = new Window();
     window.location.hash = '#foo=bar';
-    const markdownApp = await SchemaMarkdownDoc.run(window);
-    t.is(markdownApp.window, window);
-    t.is(markdownApp.defaultTypeModelURL, null);
-    t.is(markdownApp.params, null);
+    const app = await SchemaMarkdownDoc.run(window);
+    t.is(app.window, window);
+    t.is(app.defaultTypeModelURL, null);
+    t.is(app.params, null);
     t.is(window.document.title, 'SchemaMarkdownDoc');
     t.is(window.document.body.innerHTML, "<p>Error: Unknown member 'foo'</p>");
 });
