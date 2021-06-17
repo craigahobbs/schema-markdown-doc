@@ -8,7 +8,7 @@ import {renderElements} from 'element-model/index.js';
 
 // The application's hash parameter type model
 const appHashTypes = (new smd.SchemaMarkdownParser(`\
-# The Schema Markdown documentation application hash parameters struct
+# The SchemaMarkdownDoc application hash parameters struct
 struct SchemaMarkdownDoc
 
     # The type name. If not provided, the index is displayed.
@@ -23,13 +23,13 @@ struct SchemaMarkdownDoc
 # Application command union
 union Command
 
-    # Render the application's hash parameter model documentation
+    # Render the application's hash parameter documentation
     int(==1) help
 `).types);
 
 
 /**
- * The Schema Markdown documentation application
+ * The SchemaMarkdownDoc application
  *
  * @property {Object} window - The web browser window object
  * @property {?string} defaultTypeModelURL - The default JSON type model resource URL
@@ -37,7 +37,7 @@ union Command
  */
 export class SchemaMarkdownDoc {
     /**
-     * Create a documentation application instance
+     * Create an application instance
      *
      * @property {Object} window - The web browser window object
      * @param {?string} [defaultTypeModelURL=null] - Optional default JSON type model resource URL
