@@ -1,3 +1,7 @@
+## 0.9.3 (2021-06-17)
+
+- [d36c7a4](https://github.com/craigahobbs/schema-markdown-doc/commit/d36c7a4) - 100% unit test coverage
+
 ## 0.9.2 (2021-06-16)
 
 - [e5fbdd9](https://github.com/craigahobbs/schema-markdown-doc/commit/e5fbdd9) - update to schema-markdown 1.0
