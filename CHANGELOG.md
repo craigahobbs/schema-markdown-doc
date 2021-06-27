@@ -1,3 +1,7 @@
+## 0.9.5 (2021-06-27)
+
+- [2736988](https://github.com/craigahobbs/schema-markdown-doc/commit/2736988) - updates from javascript-app template
+
 ## 0.9.4 (2021-06-17)
 
 - [7287093](https://github.com/craigahobbs/schema-markdown-doc/commit/7287093) - updates from javascript-app template
