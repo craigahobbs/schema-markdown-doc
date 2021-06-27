@@ -13,7 +13,7 @@ test('SchemaMarkdownDoc, constructor', (t) => {
     const window = new Window();
     const app = new SchemaMarkdownDoc(window, 'my-type-model.json');
     t.is(app.window, window);
-    t.is(app.defaultTypeModelURL, 'my-type-model.json');
+    t.is(app.defaultURL, 'my-type-model.json');
     t.is(app.params, null);
 });
 
@@ -23,7 +23,7 @@ test('SchemaMarkdownDoc.run, help command', async (t) => {
     window.location.hash = '#cmd.help=1';
     const app = await SchemaMarkdownDoc.run(window);
     t.is(app.window, window);
-    t.is(app.defaultTypeModelURL, null);
+    t.is(app.defaultURL, null);
     t.deepEqual(app.params, {'cmd': {'help': 1}});
     t.is(window.document.title, 'SchemaMarkdownDoc');
     t.true(window.document.body.innerHTML.startsWith(
@@ -37,10 +37,120 @@ test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
     window.location.hash = '#foo=bar';
     const app = await SchemaMarkdownDoc.run(window);
     t.is(app.window, window);
-    t.is(app.defaultTypeModelURL, null);
+    t.is(app.defaultURL, null);
     t.is(app.params, null);
     t.is(window.document.title, 'SchemaMarkdownDoc');
     t.is(window.document.body.innerHTML, "<p>Error: Unknown member 'foo'</p>");
+});
+
+
+test('SchemaMarkdownDoc.appElements', async (t) => {
+    const window = new Window();
+    const app = new SchemaMarkdownDoc(window, null);
+    app.updateParams('');
+    const result = await app.appElements('SchemaMarkdownDoc');
+    result[1].length = 1;
+    t.deepEqual(
+        result,
+        [
+            'The Schema Markdown Type Model',
+            [
+                {'html': 'h1', 'elem': {'text': 'The Schema Markdown Type Model'}}
+            ]
+        ]
+    );
+});
+
+
+test('SchemaMarkdownDoc.appElements, url', async (t) => {
+    const window = new Window();
+    const fetchResolve = (url) => {
+        t.is(url, 'other.json');
+        return {'ok': true, 'json': () => new Promise((resolve) => {
+            resolve({'title': 'Title', 'types': {'IntType': {'typedef': {'name': 'IntType', 'type': {'builtin': 'int'}}}}});
+        })};
+    };
+    window.fetch = (url) => new Promise((resolve) => {
+        resolve(fetchResolve(url));
+    });
+    const app = new SchemaMarkdownDoc(window, 'model.json');
+    app.updateParams('url=other.json');
+    t.deepEqual(
+        await app.appElements('SchemaMarkdownDoc'),
+        [
+            'Title',
+            [
+                {'html': 'h1', 'elem': {'text': 'Title'}},
+                [
+                    [
+                        {'html': 'h2', 'elem': {'text': 'Typedefs'}},
+                        {
+                            'html': 'ul',
+                            'attr': {'class': 'smd-index-list'},
+                            'elem': {
+                                'html': 'li',
+                                'elem': {
+                                    'html': 'ul',
+                                    'elem': [
+                                        {
+                                            'html': 'li',
+                                            'elem': {
+                                                'html': 'a',
+                                                'attr': {'href': '#name=IntType&url=other.json'},
+                                                'elem': {'text': 'IntType'}
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                ]
+            ]
+        ]
+    );
+});
+
+
+test('SchemaMarkdownDoc.appElements, fetch error', async (t) => {
+    const window = new Window();
+    const fetchResolve = (url) => {
+        t.is(url, 'model.json');
+        return {'ok': false, 'statusText': 'Not Found'};
+    };
+    window.fetch = (url) => new Promise((resolve) => {
+        resolve(fetchResolve(url));
+    });
+    const app = new SchemaMarkdownDoc(window, 'model.json');
+    app.updateParams('');
+    let errorMessage = null;
+    try {
+        await app.appElements('SchemaMarkdownDoc');
+    } catch ({message}) { /* c8 ignore next */
+        errorMessage = message;
+    }
+    t.is(errorMessage, 'Could not fetch "model.json", "Not Found"');
+});
+
+
+test('SchemaMarkdownDoc.appElements, fetch error no status text', async (t) => {
+    const window = new Window();
+    const fetchResolve = (url) => {
+        t.is(url, 'model.json');
+        return {'ok': false, 'statusText': ''};
+    };
+    window.fetch = (url) => new Promise((resolve) => {
+        resolve(fetchResolve(url));
+    });
+    const app = new SchemaMarkdownDoc(window, 'model.json');
+    app.updateParams('');
+    let errorMessage = null;
+    try {
+        await app.appElements('SchemaMarkdownDoc');
+    } catch ({message}) { /* c8 ignore next */
+        errorMessage = message;
+    }
+    t.is(errorMessage, 'Could not fetch "model.json"');
 });
 
 
@@ -269,28 +379,6 @@ typedef int TestType
             ]
         ]
     );
-});
-
-
-test('SchemaMarkdownDoc.appElements, fetch error', async (t) => {
-    const window = new Window();
-    const fetchResolve = (url) => {
-        t.is(url, 'testModel.json');
-        return {'ok': false, 'statusText': 'Not Found'};
-    };
-    window.fetch = (url) => new Promise((resolve) => {
-        resolve(fetchResolve(url));
-    });
-    const app = new SchemaMarkdownDoc(window, 'testModel.json');
-    app.updateParams('');
-    let errorMessage = null;
-    try {
-        await app.appElements('SchemaMarkdownDoc');
-    } catch (error) { /* c8 ignore next */
-        t.true(error instanceof Error);
-        errorMessage = error.message;
-    }
-    t.is(errorMessage, "Could not fetch 'testModel.json', 'Not Found'");
 });
 
 
