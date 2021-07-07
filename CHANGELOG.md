@@ -1,3 +1,7 @@
+## 0.9.8 (2021-07-07)
+
+- [e347a55](https://github.com/craigahobbs/schema-markdown-doc/commit/e347a55) - updates from javascript-app template
+
 ## 0.9.7 (2021-07-07)
 
 - [3a05126](https://github.com/craigahobbs/schema-markdown-doc/commit/3a05126) - fix index.html links
