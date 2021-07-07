@@ -1,3 +1,7 @@
+## 0.9.6 (2021-07-07)
+
+- [ffcebb8](https://github.com/craigahobbs/schema-markdown-doc/commit/ffcebb8) - add static/schema-markdown-doc.css
+
 ## 0.9.5 (2021-06-27)
 
 - [2736988](https://github.com/craigahobbs/schema-markdown-doc/commit/2736988) - updates from javascript-app template
