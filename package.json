@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "schema-markdown-doc",
-    "version": "0.9.7",
+    "version": "0.9.8",
     "description": "Schema Markdown type model documentation application",
     "keywords": "schema markdown documentation application",
     "homepage": "https://github.com/craigahobbs/schema-markdown-doc#readme",
