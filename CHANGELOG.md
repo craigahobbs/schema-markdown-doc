@@ -1,3 +1,7 @@
+## 0.9.7 (2021-07-07)
+
+- [3a05126](https://github.com/craigahobbs/schema-markdown-doc/commit/3a05126) - fix index.html links
+
 ## 0.9.6 (2021-07-07)
 
 - [ffcebb8](https://github.com/craigahobbs/schema-markdown-doc/commit/ffcebb8) - add static/schema-markdown-doc.css
