@@ -1,7 +1,7 @@
 {
     "type": "module",
     "name": "schema-markdown-doc",
-    "version": "0.9.6",
+    "version": "0.9.7",
     "description": "Schema Markdown type model documentation application",
     "keywords": "schema markdown documentation application",
     "homepage": "https://github.com/craigahobbs/schema-markdown-doc#readme",
@@ -14,7 +14,8 @@
     },
     "files": [
         "index.js",
-        "src/schema-markdown-doc/**/*"
+        "src/schema-markdown-doc/**/*",
+        "static/schema-markdown-doc.css"
     ],
     "scripts": {
         "test": "ava -v 'src/tests/**/*.js'"
