@@ -44,25 +44,36 @@ test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
 });
 
 
-test('SchemaMarkdownDoc.appElements', async (t) => {
+test('SchemaMarkdownDoc.run, title', async (t) => {
+    const window = new Window();
+    const app = await SchemaMarkdownDoc.run(window);
+    t.is(app.window, window);
+    t.is(app.defaultURL, null);
+    t.deepEqual(app.params, {});
+    t.is(window.document.title, 'The Schema Markdown Type Model');
+    t.true(window.document.body.innerHTML.startsWith('<h1>The Schema Markdown Type Model</h1>'));
+});
+
+
+test('SchemaMarkdownDoc.main', async (t) => {
     const window = new Window();
     const app = new SchemaMarkdownDoc(window, null);
     app.updateParams('');
-    const result = await app.appElements('SchemaMarkdownDoc');
-    result[1].length = 1;
+    const result = await app.main();
+    result.elements.length = 1;
     t.deepEqual(
         result,
-        [
-            'The Schema Markdown Type Model',
-            [
+        {
+            'title': 'The Schema Markdown Type Model',
+            'elements': [
                 {'html': 'h1', 'elem': {'text': 'The Schema Markdown Type Model'}}
             ]
-        ]
+        }
     );
 });
 
 
-test('SchemaMarkdownDoc.appElements, url', async (t) => {
+test('SchemaMarkdownDoc.main, url', async (t) => {
     const window = new Window();
     const fetchResolve = (url) => {
         t.is(url, 'other.json');
@@ -76,10 +87,10 @@ test('SchemaMarkdownDoc.appElements, url', async (t) => {
     const app = new SchemaMarkdownDoc(window, 'model.json');
     app.updateParams('url=other.json');
     t.deepEqual(
-        await app.appElements('SchemaMarkdownDoc'),
-        [
-            'Title',
-            [
+        await app.main(),
+        {
+            'title': 'Title',
+            'elements': [
                 {'html': 'h1', 'elem': {'text': 'Title'}},
                 [
                     [
@@ -107,12 +118,12 @@ test('SchemaMarkdownDoc.appElements, url', async (t) => {
                     ]
                 ]
             ]
-        ]
+        }
     );
 });
 
 
-test('SchemaMarkdownDoc.appElements, fetch error', async (t) => {
+test('SchemaMarkdownDoc.main, fetch error', async (t) => {
     const window = new Window();
     const fetchResolve = (url) => {
         t.is(url, 'model.json');
@@ -125,7 +136,7 @@ test('SchemaMarkdownDoc.appElements, fetch error', async (t) => {
     app.updateParams('');
     let errorMessage = null;
     try {
-        await app.appElements('SchemaMarkdownDoc');
+        await app.main();
     } catch ({message}) { /* c8 ignore next */
         errorMessage = message;
     }
@@ -133,7 +144,7 @@ test('SchemaMarkdownDoc.appElements, fetch error', async (t) => {
 });
 
 
-test('SchemaMarkdownDoc.appElements, fetch error no status text', async (t) => {
+test('SchemaMarkdownDoc.main, fetch error no status text', async (t) => {
     const window = new Window();
     const fetchResolve = (url) => {
         t.is(url, 'model.json');
@@ -146,7 +157,7 @@ test('SchemaMarkdownDoc.appElements, fetch error no status text', async (t) => {
     app.updateParams('');
     let errorMessage = null;
     try {
-        await app.appElements('SchemaMarkdownDoc');
+        await app.main();
     } catch ({message}) { /* c8 ignore next */
         errorMessage = message;
     }
@@ -154,7 +165,7 @@ test('SchemaMarkdownDoc.appElements, fetch error no status text', async (t) => {
 });
 
 
-test('SchemaMarkdownDoc.appElements, index', async (t) => {
+test('SchemaMarkdownDoc.main, index', async (t) => {
     const testModelSMD = `\
 typedef int TestType
 struct TestStruct
@@ -185,10 +196,10 @@ action TestAction2
     const app = new SchemaMarkdownDoc(window, 'testModel.json');
     app.updateParams('');
     t.deepEqual(
-        await app.appElements('SchemaMarkdownDoc'),
-        [
-            'Test',
-            [
+        await app.main(),
+        {
+            'title': 'Test',
+            'elements': [
                 {'html': 'h1', 'elem': {'text': 'Test'}},
                 [
                     [
@@ -315,12 +326,12 @@ action TestAction2
                     ]
                 ]
             ]
-        ]
+        }
     );
 });
 
 
-test('SchemaMarkdownDoc.appElements, type page', async (t) => {
+test('SchemaMarkdownDoc.main, type page', async (t) => {
     const testModelSMD = `\
 typedef int TestType
 `;
@@ -342,10 +353,10 @@ typedef int TestType
     const app = new SchemaMarkdownDoc(window, 'testModel.json');
     app.updateParams('name=TestType');
     t.deepEqual(
-        await app.appElements('SchemaMarkdownDoc'),
-        [
-            'Test',
-            [
+        await app.main(),
+        {
+            'title': 'Test',
+            'elements': [
                 {
                     'html': 'p',
                     'elem': {
@@ -377,12 +388,12 @@ typedef int TestType
                     null
                 ]
             ]
-        ]
+        }
     );
 });
 
 
-test('SchemaMarkdownDoc.appElements, url and json error', async (t) => {
+test('SchemaMarkdownDoc.main, url and json error', async (t) => {
     const window = new Window();
     const fetchResolve = (url) => {
         t.is(url, 'otherTestModel.json');
@@ -397,7 +408,7 @@ test('SchemaMarkdownDoc.appElements, url and json error', async (t) => {
     app.updateParams('url=otherTestModel.json');
     let errorMessage = null;
     try {
-        await app.appElements('SchemaMarkdownDoc');
+        await app.main();
     } catch (error) { /* c8 ignore next */
         t.true(error instanceof Error);
         errorMessage = error.message;
@@ -406,7 +417,7 @@ test('SchemaMarkdownDoc.appElements, url and json error', async (t) => {
 });
 
 
-test('SchemaMarkdownDoc.appElements, unknown type error', async (t) => {
+test('SchemaMarkdownDoc.main, unknown type error', async (t) => {
     const testModelSMD = `\
 typedef int TestType
 `;
@@ -429,7 +440,7 @@ typedef int TestType
     app.updateParams('name=UnknownType');
     let errorMessage = null;
     try {
-        await app.appElements('SchemaMarkdownDoc');
+        await app.main();
     } catch (error) { /* c8 ignore next */
         t.true(error instanceof Error);
         errorMessage = error.message;
