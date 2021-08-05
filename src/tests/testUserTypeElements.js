@@ -4,10 +4,14 @@
 /* eslint-disable id-length */
 /* eslint-disable max-len */
 
-import {nbsp, validateElements} from 'element-model/index.js';
 import {UserTypeElements} from '../schema-markdown-doc/index.js';
 import test from 'ava';
+import {validateElements} from 'element-model/index.js';
 import {validateTypeModelTypes} from 'schema-markdown/index.js';
+
+
+// Non-breaking space character
+const nbsp = String.fromCharCode(160);
 
 
 test('UserTypeElements, getElements struct', (t) => {
