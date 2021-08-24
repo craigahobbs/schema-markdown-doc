@@ -1,3 +1,7 @@
+## 0.9.10 (2021-08-24)
+
+- [0327769](https://github.com/craigahobbs/schema-markdown-doc/commit/0327769) - updates from javascript-template
+
 ## 0.9.9 (2021-08-05)
 
 - [6433b13](https://github.com/craigahobbs/schema-markdown-doc/commit/6433b13) - define nbsp locally
