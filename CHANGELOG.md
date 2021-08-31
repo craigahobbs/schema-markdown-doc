@@ -1,3 +1,7 @@
+## 0.9.11 (2021-08-31)
+
+- [0f33c9d](https://github.com/craigahobbs/schema-markdown-doc/commit/0f33c9d) - element-model 1.0
+
 ## 0.9.10 (2021-08-24)
 
 - [0327769](https://github.com/craigahobbs/schema-markdown-doc/commit/0327769) - updates from javascript-template
