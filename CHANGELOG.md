@@ -1,3 +1,7 @@
+## 0.9.12 (2021-08-31)
+
+- [6a971ec](https://github.com/craigahobbs/schema-markdown-doc/commit/6a971ec) - markdown-model 1.0
+
 ## 0.9.11 (2021-08-31)
 
 - [0f33c9d](https://github.com/craigahobbs/schema-markdown-doc/commit/0f33c9d) - element-model 1.0
