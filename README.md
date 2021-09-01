@@ -62,7 +62,7 @@ The schema-markdown-doc package contains the
 component class for use with the
 [renderElements](https://craigahobbs.github.io/element-model/global.html#renderElements)
 function from the
-[element-model](https://craigahobbs.github.io/element-model/)
+[element-model](https://www.npmjs.com/package/element-model)
 package. For example:
 
 ``` javascript
