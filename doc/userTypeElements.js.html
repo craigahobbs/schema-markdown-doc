@@ -1,8 +1,36 @@
-// Licensed under the MIT License
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: userTypeElements.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: userTypeElements.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// Licensed under the MIT License
 // https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
-import {encodeQueryString, getEnumValues, getReferencedTypes, getStructMembers} from '../schema-markdown/index.js';
-import {markdownElements, parseMarkdown} from '../markdown-model/index.js';
+import {encodeQueryString, getEnumValues, getReferencedTypes, getStructMembers} from 'schema-markdown/index.js';
+import {markdownElements, parseMarkdown} from 'markdown-model/index.js';
 
 
 // Non-breaking space character
@@ -86,7 +114,7 @@ export class UserTypeElements {
 
     // Helper method to get a user type href (target)
     typeHref(typeName) {
-        return `${encodeQueryString(this.params)}&type_${typeName}`;
+        return `${encodeQueryString(this.params)}&amp;type_${typeName}`;
     }
 
     // Helper method to generate a member/typedef type's element model
@@ -141,37 +169,37 @@ export class UserTypeElements {
         if (optional) {
             parts.push({'lhs': 'optional'});
         }
-        if (attr !== null && 'nullable' in attr) {
+        if (attr !== null &amp;&amp; 'nullable' in attr) {
             parts.push({'lhs': 'nullable'});
         }
-        if (attr !== null && 'gt' in attr) {
+        if (attr !== null &amp;&amp; 'gt' in attr) {
             parts.push({'lhs': noun, 'op': '>', 'rhs': attr.gt});
         }
-        if (attr !== null && 'gte' in attr) {
+        if (attr !== null &amp;&amp; 'gte' in attr) {
             parts.push({'lhs': noun, 'op': '>=', 'rhs': attr.gte});
         }
-        if (attr !== null && 'lt' in attr) {
-            parts.push({'lhs': noun, 'op': '<', 'rhs': attr.lt});
+        if (attr !== null &amp;&amp; 'lt' in attr) {
+            parts.push({'lhs': noun, 'op': '&lt;', 'rhs': attr.lt});
         }
-        if (attr !== null && 'lte' in attr) {
-            parts.push({'lhs': noun, 'op': '<=', 'rhs': attr.lte});
+        if (attr !== null &amp;&amp; 'lte' in attr) {
+            parts.push({'lhs': noun, 'op': '&lt;=', 'rhs': attr.lte});
         }
-        if (attr !== null && 'eq' in attr) {
+        if (attr !== null &amp;&amp; 'eq' in attr) {
             parts.push({'lhs': noun, 'op': '==', 'rhs': attr.eq});
         }
-        if (attr !== null && 'lenGT' in attr) {
+        if (attr !== null &amp;&amp; 'lenGT' in attr) {
             parts.push({'lhs': `len(${noun})`, 'op': '>', 'rhs': attr.lenGT});
         }
-        if (attr !== null && 'lenGTE' in attr) {
+        if (attr !== null &amp;&amp; 'lenGTE' in attr) {
             parts.push({'lhs': `len(${noun})`, 'op': '>=', 'rhs': attr.lenGTE});
         }
-        if (attr !== null && 'lenLT' in attr) {
-            parts.push({'lhs': `len(${noun})`, 'op': '<', 'rhs': attr.lenLT});
+        if (attr !== null &amp;&amp; 'lenLT' in attr) {
+            parts.push({'lhs': `len(${noun})`, 'op': '&lt;', 'rhs': attr.lenLT});
         }
-        if (attr !== null && 'lenLTE' in attr) {
-            parts.push({'lhs': `len(${noun})`, 'op': '<=', 'rhs': attr.lenLTE});
+        if (attr !== null &amp;&amp; 'lenLTE' in attr) {
+            parts.push({'lhs': `len(${noun})`, 'op': '&lt;=', 'rhs': attr.lenLTE});
         }
-        if (attr !== null && 'lenEq' in attr) {
+        if (attr !== null &amp;&amp; 'lenEq' in attr) {
             parts.push({'lhs': `len(${noun})`, 'op': '==', 'rhs': attr.lenEq});
         }
     }
@@ -193,14 +221,14 @@ export class UserTypeElements {
             const members = 'members' in struct ? getStructMembers(types, struct) : null;
             const memberAttrElem = members !== null
                 ? Object.fromEntries(members.map((member) => [member.name, UserTypeElements.attrElem(member)])) : null;
-            const hasAttr = members !== null && Object.values(memberAttrElem).some((attrElem) => attrElem !== null);
+            const hasAttr = members !== null &amp;&amp; Object.values(memberAttrElem).some((attrElem) => attrElem !== null);
             const memberDocElem = members !== null
                 ? Object.fromEntries(members.map(({name, doc}) => [name, UserTypeElements.markdownElem(doc)])) : null;
-            const hasDoc = members !== null && Object.values(memberDocElem).some((docElem) => docElem !== null);
+            const hasDoc = members !== null &amp;&amp; Object.values(memberDocElem).some((docElem) => docElem !== null);
 
             // Return the struct documentation element model
             return [
-                titleElem('union' in struct && struct.union ? `union ${typeName}` : `struct ${typeName}`),
+                titleElem('union' in struct &amp;&amp; struct.union ? `union ${typeName}` : `struct ${typeName}`),
                 !('bases' in struct) ? null : {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
                     struct.bases.map((base) => ({'html': 'a', 'attr': {'href': `#${this.typeHref(base)}`}, 'elem': {'text': base}}))
@@ -230,7 +258,7 @@ export class UserTypeElements {
             const values = 'values' in enum_ ? getEnumValues(types, enum_) : null;
             const valueDocElem = values !== null
                 ? Object.fromEntries(values.map(({name, doc}) => [name, UserTypeElements.markdownElem(doc)])) : null;
-            const hasDoc = values !== null && Object.values(valueDocElem).some((docElem) => docElem !== null);
+            const hasDoc = values !== null &amp;&amp; Object.values(valueDocElem).some((docElem) => docElem !== null);
 
             // Return the enumeration documentation element model
             return [
@@ -310,7 +338,7 @@ export class UserTypeElements {
 
             // If no URLs passed use the action's URLs
             let actionUrls = urls;
-            if (urls === null && 'urls' in action) {
+            if (urls === null &amp;&amp; 'urls' in action) {
                 actionUrls = action.urls.map(({method = null, path = null}) => {
                     const url = {
                         'url': path !== null ? path : `/${typeName}`
@@ -343,11 +371,11 @@ export class UserTypeElements {
 If an application error occurs, the response is of the form:
 
     {
-        "error": "<code>",
-        "message": "<message>"
+        "error": "&lt;code>",
+        "message": "&lt;message>"
     }
 
-"message" is optional. "<code>" is one of the following values:`
+"message" is optional. "&lt;code>" is one of the following values:`
                 )
             ];
         }
@@ -356,3 +384,26 @@ If an application error occurs, the response is of the form:
         return null;
     }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="SchemaMarkdownDoc.html">SchemaMarkdownDoc</a></li><li><a href="UserTypeElements.html">UserTypeElements</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
