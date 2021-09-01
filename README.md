@@ -58,7 +58,7 @@ application stub. For example:
 ## The Schema Markdown Documentation Component
 
 The schema-markdown-doc package contains the
-[UserTypeElements](http://localhost:8000/build/app/doc/UserTypeElements.html)
+[UserTypeElements](https://craigahobbs.github.io/schema-markdown-doc/doc/)
 component class for use with the
 [renderElements](https://craigahobbs.github.io/element-model/global.html#renderElements)
 function from the
