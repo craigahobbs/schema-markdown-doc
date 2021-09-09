@@ -3,7 +3,10 @@
     "name": "schema-markdown-doc",
     "version": "1.0.0",
     "description": "Schema Markdown type model documentation application",
-    "keywords": "schema markdown documentation application",
+    "keywords": [
+        "schema",
+        "documentation"
+    ],
     "homepage": "https://github.com/craigahobbs/schema-markdown-doc#readme",
     "bugs": "https://github.com/craigahobbs/schema-markdown-doc/issues",
     "license": "MIT",
