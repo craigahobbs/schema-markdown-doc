@@ -1,3 +1,7 @@
+## 1.0.1 (2021-09-09)
+
+- [ababe70](https://github.com/craigahobbs/schema-markdown-doc/commit/ababe70) - fix package keywords
+
 ## 1.0.0 (2021-09-01)
 
 - [2680f1f](https://github.com/craigahobbs/schema-markdown-doc/commit/2680f1f) - update readme
