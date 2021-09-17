@@ -1,3 +1,7 @@
+## 1.0.2 (2021-09-17)
+
+- [c325284](https://github.com/craigahobbs/schema-markdown-doc/commit/c325284) - markdown-model 1.1
+
 ## 1.0.1 (2021-09-09)
 
 - [ababe70](https://github.com/craigahobbs/schema-markdown-doc/commit/ababe70) - fix package keywords
