@@ -3,14 +3,14 @@
 
 /* eslint-disable id-length */
 
+import {JSDOM} from 'jsdom/lib/api.js';
 import {SchemaMarkdownDoc} from '../schema-markdown-doc/index.js';
 import {SchemaMarkdownParser} from 'schema-markdown/index.js';
-import Window from 'window';
 import test from 'ava';
 
 
 test('SchemaMarkdownDoc, constructor', (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const app = new SchemaMarkdownDoc(window, 'my-type-model.json');
     t.is(app.window, window);
     t.is(app.defaultURL, 'my-type-model.json');
@@ -19,7 +19,7 @@ test('SchemaMarkdownDoc, constructor', (t) => {
 
 
 test('SchemaMarkdownDoc.run, help command', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     window.location.hash = '#cmd.help=1';
     const app = await SchemaMarkdownDoc.run(window);
     t.is(app.window, window);
@@ -33,7 +33,7 @@ test('SchemaMarkdownDoc.run, help command', async (t) => {
 
 
 test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     window.location.hash = '#foo=bar';
     const app = await SchemaMarkdownDoc.run(window);
     t.is(app.window, window);
@@ -45,7 +45,7 @@ test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
 
 
 test('SchemaMarkdownDoc.run, title', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const app = await SchemaMarkdownDoc.run(window);
     t.is(app.window, window);
     t.is(app.defaultURL, null);
@@ -56,7 +56,7 @@ test('SchemaMarkdownDoc.run, title', async (t) => {
 
 
 test('SchemaMarkdownDoc.main', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const app = new SchemaMarkdownDoc(window, null);
     app.updateParams('');
     const result = await app.main();
@@ -74,7 +74,7 @@ test('SchemaMarkdownDoc.main', async (t) => {
 
 
 test('SchemaMarkdownDoc.main, url', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'other.json');
         return {'ok': true, 'json': () => new Promise((resolve) => {
@@ -124,7 +124,7 @@ test('SchemaMarkdownDoc.main, url', async (t) => {
 
 
 test('SchemaMarkdownDoc.main, fetch error', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'model.json');
         return {'ok': false, 'statusText': 'Not Found'};
@@ -145,7 +145,7 @@ test('SchemaMarkdownDoc.main, fetch error', async (t) => {
 
 
 test('SchemaMarkdownDoc.main, fetch error no status text', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'model.json');
         return {'ok': false, 'statusText': ''};
@@ -183,7 +183,7 @@ action TestAction2
         'types': (new SchemaMarkdownParser(testModelSMD)).types
     };
 
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'testModel.json');
         return {'ok': true, 'json': () => new Promise((resolve) => {
@@ -340,7 +340,7 @@ typedef int TestType
         'types': (new SchemaMarkdownParser(testModelSMD)).types
     };
 
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'testModel.json');
         return {'ok': true, 'json': () => new Promise((resolve) => {
@@ -394,7 +394,7 @@ typedef int TestType
 
 
 test('SchemaMarkdownDoc.main, url and json error', async (t) => {
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'otherTestModel.json');
         return {'ok': true, 'json': () => new Promise(() => {
@@ -426,7 +426,7 @@ typedef int TestType
         'types': (new SchemaMarkdownParser(testModelSMD)).types
     };
 
-    const window = new Window();
+    const {window} = new JSDOM();
     const fetchResolve = (url) => {
         t.is(url, 'testModel.json');
         return {'ok': true, 'json': () => new Promise((resolve) => {
