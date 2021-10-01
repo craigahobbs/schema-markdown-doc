@@ -27,7 +27,7 @@ test('SchemaMarkdownDoc.run, help command', async (t) => {
     t.deepEqual(app.params, {'cmd': {'help': 1}});
     t.is(window.document.title, 'SchemaMarkdownDoc');
     t.true(window.document.body.innerHTML.startsWith(
-        '<h1 id="cmd.help=1&amp;type_SchemaMarkdownDoc"><a class="linktarget">SchemaMarkdownDoc</a></h1>'
+        '<h1 id="cmd.help=1&amp;type_SchemaMarkdownDoc">SchemaMarkdownDoc</h1>'
     ));
 });
 
@@ -370,11 +370,7 @@ typedef int TestType
                         {
                             'html': 'h1',
                             'attr': {'id': 'name=TestType&type_TestType'},
-                            'elem': {
-                                'html': 'a',
-                                'attr': {'class': 'linktarget'},
-                                'elem': {'text': 'TestType'}
-                            }
+                            'elem': {'text': 'TestType'}
                         },
                         null,
                         {

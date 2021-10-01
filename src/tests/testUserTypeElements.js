@@ -52,7 +52,7 @@ test('UserTypeElements, getElements struct', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyStruct'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyStruct'}}
+                    'elem': {'text': 'MyStruct'}
                 },
                 null,
                 [
@@ -133,7 +133,7 @@ test('UserTypeElements, getElements struct', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyStructEmpty'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'struct MyStructEmpty'}}
+                            'elem': {'text': 'struct MyStructEmpty'}
                         },
                         null,
                         null,
@@ -145,7 +145,7 @@ test('UserTypeElements, getElements struct', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyStructNoAttr'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'struct MyStructNoAttr'}}
+                            'elem': {'text': 'struct MyStructNoAttr'}
                         },
                         null,
                         null,
@@ -200,7 +200,7 @@ test('UserTypeElements, getElements struct empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyStruct'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyStruct'}}
+                    'elem': {'text': 'MyStruct'}
                 },
                 null,
                 null,
@@ -261,7 +261,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyStruct'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyStruct'}}
+                    'elem': {'text': 'MyStruct'}
                 },
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
@@ -312,7 +312,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyStruct2'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'struct MyStruct2'}}
+                            'elem': {'text': 'struct MyStruct2'}
                         },
                         {'html': 'p', 'elem': [
                             {'text': 'Bases: '},
@@ -350,7 +350,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyStruct3'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'struct MyStruct3'}}
+                            'elem': {'text': 'struct MyStruct3'}
                         },
                         null,
                         null,
@@ -379,7 +379,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyStruct4'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'struct MyStruct4'}}
+                            'elem': {'text': 'struct MyStruct4'}
                         },
                         null,
                         null,
@@ -430,7 +430,7 @@ test('UserTypeElements, getElements struct union', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyUnion'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyUnion'}}
+                    'elem': {'text': 'MyUnion'}
                 },
                 null,
                 null,
@@ -499,7 +499,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyStruct'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyStruct'}}
+                    'elem': {'text': 'MyStruct'}
                 },
                 null,
                 null,
@@ -633,7 +633,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyEnum'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'enum MyEnum'}}
+                            'elem': {'text': 'enum MyEnum'}
                         },
                         null,
                         null,
@@ -676,7 +676,7 @@ test('UserTypeElements, getElements struct attrs', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyStruct'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyStruct'}}
+                    'elem': {'text': 'MyStruct'}
                 },
                 null,
                 null,
@@ -855,7 +855,7 @@ test('UserTypeElements, getElements enum', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyEnum'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyEnum'}}
+                    'elem': {'text': 'MyEnum'}
                 },
                 null,
                 null,
@@ -917,7 +917,7 @@ test('UserTypeElements, getElements enum no doc', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyEnum'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyEnum'}}
+                    'elem': {'text': 'MyEnum'}
                 },
                 null,
                 null,
@@ -975,7 +975,7 @@ test('UserTypeElements, getElements enum empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyEnum'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyEnum'}}
+                    'elem': {'text': 'MyEnum'}
                 },
                 null,
                 null,
@@ -1037,7 +1037,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyEnum'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyEnum'}}
+                    'elem': {'text': 'MyEnum'}
                 },
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
@@ -1084,7 +1084,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyEnum2'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'enum MyEnum2'}}
+                            'elem': {'text': 'enum MyEnum2'}
                         },
                         {'html': 'p', 'elem': [
                             {'text': 'Bases: '},
@@ -1118,7 +1118,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyEnum3'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'enum MyEnum3'}}
+                            'elem': {'text': 'enum MyEnum3'}
                         },
                         null,
                         null,
@@ -1143,7 +1143,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                         {
                             'html': 'h3',
                             'attr': {'id': '&type_MyEnum4'},
-                            'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'enum MyEnum4'}}
+                            'elem': {'text': 'enum MyEnum4'}
                         },
                         null,
                         null,
@@ -1192,7 +1192,7 @@ test('UserTypeElements, getElements typedef', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyTypedef'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyTypedef'}}
+                    'elem': {'text': 'MyTypedef'}
                 },
                 [
                     {'html': 'p', 'elem': [{'text': 'This is my typedef'}]}
@@ -1251,7 +1251,7 @@ test('UserTypeElements, getElements typedef no attr', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyTypedef'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyTypedef'}}
+                    'elem': {'text': 'MyTypedef'}
                 },
                 null,
                 {
@@ -1300,7 +1300,7 @@ test('UserTypeElements, getElements typedef attr gt lt', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': '&type_MyTypedef'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyTypedef'}}
+                    'elem': {'text': 'MyTypedef'}
                 },
                 null,
                 {
@@ -1410,7 +1410,7 @@ test('UserTypeElements, getElements action', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 {
@@ -1434,7 +1434,7 @@ test('UserTypeElements, getElements action', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyAction_path'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Path Parameters'}}
+                        'elem': {'text': 'Path Parameters'}
                     },
                     null,
                     null,
@@ -1468,7 +1468,7 @@ test('UserTypeElements, getElements action', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyAction_query'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Query Parameters'}}
+                        'elem': {'text': 'Query Parameters'}
                     },
                     null,
                     null,
@@ -1502,7 +1502,7 @@ test('UserTypeElements, getElements action', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyAction_input'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Input Parameters'}}
+                        'elem': {'text': 'Input Parameters'}
                     },
                     null,
                     null,
@@ -1536,7 +1536,7 @@ test('UserTypeElements, getElements action', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyAction_output'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Output Parameters'}}
+                        'elem': {'text': 'Output Parameters'}
                     },
                     null,
                     null,
@@ -1570,7 +1570,7 @@ test('UserTypeElements, getElements action', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyAction_errors'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Error Codes'}}
+                        'elem': {'text': 'Error Codes'}
                     },
                     null,
                     null,
@@ -1635,7 +1635,7 @@ const emptyActionErrorElements = [
     {
         'html': 'h2',
         'attr': {'id': 'name=MyAction&type_MyAction_errors'},
-        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Error Codes'}}
+        'elem': {'text': 'Error Codes'}
     },
     null,
     null,
@@ -1687,7 +1687,7 @@ test('UserTypeElements, getElements action empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 null,
@@ -1728,7 +1728,7 @@ test('UserTypeElements, getElements action empty error values', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 null,
@@ -1762,7 +1762,7 @@ test('UserTypeElements, getElements action no URLs', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 null,
@@ -1800,7 +1800,7 @@ test('UserTypeElements, getElements action URL override', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 {
@@ -1848,7 +1848,7 @@ test('UserTypeElements, getElements action URL override empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 null,
@@ -1889,7 +1889,7 @@ test('UserTypeElements, getElements action unexpected value defined', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'MyAction'}}
+                    'elem': {'text': 'MyAction'}
                 },
                 null,
                 null,
@@ -1901,7 +1901,7 @@ test('UserTypeElements, getElements action unexpected value defined', (t) => {
                     {
                         'html': 'h2',
                         'attr': {'id': 'name=MyAction&type_MyActionErrors'},
-                        'elem': {'html': 'a', 'attr': {'class': 'linktarget'}, 'elem': {'text': 'Error Codes'}}
+                        'elem': {'text': 'Error Codes'}
                     },
                     null,
                     null,
