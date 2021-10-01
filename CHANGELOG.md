@@ -1,3 +1,7 @@
+## 1.0.3 (2021-10-01)
+
+- [b9dc0ac](https://github.com/craigahobbs/schema-markdown-doc/commit/b9dc0ac) - remove unnecessary markup
+
 ## 1.0.2 (2021-09-17)
 
 - [c325284](https://github.com/craigahobbs/schema-markdown-doc/commit/c325284) - markdown-model 1.1
