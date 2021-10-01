@@ -29,7 +29,7 @@ To host your type model's documentation, first, download the schema-markdown-doc
 the directory containing your type model JSON file:
 
 ```
-curl -O https://craigahobbs.github.io/schema-markdown-doc/index.html
+curl -O https://craigahobbs.github.io/schema-markdown-doc/static/index.html
 ```
 
 To host locally, start a local static web server:
