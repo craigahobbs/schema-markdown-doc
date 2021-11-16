@@ -1,3 +1,7 @@
+## 1.0.5 (2021-11-16)
+
+- [639c24a](https://github.com/craigahobbs/schema-markdown-doc/commit/639c24a) - comma-separate base links
+
 ## 1.0.4 (2021-10-05)
 
 - [1ae2f37](https://github.com/craigahobbs/schema-markdown-doc/commit/1ae2f37) - fix jsdoc usage
