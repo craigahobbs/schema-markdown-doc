@@ -266,8 +266,14 @@ test('UserTypeElements, getElements struct bases', (t) => {
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
                     [
-                        {'html': 'a', 'attr': {'href': '#&type_MyStruct2'}, 'elem': {'text': 'MyStruct2'}},
-                        {'html': 'a', 'attr': {'href': '#&type_MyStruct3'}, 'elem': {'text': 'MyStruct3'}}
+                        [
+                            null,
+                            {'html': 'a', 'attr': {'href': '#&type_MyStruct2'}, 'elem': {'text': 'MyStruct2'}}
+                        ],
+                        [
+                            {'text': ', '},
+                            {'html': 'a', 'attr': {'href': '#&type_MyStruct3'}, 'elem': {'text': 'MyStruct3'}}
+                        ]
                     ]
                 ]},
                 null,
@@ -317,7 +323,10 @@ test('UserTypeElements, getElements struct bases', (t) => {
                         {'html': 'p', 'elem': [
                             {'text': 'Bases: '},
                             [
-                                {'html': 'a', 'attr': {'href': '#&type_MyStruct4'}, 'elem': {'text': 'MyStruct4'}}
+                                [
+                                    null,
+                                    {'html': 'a', 'attr': {'href': '#&type_MyStruct4'}, 'elem': {'text': 'MyStruct4'}}
+                                ]
                             ]
                         ]},
                         null,
