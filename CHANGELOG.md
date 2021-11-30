@@ -1,3 +1,7 @@
+## 1.0.6 (2021-11-29)
+
+- [9b71450](https://github.com/craigahobbs/schema-markdown-doc/commit/9b71450) - fix typeHref for empty params
+
 ## 1.0.5 (2021-11-16)
 
 - [639c24a](https://github.com/craigahobbs/schema-markdown-doc/commit/639c24a) - comma-separate base links
