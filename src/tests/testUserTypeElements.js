@@ -51,7 +51,7 @@ test('UserTypeElements, getElements struct', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyStruct'},
+                    'attr': {'id': 'type_MyStruct'},
                     'elem': {'text': 'MyStruct'}
                 },
                 null,
@@ -103,7 +103,7 @@ test('UserTypeElements, getElements struct', (t) => {
                                     {'html': 'td', 'elem': {'text': 'c'}},
                                     {
                                         'html': 'td',
-                                        'elem': {'html': 'a', 'attr': {'href': '#&type_MyStructEmpty'}, 'elem': {'text': 'MyStructEmpty'}}
+                                        'elem': {'html': 'a', 'attr': {'href': '#type_MyStructEmpty'}, 'elem': {'text': 'MyStructEmpty'}}
                                     },
                                     {'html': 'td', 'elem': null},
                                     {'html': 'td', 'elem': null}
@@ -115,7 +115,7 @@ test('UserTypeElements, getElements struct', (t) => {
                                     {'html': 'td', 'elem': {'text': 'd'}},
                                     {
                                         'html': 'td',
-                                        'elem': {'html': 'a', 'attr': {'href': '#&type_MyStructNoAttr'}, 'elem': {'text': 'MyStructNoAttr'}}
+                                        'elem': {'html': 'a', 'attr': {'href': '#type_MyStructNoAttr'}, 'elem': {'text': 'MyStructNoAttr'}}
                                     },
                                     {'html': 'td', 'elem': null},
                                     {'html': 'td', 'elem': null}
@@ -132,7 +132,7 @@ test('UserTypeElements, getElements struct', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyStructEmpty'},
+                            'attr': {'id': 'type_MyStructEmpty'},
                             'elem': {'text': 'struct MyStructEmpty'}
                         },
                         null,
@@ -144,7 +144,7 @@ test('UserTypeElements, getElements struct', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyStructNoAttr'},
+                            'attr': {'id': 'type_MyStructNoAttr'},
                             'elem': {'text': 'struct MyStructNoAttr'}
                         },
                         null,
@@ -199,7 +199,7 @@ test('UserTypeElements, getElements struct empty', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyStruct'},
+                    'attr': {'id': 'type_MyStruct'},
                     'elem': {'text': 'MyStruct'}
                 },
                 null,
@@ -260,7 +260,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyStruct'},
+                    'attr': {'id': 'type_MyStruct'},
                     'elem': {'text': 'MyStruct'}
                 },
                 {'html': 'p', 'elem': [
@@ -268,11 +268,11 @@ test('UserTypeElements, getElements struct bases', (t) => {
                     [
                         [
                             null,
-                            {'html': 'a', 'attr': {'href': '#&type_MyStruct2'}, 'elem': {'text': 'MyStruct2'}}
+                            {'html': 'a', 'attr': {'href': '#type_MyStruct2'}, 'elem': {'text': 'MyStruct2'}}
                         ],
                         [
                             {'text': ', '},
-                            {'html': 'a', 'attr': {'href': '#&type_MyStruct3'}, 'elem': {'text': 'MyStruct3'}}
+                            {'html': 'a', 'attr': {'href': '#type_MyStruct3'}, 'elem': {'text': 'MyStruct3'}}
                         ]
                     ]
                 ]},
@@ -317,7 +317,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyStruct2'},
+                            'attr': {'id': 'type_MyStruct2'},
                             'elem': {'text': 'struct MyStruct2'}
                         },
                         {'html': 'p', 'elem': [
@@ -325,7 +325,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                             [
                                 [
                                     null,
-                                    {'html': 'a', 'attr': {'href': '#&type_MyStruct4'}, 'elem': {'text': 'MyStruct4'}}
+                                    {'html': 'a', 'attr': {'href': '#type_MyStruct4'}, 'elem': {'text': 'MyStruct4'}}
                                 ]
                             ]
                         ]},
@@ -358,7 +358,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyStruct3'},
+                            'attr': {'id': 'type_MyStruct3'},
                             'elem': {'text': 'struct MyStruct3'}
                         },
                         null,
@@ -387,7 +387,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyStruct4'},
+                            'attr': {'id': 'type_MyStruct4'},
                             'elem': {'text': 'struct MyStruct4'}
                         },
                         null,
@@ -438,7 +438,7 @@ test('UserTypeElements, getElements struct union', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyUnion'},
+                    'attr': {'id': 'type_MyUnion'},
                     'elem': {'text': 'MyUnion'}
                 },
                 null,
@@ -507,7 +507,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyStruct'},
+                    'attr': {'id': 'type_MyStruct'},
                     'elem': {'text': 'MyStruct'}
                 },
                 null,
@@ -594,7 +594,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
                                     {'html': 'td', 'elem': {'text': 'e'}},
                                     {'html': 'td', 'elem': [
                                         [
-                                            {'html': 'a', 'attr': {'href': '#&type_MyEnum'}, 'elem': {'text': 'MyEnum'}},
+                                            {'html': 'a', 'attr': {'href': '#type_MyEnum'}, 'elem': {'text': 'MyEnum'}},
                                             {'text': `${nbsp}:${nbsp}`}
                                         ],
                                         {'text': 'int'},
@@ -641,7 +641,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyEnum'},
+                            'attr': {'id': 'type_MyEnum'},
                             'elem': {'text': 'enum MyEnum'}
                         },
                         null,
@@ -684,7 +684,7 @@ test('UserTypeElements, getElements struct attrs', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyStruct'},
+                    'attr': {'id': 'type_MyStruct'},
                     'elem': {'text': 'MyStruct'}
                 },
                 null,
@@ -863,7 +863,7 @@ test('UserTypeElements, getElements enum', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyEnum'},
+                    'attr': {'id': 'type_MyEnum'},
                     'elem': {'text': 'MyEnum'}
                 },
                 null,
@@ -925,7 +925,7 @@ test('UserTypeElements, getElements enum no doc', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyEnum'},
+                    'attr': {'id': 'type_MyEnum'},
                     'elem': {'text': 'MyEnum'}
                 },
                 null,
@@ -983,7 +983,7 @@ test('UserTypeElements, getElements enum empty', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyEnum'},
+                    'attr': {'id': 'type_MyEnum'},
                     'elem': {'text': 'MyEnum'}
                 },
                 null,
@@ -1045,14 +1045,14 @@ test('UserTypeElements, getElements enum bases', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyEnum'},
+                    'attr': {'id': 'type_MyEnum'},
                     'elem': {'text': 'MyEnum'}
                 },
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
                     [
-                        {'html': 'a', 'attr': {'href': '#&type_MyEnum2'}, 'elem': {'text': 'MyEnum2'}},
-                        {'html': 'a', 'attr': {'href': '#&type_MyEnum3'}, 'elem': {'text': 'MyEnum3'}}
+                        {'html': 'a', 'attr': {'href': '#type_MyEnum2'}, 'elem': {'text': 'MyEnum2'}},
+                        {'html': 'a', 'attr': {'href': '#type_MyEnum3'}, 'elem': {'text': 'MyEnum3'}}
                     ]
                 ]},
                 null,
@@ -1092,13 +1092,13 @@ test('UserTypeElements, getElements enum bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyEnum2'},
+                            'attr': {'id': 'type_MyEnum2'},
                             'elem': {'text': 'enum MyEnum2'}
                         },
                         {'html': 'p', 'elem': [
                             {'text': 'Bases: '},
                             [
-                                {'html': 'a', 'attr': {'href': '#&type_MyEnum4'}, 'elem': {'text': 'MyEnum4'}}
+                                {'html': 'a', 'attr': {'href': '#type_MyEnum4'}, 'elem': {'text': 'MyEnum4'}}
                             ]
                         ]},
                         null,
@@ -1126,7 +1126,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyEnum3'},
+                            'attr': {'id': 'type_MyEnum3'},
                             'elem': {'text': 'enum MyEnum3'}
                         },
                         null,
@@ -1151,7 +1151,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
                     [
                         {
                             'html': 'h3',
-                            'attr': {'id': '&type_MyEnum4'},
+                            'attr': {'id': 'type_MyEnum4'},
                             'elem': {'text': 'enum MyEnum4'}
                         },
                         null,
@@ -1200,7 +1200,7 @@ test('UserTypeElements, getElements typedef', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyTypedef'},
+                    'attr': {'id': 'type_MyTypedef'},
                     'elem': {'text': 'MyTypedef'}
                 },
                 [
@@ -1259,7 +1259,7 @@ test('UserTypeElements, getElements typedef no attr', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyTypedef'},
+                    'attr': {'id': 'type_MyTypedef'},
                     'elem': {'text': 'MyTypedef'}
                 },
                 null,
@@ -1308,7 +1308,7 @@ test('UserTypeElements, getElements typedef attr gt lt', (t) => {
             [
                 {
                     'html': 'h1',
-                    'attr': {'id': '&type_MyTypedef'},
+                    'attr': {'id': 'type_MyTypedef'},
                     'elem': {'text': 'MyTypedef'}
                 },
                 null,
