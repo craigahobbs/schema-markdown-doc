@@ -1,3 +1,7 @@
+## 1.0.7 (2021-12-02)
+
+- [47009ee](https://github.com/craigahobbs/schema-markdown-doc/commit/47009ee) - updates from javascript-template
+
 ## 1.0.6 (2021-11-29)
 
 - [9b71450](https://github.com/craigahobbs/schema-markdown-doc/commit/9b71450) - fix typeHref for empty params
