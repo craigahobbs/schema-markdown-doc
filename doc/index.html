@@ -75,8 +75,9 @@ itself. That's right; the Schema Markdown Type Model is used to define itself!</
 <p>Alternatively, you can change the default type model JSON file by updating the schema-markdown-doc
 application stub. For example:</p>
 <pre class="prettyprint source lang-html"><code>    &lt;script type=&quot;module&quot;>
-        import {SchemaMarkdownDoc} from 'https://craigahobbs.github.io/schema-markdown-doc/schema-markdown-doc/index.js';
-        SchemaMarkdownDoc.run(window, 'model.json');
+        import {SchemaMarkdownDoc} from 'https://craigahobbs.github.io/schema-markdown-doc/lib/app.js';
+        const app = new SchemaMarkdownDoc(window, 'model.json');
+        app.run();
     &lt;/script>
 </code></pre>
 <h2>The Schema Markdown Documentation Component</h2>
