@@ -1,3 +1,9 @@
+## 1.0.8 (2021-12-02)
+
+- [3651e6c](https://github.com/craigahobbs/schema-markdown-doc/commit/3651e6c) - update readme
+
+- [a30f470](https://github.com/craigahobbs/schema-markdown-doc/commit/a30f470) - add userTypeElements jsdoc module
+
 ## 1.0.7 (2021-12-02)
 
 - [47009ee](https://github.com/craigahobbs/schema-markdown-doc/commit/47009ee) - updates from javascript-template
