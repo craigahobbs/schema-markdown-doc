@@ -49,8 +49,9 @@ application stub. For example:
 
 ``` html
     <script type="module">
-        import {SchemaMarkdownDoc} from 'https://craigahobbs.github.io/schema-markdown-doc/schema-markdown-doc/index.js';
-        SchemaMarkdownDoc.run(window, 'model.json');
+        import {SchemaMarkdownDoc} from 'https://craigahobbs.github.io/schema-markdown-doc/lib/app.js';
+        const app = new SchemaMarkdownDoc(window, 'model.json');
+        app.run();
     </script>
 ```
 
