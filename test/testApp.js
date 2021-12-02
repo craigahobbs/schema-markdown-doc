@@ -4,8 +4,9 @@
 /* eslint-disable id-length */
 
 import {JSDOM} from 'jsdom/lib/api.js';
-import {SchemaMarkdownDoc} from '../schema-markdown-doc/index.js';
+import {SchemaMarkdownDoc} from '../lib/app.js';
 import {SchemaMarkdownParser} from 'schema-markdown/index.js';
+import {UserTypeElements} from '../lib/userTypeElements.js';
 import test from 'ava';
 
 
@@ -13,56 +14,27 @@ test('SchemaMarkdownDoc, constructor', (t) => {
     const {window} = new JSDOM();
     const app = new SchemaMarkdownDoc(window, 'my-type-model.json');
     t.is(app.window, window);
+    t.is(app.params, null);
     t.is(app.defaultURL, 'my-type-model.json');
-    t.is(app.params, null);
 });
 
 
-test('SchemaMarkdownDoc.run, help command', async (t) => {
+test('SchemaMarkdownDoc.main, help', async (t) => {
     const {window} = new JSDOM();
-    window.location.hash = '#cmd.help=1';
-    const app = await SchemaMarkdownDoc.run(window);
-    t.is(app.window, window);
-    t.is(app.defaultURL, null);
-    t.deepEqual(app.params, {'cmd': {'help': 1}});
-    t.is(window.document.title, 'SchemaMarkdownDoc');
-    t.true(window.document.body.innerHTML.startsWith(
-        '<h1 id="cmd.help=1&amp;type_SchemaMarkdownDoc">SchemaMarkdownDoc</h1>'
-    ));
-});
-
-
-test('SchemaMarkdownDoc.run, hash parameter error', async (t) => {
-    const {window} = new JSDOM();
-    window.location.hash = '#foo=bar';
-    const app = await SchemaMarkdownDoc.run(window);
-    t.is(app.window, window);
-    t.is(app.defaultURL, null);
-    t.is(app.params, null);
-    t.is(window.document.title, 'SchemaMarkdownDoc');
-    t.is(window.document.body.innerHTML, "<p>Error: Unknown member 'foo'</p>");
-});
-
-
-test('SchemaMarkdownDoc.run, title', async (t) => {
-    const {window} = new JSDOM();
-    const app = await SchemaMarkdownDoc.run(window);
-    t.is(app.window, window);
-    t.is(app.defaultURL, null);
-    t.deepEqual(app.params, {});
-    t.is(window.document.title, 'The Schema Markdown Type Model');
-    t.true(window.document.body.innerHTML.startsWith('<h1>The Schema Markdown Type Model</h1>'));
+    const app = new SchemaMarkdownDoc(window);
+    app.updateParams('help=1');
+    t.deepEqual(await app.main(), {'elements': new UserTypeElements(app.params).getElements(app.hashTypes, app.hashType)});
 });
 
 
 test('SchemaMarkdownDoc.main', async (t) => {
     const {window} = new JSDOM();
-    const app = new SchemaMarkdownDoc(window, null);
+    const app = new SchemaMarkdownDoc(window);
     app.updateParams('');
-    const result = await app.main();
-    result.elements.length = 1;
+    const main = await app.main();
+    main.elements.length = 1;
     t.deepEqual(
-        result,
+        main,
         {
             'title': 'The Schema Markdown Type Model',
             'elements': [

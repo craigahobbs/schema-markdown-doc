@@ -16,15 +16,14 @@
         "url": "https://github.com/craigahobbs"
     },
     "files": [
-        "index.js",
-        "src/schema-markdown-doc/**/*",
+        "lib/**/*",
         "static/schema-markdown-doc.css"
     ],
     "scripts": {
-        "test": "ava -v 'src/tests/**/*.js'"
+        "test": "ava -v test/"
     },
     "dependencies": {
-        "element-model": "~1.0",
+        "element-app": "~1.0",
         "markdown-model": "~1.1",
         "schema-markdown": "~1.0"
     },

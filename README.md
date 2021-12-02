@@ -82,8 +82,9 @@ const elements = (new UserTypeElements()).getElements(parser.types, 'MyStruct');
 
 ## Development
 
-This project is developed using [javascript-build](https://github.com/craigahobbs/javascript-build#readme). It was started
-using [javascript-template](https://github.com/craigahobbs/javascript-template#readme) as follows:
+schema-markdown-doc is an [Element Application](https://github.com/craigahobbs/element-app#readme).
+It is developed using [javascript-build](https://github.com/craigahobbs/javascript-build#readme)
+and it was started using [javascript-template](https://github.com/craigahobbs/javascript-template#readme):
 
 ```
 template-specialize javascript-template/template/ schema-markdown-doc/ -k package schema-markdown-doc -k name 'Craig A. Hobbs' -k email 'craigahobbs@gmail.com' -k github 'craigahobbs'
