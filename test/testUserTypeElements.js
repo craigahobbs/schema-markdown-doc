@@ -43,10 +43,8 @@ test('UserTypeElements, getElements struct', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyStruct');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
         [
             [
                 {
@@ -191,10 +189,8 @@ test('UserTypeElements, getElements struct empty', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyStruct');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
         [
             [
                 {
@@ -251,11 +247,8 @@ test('UserTypeElements, getElements struct bases', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyStruct');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
         [
             [
                 {
@@ -430,10 +423,8 @@ test('UserTypeElements, getElements struct union', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyUnion');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyUnion')),
         [
             [
                 {
@@ -499,10 +490,8 @@ test('UserTypeElements, getElements struct collections', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyStruct');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
         [
             [
                 {
@@ -676,10 +665,8 @@ test('UserTypeElements, getElements struct attrs', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyStruct');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
         [
             [
                 {
@@ -855,10 +842,8 @@ test('UserTypeElements, getElements enum', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyEnum');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
         [
             [
                 {
@@ -917,10 +902,8 @@ test('UserTypeElements, getElements enum no doc', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyEnum');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
         [
             [
                 {
@@ -975,10 +958,8 @@ test('UserTypeElements, getElements enum empty', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyEnum');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
         [
             [
                 {
@@ -1037,10 +1018,8 @@ test('UserTypeElements, getElements enum bases', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyEnum');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
         [
             [
                 {
@@ -1192,10 +1171,8 @@ test('UserTypeElements, getElements typedef', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyTypedef');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
         [
             [
                 {
@@ -1251,10 +1228,8 @@ test('UserTypeElements, getElements typedef no attr', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyTypedef');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
         [
             [
                 {
@@ -1300,10 +1275,8 @@ test('UserTypeElements, getElements typedef attr gt lt', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements()).getElements(types, 'MyTypedef');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
         [
             [
                 {
@@ -1409,8 +1382,7 @@ test('UserTypeElements, getElements action', (t) => {
     };
     validateTypeModelTypes(types);
     const actionErrorValuesOrig = [...types.MyAction_errors.enum.values];
-    const elements = (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction');
-    validateElements(elements);
+    const elements = validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction'));
     t.deepEqual(types.MyAction_errors.enum.values, actionErrorValuesOrig);
     t.deepEqual(
         elements,
@@ -1687,10 +1659,8 @@ test('UserTypeElements, getElements action empty', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction')),
         [
             [
                 {
@@ -1727,8 +1697,7 @@ test('UserTypeElements, getElements action empty error values', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction');
-    validateElements(elements);
+    const elements = validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction'));
     t.true(!('values' in types.MyAction_errors.enum));
     t.deepEqual(
         elements,
@@ -1762,10 +1731,8 @@ test('UserTypeElements, getElements action no URLs', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction');
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction')),
         [
             [
                 {
@@ -1799,11 +1766,10 @@ test('UserTypeElements, getElements action URL override', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = (new UserTypeElements({'name': 'MyAction'})).
-        getElements(types, 'MyAction', [{'method': 'GET', 'url': '/my_action'}]);
-    validateElements(elements);
     t.deepEqual(
-        elements,
+        validateElements(
+            new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [{'method': 'GET', 'url': '/my_action'}])
+        ),
         [
             [
                 {
@@ -1851,7 +1817,7 @@ test('UserTypeElements, getElements action URL override empty', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction', []),
+        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [])),
         [
             [
                 {
@@ -1892,7 +1858,7 @@ test('UserTypeElements, getElements action unexpected value defined', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'MyAction', []),
+        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [])),
         [
             [
                 {
@@ -1956,7 +1922,7 @@ test('UserTypeElements, getElements invalid', (t) => {
         }
     };
     t.deepEqual(
-        (new UserTypeElements({'name': 'MyAction'})).getElements(types, 'Invalid', []),
+        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'Invalid', [])),
         [null, null]
     );
 });
