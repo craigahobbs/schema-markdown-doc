@@ -1,3 +1,7 @@
+## 1.2.1 (2021-12-03)
+
+- [9c33b7c](https://github.com/craigahobbs/schema-markdown-doc/commit/9c33b7c) - fix readme links
+
 ## 1.2.0 (2021-12-02)
 
 - [2a656db](https://github.com/craigahobbs/schema-markdown-doc/commit/2a656db) - element-app 1.1, markdown-model 1.3, schema-markdown 1.1
