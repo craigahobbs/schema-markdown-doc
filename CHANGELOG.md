@@ -1,3 +1,7 @@
+## 1.2.0 (2021-12-02)
+
+- [2a656db](https://github.com/craigahobbs/schema-markdown-doc/commit/2a656db) - element-app 1.1, markdown-model 1.3, schema-markdown 1.1
+
 ## 1.1.0 (2021-12-02)
 
 - [03d7587](https://github.com/craigahobbs/schema-markdown-doc/commit/03d7587) - schema-markdown-doc 1.1.0
