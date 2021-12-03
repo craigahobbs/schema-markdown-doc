@@ -1,15 +1,15 @@
 {
     "type": "module",
-    "name": "element-app",
-    "version": "1.1.0",
-    "description": "Lightweight, pure-JavaScript, client-rendered web applications",
+    "name": "markdown-model",
+    "version": "1.3.0",
+    "description": "Markdown object model, parser, and renderer",
     "keywords": [
-        "lightweight",
-        "client-rendered",
-        "web application framework"
+        "markdown",
+        "parser",
+        "render"
     ],
-    "homepage": "https://github.com/craigahobbs/element-app#readme",
-    "bugs": "https://github.com/craigahobbs/element-app/issues",
+    "homepage": "https://github.com/craigahobbs/markdown-model#readme",
+    "bugs": "https://github.com/craigahobbs/markdown-model/issues",
     "license": "MIT",
     "author": {
         "name": "Craig A. Hobbs",
@@ -17,18 +17,19 @@
         "url": "https://github.com/craigahobbs"
     },
     "files": [
-        "lib/**/*"
+        "lib/**/*",
+        "static/markdown-model.css"
     ],
     "scripts": {
         "test": "ava -v test/"
     },
     "dependencies": {
-        "element-model": "~1.1",
         "schema-markdown": "~1.1"
     },
     "devDependencies": {
         "ava": "^4.0.0-rc.1",
         "c8": "~7.10",
+        "element-model": "~1.1",
         "eslint": "~8.3",
         "jsdoc": "~3.6",
         "jsdom": "~18.1"
