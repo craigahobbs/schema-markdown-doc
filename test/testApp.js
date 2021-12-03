@@ -5,7 +5,7 @@
 
 import {JSDOM} from 'jsdom/lib/api.js';
 import {SchemaMarkdownDoc} from '../lib/app.js';
-import {SchemaMarkdownParser} from 'schema-markdown/index.js';
+import {SchemaMarkdownParser} from 'schema-markdown/lib/parser.js';
 import {UserTypeElements} from '../lib/userTypeElements.js';
 import test from 'ava';
 

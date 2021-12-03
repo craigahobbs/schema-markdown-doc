@@ -6,8 +6,8 @@
 
 import {UserTypeElements} from '../lib/userTypeElements.js';
 import test from 'ava';
-import {validateElements} from 'element-model/index.js';
-import {validateTypeModelTypes} from 'schema-markdown/index.js';
+import {validateElements} from 'element-model/lib/elementModel.js';
+import {validateTypeModelTypes} from 'schema-markdown/lib/schema.js';
 
 
 // Non-breaking space character
