@@ -3,6 +3,7 @@
 
 /* eslint-disable id-length */
 
+import {ElementApplication} from 'element-app/lib/app.js';
 import {JSDOM} from 'jsdom/lib/api.js';
 import {SchemaMarkdownDoc} from '../lib/app.js';
 import {SchemaMarkdownParser} from 'schema-markdown/lib/parser.js';
@@ -23,7 +24,10 @@ test('SchemaMarkdownDoc.main, help', async (t) => {
     const {window} = new JSDOM();
     const app = new SchemaMarkdownDoc(window);
     app.updateParams('help=1');
-    t.deepEqual(await app.main(), {'elements': new UserTypeElements(app.params).getElements(app.hashTypes, app.hashType)});
+    const result = ElementApplication.validateMain(await app.main());
+    t.deepEqual(result, {
+        'elements': new UserTypeElements(app.params).getElements(app.hashTypes, app.hashType)
+    });
 });
 
 
@@ -31,17 +35,14 @@ test('SchemaMarkdownDoc.main', async (t) => {
     const {window} = new JSDOM();
     const app = new SchemaMarkdownDoc(window);
     app.updateParams('');
-    const main = await app.main();
-    main.elements.length = 1;
-    t.deepEqual(
-        main,
-        {
-            'title': 'The Schema Markdown Type Model',
-            'elements': [
-                {'html': 'h1', 'elem': {'text': 'The Schema Markdown Type Model'}}
-            ]
-        }
-    );
+    const result = ElementApplication.validateMain(await app.main());
+    result.elements.length = 1;
+    t.deepEqual(result, {
+        'title': 'The Schema Markdown Type Model',
+        'elements': [
+            {'html': 'h1', 'elem': {'text': 'The Schema Markdown Type Model'}}
+        ]
+    });
 });
 
 
@@ -58,40 +59,38 @@ test('SchemaMarkdownDoc.main, url', async (t) => {
     });
     const app = new SchemaMarkdownDoc(window, 'model.json');
     app.updateParams('url=other.json');
-    t.deepEqual(
-        await app.main(),
-        {
-            'title': 'Title',
-            'elements': [
-                {'html': 'h1', 'elem': {'text': 'Title'}},
+    const result = ElementApplication.validateMain(await app.main());
+    t.deepEqual(result, {
+        'title': 'Title',
+        'elements': [
+            {'html': 'h1', 'elem': {'text': 'Title'}},
+            [
                 [
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Typedefs'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    {'html': 'h2', 'elem': {'text': 'Typedefs'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {
-                                                'html': 'a',
-                                                'attr': {'href': '#name=IntType&url=other.json'},
-                                                'elem': {'text': 'IntType'}
-                                            }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {
+                                            'html': 'a',
+                                            'attr': {'href': '#name=IntType&url=other.json'},
+                                            'elem': {'text': 'IntType'}
                                         }
-                                    ]
-                                }
+                                    }
+                                ]
                             }
                         }
-                    ]
+                    }
                 ]
             ]
-        }
-    );
+        ]
+    });
 });
 
 
@@ -167,139 +166,137 @@ action TestAction2
     });
     const app = new SchemaMarkdownDoc(window, 'testModel.json');
     app.updateParams('');
-    t.deepEqual(
-        await app.main(),
-        {
-            'title': 'Test',
-            'elements': [
-                {'html': 'h1', 'elem': {'text': 'Test'}},
+    const result = ElementApplication.validateMain(await app.main());
+    t.deepEqual(result, {
+        'title': 'Test',
+        'elements': [
+            {'html': 'h1', 'elem': {'text': 'Test'}},
+            [
                 [
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Actions'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    {'html': 'h2', 'elem': {'text': 'Actions'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestAction'}, 'elem': {'text': 'TestAction'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestAction'}, 'elem': {'text': 'TestAction'}}
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Enumerations'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    }
+                ],
+                [
+                    {'html': 'h2', 'elem': {'text': 'Enumerations'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestEnum'}, 'elem': {'text': 'TestEnum'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestEnum'}, 'elem': {'text': 'TestEnum'}}
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Group1'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    }
+                ],
+                [
+                    {'html': 'h2', 'elem': {'text': 'Group1'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestStruct2'}, 'elem': {'text': 'TestStruct2'}}
-                                        },
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestType2'}, 'elem': {'text': 'TestType2'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestStruct2'}, 'elem': {'text': 'TestStruct2'}}
+                                    },
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestType2'}, 'elem': {'text': 'TestType2'}}
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Group2'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    }
+                ],
+                [
+                    {'html': 'h2', 'elem': {'text': 'Group2'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestAction2'}, 'elem': {'text': 'TestAction2'}}
-                                        },
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestEnum2'}, 'elem': {'text': 'TestEnum2'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestAction2'}, 'elem': {'text': 'TestAction2'}}
+                                    },
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestEnum2'}, 'elem': {'text': 'TestEnum2'}}
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Structs'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    }
+                ],
+                [
+                    {'html': 'h2', 'elem': {'text': 'Structs'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestStruct'}, 'elem': {'text': 'TestStruct'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestStruct'}, 'elem': {'text': 'TestStruct'}}
+                                    }
+                                ]
                             }
                         }
-                    ],
-                    [
-                        {'html': 'h2', 'elem': {'text': 'Typedefs'}},
-                        {
-                            'html': 'ul',
-                            'attr': {'class': 'smd-index-list'},
+                    }
+                ],
+                [
+                    {'html': 'h2', 'elem': {'text': 'Typedefs'}},
+                    {
+                        'html': 'ul',
+                        'attr': {'class': 'smd-index-list'},
+                        'elem': {
+                            'html': 'li',
                             'elem': {
-                                'html': 'li',
-                                'elem': {
-                                    'html': 'ul',
-                                    'elem': [
-                                        {
-                                            'html': 'li',
-                                            'elem': {'html': 'a', 'attr': {'href': '#name=TestType'}, 'elem': {'text': 'TestType'}}
-                                        }
-                                    ]
-                                }
+                                'html': 'ul',
+                                'elem': [
+                                    {
+                                        'html': 'li',
+                                        'elem': {'html': 'a', 'attr': {'href': '#name=TestType'}, 'elem': {'text': 'TestType'}}
+                                    }
+                                ]
                             }
                         }
-                    ]
+                    }
                 ]
             ]
-        }
-    );
+        ]
+    });
 });
 
 
@@ -324,40 +321,38 @@ typedef int TestType
     });
     const app = new SchemaMarkdownDoc(window, 'testModel.json');
     app.updateParams('name=TestType');
-    t.deepEqual(
-        await app.main(),
-        {
-            'title': 'Test',
-            'elements': [
-                {
-                    'html': 'p',
-                    'elem': {
-                        'html': 'a',
-                        'attr': {'href': '#'},
-                        'elem': {'text': 'Back to documentation index'}
-                    }
-                },
+    const result = ElementApplication.validateMain(await app.main());
+    t.deepEqual(result, {
+        'title': 'Test',
+        'elements': [
+            {
+                'html': 'p',
+                'elem': {
+                    'html': 'a',
+                    'attr': {'href': '#'},
+                    'elem': {'text': 'Back to documentation index'}
+                }
+            },
+            [
                 [
-                    [
-                        {
-                            'html': 'h1',
-                            'attr': {'id': 'name=TestType&type_TestType'},
-                            'elem': {'text': 'TestType'}
-                        },
-                        null,
-                        {
-                            'html': 'table',
-                            'elem': [
-                                {'html': 'tr', 'elem': [{'html': 'th', 'elem': {'text': 'Type'}}, null]},
-                                {'html': 'tr', 'elem': [{'html': 'td', 'elem': {'text': 'int'}}, null]}
-                            ]
-                        }
-                    ],
-                    null
-                ]
+                    {
+                        'html': 'h1',
+                        'attr': {'id': 'name=TestType&type_TestType'},
+                        'elem': {'text': 'TestType'}
+                    },
+                    null,
+                    {
+                        'html': 'table',
+                        'elem': [
+                            {'html': 'tr', 'elem': [{'html': 'th', 'elem': {'text': 'Type'}}, null]},
+                            {'html': 'tr', 'elem': [{'html': 'td', 'elem': {'text': 'int'}}, null]}
+                        ]
+                    }
+                ],
+                null
             ]
-        }
-    );
+        ]
+    });
 });
 
 
