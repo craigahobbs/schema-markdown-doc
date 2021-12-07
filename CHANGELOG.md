@@ -1,3 +1,7 @@
+## 1.2.2 (2021-12-07)
+
+- [52b65c5](https://github.com/craigahobbs/schema-markdown-doc/commit/52b65c5) - better error for UserTypeElements.getElements type not exist
+
 ## 1.2.1 (2021-12-03)
 
 - [9c33b7c](https://github.com/craigahobbs/schema-markdown-doc/commit/9c33b7c) - fix readme links
