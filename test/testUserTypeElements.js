@@ -1922,7 +1922,19 @@ test('UserTypeElements, getElements invalid', (t) => {
         }
     };
     t.deepEqual(
-        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'Invalid', [])),
+        validateElements(new UserTypeElements({}).getElements(types, 'Invalid')),
         [null, null]
     );
+});
+
+
+test('UserTypeElements, getElements unknown type', (t) => {
+    const types = {};
+    let errorMessage = null;
+    try {
+        validateElements(new UserTypeElements({}).getElements(types, 'Unknown'));
+    } catch ({message}) {
+        errorMessage = message;
+    }
+    t.is(errorMessage, "Unknown type 'Unknown'");
 });
