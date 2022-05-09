@@ -1,19 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>SchemaMarkdownDoc</title>
-        <meta charset="UTF-8">
-        <meta name="description" content="SchemaMarkdownDoc, the Schema Markdown documentation application">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="markdown-model.css">
-        <link rel="stylesheet" href="schema-markdown-doc.css">
-        <link rel="stylesheet" href="app.css">
-    </head>
-    <body>
-    </body>
-    <script type="module">
-        import {SchemaMarkdownDoc} from './lib/app.js';
-        const app = new SchemaMarkdownDoc(window);
-        app.run();
-    </script>
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Home</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Home</h1>
+
+    
+
+
+
+    
+
+
+    <h3> </h3>
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    <section>
+        <article><h1>schema-markdown-doc</h1>
+<p><a href="https://www.npmjs.com/package/schema-markdown-doc"><img src="https://img.shields.io/npm/v/schema-markdown-doc" alt="npm"></a>
+<a href="https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE"><img src="https://img.shields.io/github/license/craigahobbs/schema-markdown-doc" alt="GitHub"></a></p>
+<p><a href="https://craigahobbs.github.io/schema-markdown-doc/">schema-markdown-doc API Documentation</a></p>
+<p>The schema-markdown-doc package generates documentation for
+<a href="https://github.com/craigahobbs/schema-markdown-js">Schema Markdown</a>
+schemas.</p>
+<p>The
+<a href="https://craigahobbs.github.io/schema-markdown-doc/module-lib_schemaMarkdownDoc.html#.schemaMarkdownDoc">schemaMarkdownDoc</a>
+function generates the
+<a href="https://github.com/craigahobbs/element-model">element-model</a>
+for a Schema Markdown user type's documentation. For example:</p>
+<pre class="prettyprint source lang-javascript"><code>import {SchemaMarkdownParser} from 'schema-markdown/lib/parser.js';
+import {schemaMarkdownDoc} from 'schema-markdown-doc/lib/schemaMarkdownDoc.js';
+
+const parser = new SchemaMarkdownParser(`\
+# My struct
+struct MyStruct
+
+    # My member
+    string member
+`);
+const elements = schemaMarkdownDoc(parser.types, 'MyStruct');
+</code></pre>
+<p>The element model is rendered using element-model's
+<a href="https://craigahobbs.github.io/element-model/module-lib_elementModel.html#.renderElements">renderElements</a>
+function.</p>
+<pre class="prettyprint source lang-javascript"><code>import {renderElements} from 'element-model/lib/elementModel.js';
+
+renderElements(window.document.body, elements);
+</code></pre>
+<h2>The Schema Markdown Documentation Viewer</h2>
+<p><a href="https://craigahobbs.github.io/schema-markdown-doc/app/">schema-markdown-doc Application</a></p>
+<p>To host your Schema Markdown type model's documentation, first, download the schema-markdown-doc
+application stub to the directory containing your type model's Schema Markdown file (.smd) or JSON
+file:</p>
+<pre class="prettyprint source"><code>curl -O https://craigahobbs.github.io/schema-markdown-doc/static/index.html
+</code></pre>
+<p>To host locally, start a local static web server:</p>
+<pre class="prettyprint source"><code>python3 -m http.server
+</code></pre>
+<p>By default, schema-markdown-doc renders the
+<a href="https://craigahobbs.github.io/schema-markdown-doc/app/">Schema Markdown Type Model</a>.</p>
+<p>To display documentation for your schema, set the &quot;var.vURL&quot; hash parameter (i.e., &quot;#var.vURL=types.smd&quot;).</p>
+<p>Alternatively, you can change the default file URL by updating the schema-markdown-doc application
+stub. For example:</p>
+<pre class="prettyprint source lang-html"><code>~~~ markdown-script
+include 'app.mds'
+await schemaMarkdownDoc(myTypes.smd, 'My Schema')
+~~~
+</code></pre>
+<h2>Development</h2>
+<p>schema-markdown-doc is an <a href="https://github.com/craigahobbs/element-app#readme">Element Application</a>.
+It is developed using <a href="https://github.com/craigahobbs/javascript-build#readme">javascript-build</a>
+and it was started using <a href="https://github.com/craigahobbs/javascript-template#readme">javascript-template</a>:</p>
+<pre class="prettyprint source"><code>template-specialize javascript-template/template/ schema-markdown-doc/ -k package schema-markdown-doc -k name 'Craig A. Hobbs' -k email 'craigahobbs@gmail.com' -k github 'craigahobbs' -k noapp 1
+</code></pre></article>
+    </section>
+
+
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-lib_schemaMarkdownDoc.html">lib/schemaMarkdownDoc</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.10</a>
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
 </html>
