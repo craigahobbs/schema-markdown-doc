@@ -1,3 +1,7 @@
+## 1.4.0 (2022-05-09)
+
+- [c14ee16](https://github.com/craigahobbs/schema-markdown-doc/commit/c14ee16) - port schema-markdown-doc application to markdown-script
+
 ## 1.3.0 (2022-02-01)
 
 - [3038db0](https://github.com/craigahobbs/schema-markdown-doc/commit/3038db0) - markdown-model 1.4
