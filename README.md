@@ -69,7 +69,7 @@ stub. For example:
 ``` html
 ~~~ markdown-script
 include 'app.mds'
-await schemaMarkdownDoc(myTypes.smd, 'My Schema')
+await schemaMarkdownDoc('myTypes.smd', 'My Schema')
 ~~~
 ```
 
