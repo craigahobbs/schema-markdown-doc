@@ -61,7 +61,7 @@ python3 -m http.server
 By default, schema-markdown-doc renders the
 [Schema Markdown Type Model](https://craigahobbs.github.io/schema-markdown-doc/app/).
 
-To display documentation for your schema, set the "var.vURL" hash parameter (i.e., "#var.vURL=types.smd").
+To display documentation for your schema, set the "var.vURL" hash parameter (i.e., "#var.vURL='types.smd'").
 
 Alternatively, you can change the default file URL by updating the schema-markdown-doc application
 stub. For example:
