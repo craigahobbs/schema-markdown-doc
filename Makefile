@@ -15,10 +15,6 @@ $(eval $(call WGET, https://raw.githubusercontent.com/craigahobbs/javascript-bui
 $(eval $(call WGET, https://raw.githubusercontent.com/craigahobbs/javascript-build/main/.eslintrc.cjs))
 
 
-# Set gh-pages source
-GHPAGES_SRC := build/app/
-
-
 # Include javascript-build
 include Makefile.base
 
@@ -27,39 +23,5 @@ clean:
 	rm -rf Makefile.base jsdoc.json .eslintrc.cjs
 
 
-help:
-	@echo '            [app|run|'
-
-
-.PHONY: run
-run: app
-	python3 -m http.server --directory build/app
-
-
-.PHONY: app
-commit: app
-app: build/npm.build doc
-	rm -rf build/app/
-	mkdir -p build/app/
-
-    # Copy dependencies
-	cp -R \
-		static/* \
-		lib \
-		node_modules/element-app \
-		node_modules/element-model \
-		node_modules/markdown-model \
-		node_modules/markdown-model/static/markdown-model.css \
-		node_modules/schema-markdown \
-		build/doc \
-		build/app/
-
-    # Fix imports
-	for FILE in `find build/app/*/lib -name '*.js'`; do \
-		sed -E "s/from '([^\.])/from '..\/..\/\1/g" $$FILE > $$FILE.tmp && \
-		mv $$FILE.tmp $$FILE; \
-	done
-	for FILE in `find build/app/* -name '*.js'`; do \
-		sed -E "s/from '([^\.])/from '..\/\1/g" $$FILE > $$FILE.tmp && \
-		mv $$FILE.tmp $$FILE; \
-	done
+doc:
+	cp -R static/* build/doc/

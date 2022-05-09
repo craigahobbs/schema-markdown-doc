@@ -4,7 +4,7 @@
 /* eslint-disable id-length */
 /* eslint-disable max-len */
 
-import {UserTypeElements} from '../lib/userTypeElements.js';
+import {schemaMarkdownDoc} from '../lib/schemaMarkdownDoc.js';
 import test from 'ava';
 import {validateElements} from 'element-model/lib/elementModel.js';
 import {validateTypeModelTypes} from 'schema-markdown/lib/schema.js';
@@ -14,7 +14,7 @@ import {validateTypeModelTypes} from 'schema-markdown/lib/schema.js';
 const nbsp = String.fromCharCode(160);
 
 
-test('UserTypeElements, getElements struct', (t) => {
+test('schemaMarkdownDoc, struct', (t) => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -44,7 +44,7 @@ test('UserTypeElements, getElements struct', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
+        validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
                 {
@@ -180,7 +180,7 @@ test('UserTypeElements, getElements struct', (t) => {
 });
 
 
-test('UserTypeElements, getElements struct empty', (t) => {
+test('schemaMarkdownDoc, struct empty', (t) => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -190,7 +190,7 @@ test('UserTypeElements, getElements struct empty', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
+        validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
                 {
@@ -210,7 +210,7 @@ test('UserTypeElements, getElements struct empty', (t) => {
 });
 
 
-test('UserTypeElements, getElements struct bases', (t) => {
+test('schemaMarkdownDoc, struct bases', (t) => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -248,7 +248,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
         }
     };
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
+        validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
                 {
@@ -413,7 +413,7 @@ test('UserTypeElements, getElements struct bases', (t) => {
 });
 
 
-test('UserTypeElements, getElements struct union', (t) => {
+test('schemaMarkdownDoc, struct union', (t) => {
     const types = {
         'MyUnion': {
             'struct': {
@@ -424,7 +424,7 @@ test('UserTypeElements, getElements struct union', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyUnion')),
+        validateElements(schemaMarkdownDoc(types, 'MyUnion')),
         [
             [
                 {
@@ -444,7 +444,7 @@ test('UserTypeElements, getElements struct union', (t) => {
 });
 
 
-test('UserTypeElements, getElements struct collections', (t) => {
+test('schemaMarkdownDoc, struct collections', (t) => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -491,7 +491,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
+        validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
                 {
@@ -647,7 +647,7 @@ test('UserTypeElements, getElements struct collections', (t) => {
 });
 
 
-test('UserTypeElements, getElements struct attrs', (t) => {
+test('schemaMarkdownDoc, struct attrs', (t) => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -666,7 +666,7 @@ test('UserTypeElements, getElements struct attrs', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyStruct')),
+        validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
                 {
@@ -829,7 +829,7 @@ test('UserTypeElements, getElements struct attrs', (t) => {
 });
 
 
-test('UserTypeElements, getElements enum', (t) => {
+test('schemaMarkdownDoc, enum', (t) => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -843,7 +843,7 @@ test('UserTypeElements, getElements enum', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
+        validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
                 {
@@ -889,7 +889,7 @@ test('UserTypeElements, getElements enum', (t) => {
 });
 
 
-test('UserTypeElements, getElements enum no doc', (t) => {
+test('schemaMarkdownDoc, enum no doc', (t) => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -903,7 +903,7 @@ test('UserTypeElements, getElements enum no doc', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
+        validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
                 {
@@ -949,7 +949,7 @@ test('UserTypeElements, getElements enum no doc', (t) => {
 });
 
 
-test('UserTypeElements, getElements enum empty', (t) => {
+test('schemaMarkdownDoc, enum empty', (t) => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -959,7 +959,7 @@ test('UserTypeElements, getElements enum empty', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
+        validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
                 {
@@ -980,7 +980,7 @@ test('UserTypeElements, getElements enum empty', (t) => {
 });
 
 
-test('UserTypeElements, getElements enum bases', (t) => {
+test('schemaMarkdownDoc, enum bases', (t) => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -1019,7 +1019,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyEnum')),
+        validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
                 {
@@ -1159,7 +1159,7 @@ test('UserTypeElements, getElements enum bases', (t) => {
 });
 
 
-test('UserTypeElements, getElements typedef', (t) => {
+test('schemaMarkdownDoc, typedef', (t) => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1172,7 +1172,7 @@ test('UserTypeElements, getElements typedef', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
+        validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
                 {
@@ -1218,7 +1218,7 @@ test('UserTypeElements, getElements typedef', (t) => {
 });
 
 
-test('UserTypeElements, getElements typedef no attr', (t) => {
+test('schemaMarkdownDoc, typedef no attr', (t) => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1229,7 +1229,7 @@ test('UserTypeElements, getElements typedef no attr', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
+        validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
                 {
@@ -1264,7 +1264,7 @@ test('UserTypeElements, getElements typedef no attr', (t) => {
 });
 
 
-test('UserTypeElements, getElements typedef attr gt lt', (t) => {
+test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1276,7 +1276,7 @@ test('UserTypeElements, getElements typedef attr gt lt', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements().getElements(types, 'MyTypedef')),
+        validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
                 {
@@ -1321,7 +1321,7 @@ test('UserTypeElements, getElements typedef attr gt lt', (t) => {
 });
 
 
-test('UserTypeElements, getElements action', (t) => {
+test('schemaMarkdownDoc, action', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1382,7 +1382,7 @@ test('UserTypeElements, getElements action', (t) => {
     };
     validateTypeModelTypes(types);
     const actionErrorValuesOrig = [...types.MyAction_errors.enum.values];
-    const elements = validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction'));
+    const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
     t.deepEqual(types.MyAction_errors.enum.values, actionErrorValuesOrig);
     t.deepEqual(
         elements,
@@ -1650,7 +1650,7 @@ const emptyActionErrorElements = [
 ];
 
 
-test('UserTypeElements, getElements action empty', (t) => {
+test('schemaMarkdownDoc, action empty', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1660,7 +1660,7 @@ test('UserTypeElements, getElements action empty', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction')),
+        validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
             [
                 {
@@ -1682,7 +1682,7 @@ test('UserTypeElements, getElements action empty', (t) => {
 });
 
 
-test('UserTypeElements, getElements action empty error values', (t) => {
+test('schemaMarkdownDoc, action empty error values', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1697,7 +1697,7 @@ test('UserTypeElements, getElements action empty error values', (t) => {
         }
     };
     validateTypeModelTypes(types);
-    const elements = validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction'));
+    const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
     t.true(!('values' in types.MyAction_errors.enum));
     t.deepEqual(
         elements,
@@ -1722,7 +1722,7 @@ test('UserTypeElements, getElements action empty error values', (t) => {
 });
 
 
-test('UserTypeElements, getElements action no URLs', (t) => {
+test('schemaMarkdownDoc, action no URLs', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1732,7 +1732,7 @@ test('UserTypeElements, getElements action no URLs', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction')),
+        validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
             [
                 {
@@ -1754,7 +1754,7 @@ test('UserTypeElements, getElements action no URLs', (t) => {
 });
 
 
-test('UserTypeElements, getElements action URL override', (t) => {
+test('schemaMarkdownDoc, action URL override', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1768,7 +1768,7 @@ test('UserTypeElements, getElements action URL override', (t) => {
     validateTypeModelTypes(types);
     t.deepEqual(
         validateElements(
-            new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [{'method': 'GET', 'url': '/my_action'}])
+            schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [{'method': 'GET', 'url': '/my_action'}]})
         ),
         [
             [
@@ -1804,7 +1804,7 @@ test('UserTypeElements, getElements action URL override', (t) => {
 });
 
 
-test('UserTypeElements, getElements action URL override empty', (t) => {
+test('schemaMarkdownDoc, action URL override empty', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1817,7 +1817,7 @@ test('UserTypeElements, getElements action URL override empty', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [])),
+        validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
             [
                 {
@@ -1839,7 +1839,7 @@ test('UserTypeElements, getElements action URL override empty', (t) => {
 });
 
 
-test('UserTypeElements, getElements action unexpected value defined', (t) => {
+test('schemaMarkdownDoc, action unexpected value defined', (t) => {
     const types = {
         'MyAction': {
             'action': {
@@ -1858,7 +1858,7 @@ test('UserTypeElements, getElements action unexpected value defined', (t) => {
     };
     validateTypeModelTypes(types);
     t.deepEqual(
-        validateElements(new UserTypeElements({'name': 'MyAction'}).getElements(types, 'MyAction', [])),
+        validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
             [
                 {
@@ -1913,7 +1913,7 @@ test('UserTypeElements, getElements action unexpected value defined', (t) => {
 });
 
 
-test('UserTypeElements, getElements invalid', (t) => {
+test('schemaMarkdownDoc, invalid', (t) => {
     const types = {
         'Invalid': {
             'invalid': {
@@ -1922,17 +1922,17 @@ test('UserTypeElements, getElements invalid', (t) => {
         }
     };
     t.deepEqual(
-        validateElements(new UserTypeElements({}).getElements(types, 'Invalid')),
+        validateElements(schemaMarkdownDoc(types, 'Invalid')),
         [null, null]
     );
 });
 
 
-test('UserTypeElements, getElements unknown type', (t) => {
+test('schemaMarkdownDoc, unknown type', (t) => {
     const types = {};
     let errorMessage = null;
     try {
-        validateElements(new UserTypeElements({}).getElements(types, 'Unknown'));
+        validateElements(schemaMarkdownDoc(types, 'Unknown'));
     } catch ({message}) {
         errorMessage = message;
     }
