@@ -7,7 +7,7 @@
 import {schemaMarkdownDoc} from '../lib/schemaMarkdownDoc.js';
 import test from 'ava';
 import {validateElements} from 'element-model/lib/elementModel.js';
-import {validateTypeModelTypes} from 'schema-markdown/lib/schema.js';
+import {validateTypeModel} from 'schema-markdown/lib/schema.js';
 
 
 // Non-breaking space character
@@ -42,7 +42,7 @@ test('schemaMarkdownDoc, struct', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
@@ -188,7 +188,7 @@ test('schemaMarkdownDoc, struct empty', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
@@ -422,7 +422,7 @@ test('schemaMarkdownDoc, struct union', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyUnion')),
         [
@@ -489,7 +489,7 @@ test('schemaMarkdownDoc, struct collections', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
@@ -664,7 +664,7 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
@@ -841,7 +841,7 @@ test('schemaMarkdownDoc, enum', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
@@ -901,7 +901,7 @@ test('schemaMarkdownDoc, enum no doc', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
@@ -957,7 +957,7 @@ test('schemaMarkdownDoc, enum empty', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
@@ -1017,7 +1017,7 @@ test('schemaMarkdownDoc, enum bases', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
@@ -1170,7 +1170,7 @@ test('schemaMarkdownDoc, typedef', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
@@ -1227,7 +1227,7 @@ test('schemaMarkdownDoc, typedef no attr', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
@@ -1274,7 +1274,7 @@ test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
@@ -1380,7 +1380,7 @@ test('schemaMarkdownDoc, action', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     const actionErrorValuesOrig = [...types.MyAction_errors.enum.values];
     const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
     t.deepEqual(types.MyAction_errors.enum.values, actionErrorValuesOrig);
@@ -1658,7 +1658,7 @@ test('schemaMarkdownDoc, action empty', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
@@ -1696,7 +1696,7 @@ test('schemaMarkdownDoc, action empty error values', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
     t.true(!('values' in types.MyAction_errors.enum));
     t.deepEqual(
@@ -1730,7 +1730,7 @@ test('schemaMarkdownDoc, action no URLs', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
@@ -1765,7 +1765,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(
             schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [{'method': 'GET', 'url': '/my_action'}]})
@@ -1815,7 +1815,7 @@ test('schemaMarkdownDoc, action URL override empty', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
@@ -1856,7 +1856,7 @@ test('schemaMarkdownDoc, action unexpected value defined', (t) => {
             }
         }
     };
-    validateTypeModelTypes(types);
+    validateTypeModel(types);
     t.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
