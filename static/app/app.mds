@@ -27,7 +27,7 @@ async function schemaMarkdownDoc(url, title)
         schemaMarkdownTextOK:
 
         # Validate or parse the Schema Markdown resource
-        types = if(isJSON, schemaValidateTypeModel(schemaResource), schemaParseString(schemaResource))
+        types = if(isJSON, schemaValidateTypeModel(schemaResource), schemaParse(schemaResource))
     urlNotNullDone:
 
     # Type page?
