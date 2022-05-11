@@ -1,3 +1,7 @@
+## 1.4.2 (2022-05-11)
+
+- [bd79bce](https://github.com/craigahobbs/schema-markdown-doc/commit/bd79bce) - export schemaMarkdownDocURLNote
+
 ## 1.4.1 (2022-05-10)
 
 - [28c653c](https://github.com/craigahobbs/schema-markdown-doc/commit/28c653c) - update readme
