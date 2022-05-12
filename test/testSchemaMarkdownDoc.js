@@ -85,13 +85,9 @@ test('schemaMarkdownDoc, struct', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'b'}},
                                     {'html': 'td', 'elem': {'text': 'float'}},
-                                    {'html': 'td', 'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': 'optional'}}
-                                        ]
-                                    }},
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': 'optional'}]
+                                    ]},
                                     {'html': 'td', 'elem': null}
                                 ]
                             },
@@ -547,13 +543,9 @@ test('schemaMarkdownDoc, struct collections', (t) => {
                                         {'text': 'int'},
                                         {'text': `${nbsp}[]`}
                                     ]},
-                                    {'html': 'td', 'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}}
-                                        ]
-                                    }},
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `value${nbsp}>${nbsp}0`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -566,14 +558,10 @@ test('schemaMarkdownDoc, struct collections', (t) => {
                                         {'text': 'int'},
                                         {'text': `${nbsp}{}`}
                                     ]},
-                                    {'html': 'td', 'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `len(key)${nbsp}>${nbsp}0`}},
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}}
-                                        ]
-                                    }},
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `len(key)${nbsp}>${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `value${nbsp}>${nbsp}0`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -589,13 +577,9 @@ test('schemaMarkdownDoc, struct collections', (t) => {
                                         {'text': 'int'},
                                         {'text': `${nbsp}{}`}
                                     ]},
-                                    {'html': 'td', 'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}}
-                                        ]
-                                    }},
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `value${nbsp}>${nbsp}0`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -608,14 +592,10 @@ test('schemaMarkdownDoc, struct collections', (t) => {
                                         {'text': 'int'},
                                         {'text': `${nbsp}{}`}
                                     ]},
-                                    {'html': 'td', 'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `len(key)${nbsp}>${nbsp}0`}},
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}}
-                                        ]
-                                    }},
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `len(key)${nbsp}>${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `value${nbsp}>${nbsp}0`}]
+                                    ]},
                                     null
                                 ]
                             }
@@ -694,17 +674,10 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'a'}},
                                     {'html': 'td', 'elem': {'text': 'int'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}},
-                                                {'html': 'li', 'elem': {'text': `value${nbsp}<${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `value${nbsp}>${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `value${nbsp}<${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -713,17 +686,10 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'b'}},
                                     {'html': 'td', 'elem': {'text': 'int'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `value${nbsp}>=${nbsp}0`}},
-                                                {'html': 'li', 'elem': {'text': `value${nbsp}<=${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `value${nbsp}>=${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `value${nbsp}<=${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -732,16 +698,9 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'c'}},
                                     {'html': 'td', 'elem': {'text': 'int'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `value${nbsp}==${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `value${nbsp}==${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -750,17 +709,10 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'd'}},
                                     {'html': 'td', 'elem': {'text': 'string'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `len(value)${nbsp}>${nbsp}0`}},
-                                                {'html': 'li', 'elem': {'text': `len(value)${nbsp}<${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `len(value)${nbsp}>${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `len(value)${nbsp}<${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -769,17 +721,10 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'e'}},
                                     {'html': 'td', 'elem': {'text': 'string'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `len(value)${nbsp}>=${nbsp}0`}},
-                                                {'html': 'li', 'elem': {'text': `len(value)${nbsp}<=${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `len(value)${nbsp}>=${nbsp}0`}],
+                                        [{'html': 'br'}, {'text': `len(value)${nbsp}<=${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -788,16 +733,9 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'f'}},
                                     {'html': 'td', 'elem': {'text': 'string'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': `len(value)${nbsp}==${nbsp}10`}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': `len(value)${nbsp}==${nbsp}10`}]
+                                    ]},
                                     null
                                 ]
                             },
@@ -806,16 +744,9 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                                 'elem': [
                                     {'html': 'td', 'elem': {'text': 'g'}},
                                     {'html': 'td', 'elem': {'text': 'int'}},
-                                    {
-                                        'html': 'td',
-                                        'elem': {
-                                            'html': 'ul',
-                                            'attr': {'class': 'smd-attr-list'},
-                                            'elem': [
-                                                {'html': 'li', 'elem': {'text': 'nullable'}}
-                                            ]
-                                        }
-                                    },
+                                    {'html': 'td', 'elem': [
+                                        [null, {'text': 'nullable'}]
+                                    ]},
                                     null
                                 ]
                             }
@@ -1197,16 +1128,9 @@ test('schemaMarkdownDoc, typedef', (t) => {
                             'html': 'tr',
                             'elem': [
                                 {'html': 'td', 'elem': {'text': 'int'}},
-                                {
-                                    'html': 'td',
-                                    'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}}
-                                        ]
-                                    }
-                                }
+                                {'html': 'td', 'elem': [
+                                    [null, {'text': `value${nbsp}>${nbsp}0`}]
+                                ]}
                             ]
                         }
                     ]
@@ -1299,17 +1223,10 @@ test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
                             'html': 'tr',
                             'elem': [
                                 {'html': 'td', 'elem': {'text': 'int'}},
-                                {
-                                    'html': 'td',
-                                    'elem': {
-                                        'html': 'ul',
-                                        'attr': {'class': 'smd-attr-list'},
-                                        'elem': [
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}>${nbsp}0`}},
-                                            {'html': 'li', 'elem': {'text': `value${nbsp}<${nbsp}10`}}
-                                        ]
-                                    }
-                                }
+                                {'html': 'td', 'elem': [
+                                    [null, {'text': `value${nbsp}>${nbsp}0`}],
+                                    [{'html': 'br'}, {'text': `value${nbsp}<${nbsp}10`}]
+                                ]}
                             ]
                         }
                     ]
@@ -1394,23 +1311,30 @@ test('schemaMarkdownDoc, action', (t) => {
                     'elem': {'text': 'MyAction'}
                 },
                 null,
-                {
-                    'html': 'p',
-                    'attr': {'class': 'smd-note'},
-                    'elem': [
+                [
+                    {'html': 'p', 'elem': [
                         {'html': 'b', 'elem': {'text': 'Note: '}},
-                        {'text': 'The request is exposed at the following URLs:'},
-                        {
-                            'html': 'ul',
-                            'elem': [
-                                {'html': 'li', 'elem': [{'html': 'a', 'attr': {'href': '/MyAction'}, 'elem': {'text': '/MyAction'}}]},
-                                {'html': 'li', 'elem': [{'attr': {'href': '/MyAction'}, 'elem': {'text': 'GET /MyAction'}, 'html': 'a'}]},
-                                {'html': 'li', 'elem': [{'attr': {'href': '/my_action'}, 'elem': {'text': '/my_action'}, 'html': 'a'}]},
-                                {'html': 'li', 'elem': [{'attr': {'href': '/my_alias'}, 'elem': {'text': 'GET /my_alias'}, 'html': 'a'}]}
-                            ]
-                        }
+                        {'text': 'The request is exposed at the following URLs:'}
+                    ]},
+                    [
+                        {'html': 'p', 'elem': [
+                            {'text': `${nbsp}${nbsp}`},
+                            {'html': 'a', 'attr': {'href': '/MyAction'}, 'elem': {'text': '/MyAction'}}
+                        ]},
+                        {'html': 'p', 'elem': [
+                            {'text': `${nbsp}${nbsp}`},
+                            {'attr': {'href': '/MyAction'}, 'elem': {'text': 'GET /MyAction'}, 'html': 'a'}
+                        ]},
+                        {'html': 'p', 'elem': [
+                            {'text': `${nbsp}${nbsp}`},
+                            {'attr': {'href': '/my_action'}, 'elem': {'text': '/my_action'}, 'html': 'a'}
+                        ]},
+                        {'html': 'p', 'elem': [
+                            {'text': `${nbsp}${nbsp}`},
+                            {'attr': {'href': '/my_alias'}, 'elem': {'text': 'GET /my_alias'}, 'html': 'a'}
+                        ]}
                     ]
-                },
+                ],
                 [
                     {
                         'html': 'h2',
@@ -1778,20 +1702,18 @@ test('schemaMarkdownDoc, action URL override', (t) => {
                     'elem': {'text': 'MyAction'}
                 },
                 null,
-                {
-                    'html': 'p',
-                    'attr': {'class': 'smd-note'},
-                    'elem': [
+                [
+                    {'html': 'p', 'elem': [
                         {'html': 'b', 'elem': {'text': 'Note: '}},
-                        {'text': 'The request is exposed at the following URL:'},
-                        {
-                            'html': 'ul',
-                            'elem': [
-                                {'html': 'li', 'elem': [{'attr': {'href': '/my_action'}, 'elem': {'text': 'GET /my_action'}, 'html': 'a'}]}
-                            ]
-                        }
+                        {'text': 'The request is exposed at the following URL:'}
+                    ]},
+                    [
+                        {'html': 'p', 'elem': [
+                            {'text': `${nbsp}${nbsp}`},
+                            {'html': 'a', 'attr': {'href': '/my_action'}, 'elem': {'text': 'GET /my_action'}}
+                        ]}
                     ]
-                },
+                ],
                 null,
                 null,
                 null,

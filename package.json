@@ -16,8 +16,7 @@
         "url": "https://github.com/craigahobbs"
     },
     "files": [
-        "lib/**/*",
-        "static/schema-markdown-doc.css"
+        "lib/**/*"
     ],
     "scripts": {
         "test": "ava -v test/"
