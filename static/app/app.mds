@@ -31,14 +31,14 @@ async function schemaMarkdownDoc(url, title)
     urlNotNullDone:
 
     # Type page?
-    jumpif (vType == null) noTypePage
-        jumpif (objectGet(types, vType) != null) typeOK
-            markdownPrint('**Error:** Unknown type "' + vType + '"')
+    jumpif (vName == null) noTypePage
+        jumpif (objectGet(types, vName) != null) typeOK
+            markdownPrint('**Error:** Unknown type "' + vName + '"')
             return
         typeOK:
-        setDocumentTitle(vType)
-        markdownPrint('[Home](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
-        schemaPrint(types, vType)
+        setDocumentTitle(vName)
+        markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
+        schemaPrint(types, vName)
         return
     noTypePage:
 
@@ -59,7 +59,7 @@ async function schemaMarkdownDoc(url, title)
             jumpif (typeType != arrayGet(sectionTypes, ixSection)) skipType
                 if(!hasSection, markdownPrint('', '### ' + arrayGet(sections, ixSection)))
                 hasSection = true
-                typeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vType='" + typeName + "'"
+                typeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + typeName + "'"
                 markdownPrint('', '[' + typeName + '](' + typeURL + ')')
             skipType:
             ixTypeName = ixTypeName + 1
