@@ -1,3 +1,7 @@
+## 1.4.3 (2022-05-12)
+
+- [980dafb](https://github.com/craigahobbs/schema-markdown-doc/commit/980dafb) - remove schema-markdown-doc.css
+
 ## 1.4.2 (2022-05-11)
 
 - [bd79bce](https://github.com/craigahobbs/schema-markdown-doc/commit/bd79bce) - export schemaMarkdownDocURLNote
