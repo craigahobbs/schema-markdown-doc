@@ -20,7 +20,7 @@ async function schemaMarkdownDoc(url, title)
     urlNotNull:
         # Fetch the Schema Markdown resource
         isJSON = endsWith(url, '.json')
-        schemaResource = if(isJSON, fetch(url), fetch(url, objectNew('type', 'text')))
+        schemaResource = if(isJSON, fetch(url), fetch(url, null, true))
         jumpif (schemaResource != null) schemaMarkdownTextOK
             markdownPrint('**Error:** Failed to fetch Schema Markdown resource "' + url + '"')
             return
