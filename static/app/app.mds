@@ -9,14 +9,14 @@
 # title - The schema title
 #
 async function schemaMarkdownDoc(url, title)
-
     # URL override?
     url = if(vURL != null, vURL, url)
+    title = if(title != null && vURL == null, title, url)
 
     # If no URL was provided, use the Schema Markdown type model schema
     jumpif (url != null) urlNotNull
         types = schemaTypeModel()
-        jump urlNotNullDone
+        jump urlDone
     urlNotNull:
         # Fetch the Schema Markdown resource
         isJSON = endsWith(url, '.json')
@@ -28,24 +28,19 @@ async function schemaMarkdownDoc(url, title)
 
         # Validate or parse the Schema Markdown resource
         types = if(isJSON, schemaValidateTypeModel(schemaResource), schemaParse(schemaResource))
-    urlNotNullDone:
+    urlDone:
 
-    # Type page?
-    jumpif (vName == null) noTypePage
-        jumpif (objectGet(types, vName) != null) typeOK
-            markdownPrint('**Error:** Unknown type "' + vName + '"')
-            return
-        typeOK:
-        setDocumentTitle(vName)
-        markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
-        schemaPrint(types, vName)
-        return
-    noTypePage:
+    # Render the page
+    if(vName != null, typePage(types, vName), indexPage(types, title))
+endfunction
 
-    # Index page...
-    title = if(title != null && vURL == null, title, url)
+
+function indexPage(types, title)
+    # Set the page title
     setDocumentTitle(title)
     markdownPrint('# ' + title)
+
+    # Render the index
     sections = arrayNew('Actions', 'Enums', 'Structs', 'Typedefs')
     sectionTypes = arrayNew('action', 'enum', 'struct', 'typedef')
     typeNames = objectKeys(types)
@@ -66,5 +61,20 @@ async function schemaMarkdownDoc(url, title)
         jumpif (ixTypeName < arrayLength(typeNames)) typeLoop
         ixSection = ixSection + 1
     jumpif (ixSection < arrayLength(sections)) sectionLoop
+endfunction
 
+
+function typePage(types, typeName)
+    # Set the page title
+    setDocumentTitle(typeName)
+    markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
+
+    # Type exist?
+    jumpif (objectGet(types, typeName) != null) typeOK
+        markdownPrint('', '**Error:** Unknown type "' + typeName + '"')
+        return
+    typeOK:
+
+    # Render the type's documentation
+    schemaPrint(types, typeName)
 endfunction
