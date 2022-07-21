@@ -50,7 +50,7 @@ test('schemaMarkdownDoc, struct', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyStruct'},
-                    'elem': {'text': 'MyStruct'}
+                    'elem': {'text': 'struct MyStruct'}
                 },
                 null,
                 [
@@ -192,7 +192,7 @@ test('schemaMarkdownDoc, struct empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyStruct'},
-                    'elem': {'text': 'MyStruct'}
+                    'elem': {'text': 'struct MyStruct'}
                 },
                 null,
                 null,
@@ -250,7 +250,7 @@ test('schemaMarkdownDoc, struct bases', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyStruct'},
-                    'elem': {'text': 'MyStruct'}
+                    'elem': {'text': 'struct MyStruct'}
                 },
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
@@ -493,7 +493,7 @@ test('schemaMarkdownDoc, struct collections', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyStruct'},
-                    'elem': {'text': 'MyStruct'}
+                    'elem': {'text': 'struct MyStruct'}
                 },
                 null,
                 null,
@@ -652,7 +652,7 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyStruct'},
-                    'elem': {'text': 'MyStruct'}
+                    'elem': {'text': 'struct MyStruct'}
                 },
                 null,
                 null,
@@ -780,7 +780,7 @@ test('schemaMarkdownDoc, enum', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyEnum'},
-                    'elem': {'text': 'MyEnum'}
+                    'elem': {'text': 'enum MyEnum'}
                 },
                 null,
                 null,
@@ -840,7 +840,7 @@ test('schemaMarkdownDoc, enum no doc', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyEnum'},
-                    'elem': {'text': 'MyEnum'}
+                    'elem': {'text': 'enum MyEnum'}
                 },
                 null,
                 null,
@@ -896,7 +896,7 @@ test('schemaMarkdownDoc, enum empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyEnum'},
-                    'elem': {'text': 'MyEnum'}
+                    'elem': {'text': 'enum MyEnum'}
                 },
                 null,
                 null,
@@ -956,7 +956,7 @@ test('schemaMarkdownDoc, enum bases', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyEnum'},
-                    'elem': {'text': 'MyEnum'}
+                    'elem': {'text': 'enum MyEnum'}
                 },
                 {'html': 'p', 'elem': [
                     {'text': 'Bases: '},
@@ -1109,7 +1109,7 @@ test('schemaMarkdownDoc, typedef', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyTypedef'},
-                    'elem': {'text': 'MyTypedef'}
+                    'elem': {'text': 'typedef MyTypedef'}
                 },
                 [
                     {'html': 'p', 'elem': [{'text': 'This is my typedef'}]}
@@ -1159,7 +1159,7 @@ test('schemaMarkdownDoc, typedef no attr', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyTypedef'},
-                    'elem': {'text': 'MyTypedef'}
+                    'elem': {'text': 'typedef MyTypedef'}
                 },
                 null,
                 {
@@ -1206,7 +1206,7 @@ test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyTypedef'},
-                    'elem': {'text': 'MyTypedef'}
+                    'elem': {'text': 'typedef MyTypedef'}
                 },
                 null,
                 {
@@ -1308,7 +1308,7 @@ test('schemaMarkdownDoc, action', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 [
@@ -1590,7 +1590,7 @@ test('schemaMarkdownDoc, action empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 null,
@@ -1630,7 +1630,7 @@ test('schemaMarkdownDoc, action empty error values', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 null,
@@ -1662,7 +1662,7 @@ test('schemaMarkdownDoc, action no URLs', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 null,
@@ -1699,7 +1699,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 [
@@ -1745,7 +1745,7 @@ test('schemaMarkdownDoc, action URL override empty', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 null,
@@ -1786,7 +1786,7 @@ test('schemaMarkdownDoc, action unexpected value defined', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'name=MyAction&type_MyAction'},
-                    'elem': {'text': 'MyAction'}
+                    'elem': {'text': 'action MyAction'}
                 },
                 null,
                 null,
