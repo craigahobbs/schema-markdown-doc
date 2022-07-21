@@ -1,3 +1,7 @@
+## 1.4.4 (2022-07-21)
+
+- [4a0183e](https://github.com/craigahobbs/schema-markdown-doc/commit/4a0183e) - force union moniker for top-level user type titles
+
 ## 1.4.3 (2022-05-12)
 
 - [980dafb](https://github.com/craigahobbs/schema-markdown-doc/commit/980dafb) - remove schema-markdown-doc.css
