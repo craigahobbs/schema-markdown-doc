@@ -426,7 +426,7 @@ test('schemaMarkdownDoc, struct union', (t) => {
                 {
                     'html': 'h1',
                     'attr': {'id': 'type_MyUnion'},
-                    'elem': {'text': 'MyUnion'}
+                    'elem': {'text': 'union MyUnion'}
                 },
                 null,
                 null,
