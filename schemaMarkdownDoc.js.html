@@ -192,10 +192,10 @@ function userTypeElements(types, typeName, titleTag, options, title = null, intr
     const userType = types[typeName];
 
     // Generate the header element models
-    const titleElements = (titleDefault) => ({
+    const titleElements = (defaultTitle, forceDefaultTitle = false) => ({
         'html': titleTag,
         'attr': {'id': typeHref(typeName, options)},
-        'elem': {'text': title !== null ? title : titleDefault}
+        'elem': {'text': forceDefaultTitle || title === null ? defaultTitle : title}
     });
 
     // Struct?
@@ -210,8 +210,9 @@ function userTypeElements(types, typeName, titleTag, options, title = null, intr
         const hasDoc = members !== null &amp;&amp; Object.values(memberDocElem).some((docElem) => docElem !== null);
 
         // Return the struct documentation element model
+        const isUnion = ('union' in struct &amp;&amp; struct.union);
         return [
-            titleElements('union' in struct &amp;&amp; struct.union ? `union ${typeName}` : `struct ${typeName}`),
+            titleElements(isUnion ? `union ${typeName}` : `struct ${typeName}`, isUnion),
             !('bases' in struct) ? null : {'html': 'p', 'elem': [
                 {'text': 'Bases: '},
                 struct.bases.map((base, ixBase) => [
