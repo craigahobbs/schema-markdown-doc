@@ -34,7 +34,7 @@ async function schemaMarkdownDoc(url, title)
     urlDone:
 
     # Render the page
-    if(vName != null, typePage(types, vName), indexPage(types, title))
+    if(vName != null, typePage(types, title, vName), indexPage(types, title))
 endfunction
 
 
@@ -67,9 +67,9 @@ function indexPage(types, title)
 endfunction
 
 
-function typePage(types, typeName)
+function typePage(types, title, typeName)
     # Set the page title
-    setDocumentTitle(typeName)
+    setDocumentTitle(title + ' - ' + typeName)
     markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
 
     # Type exist?
