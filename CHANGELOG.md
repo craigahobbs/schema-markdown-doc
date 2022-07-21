@@ -1,3 +1,7 @@
+## 1.4.5 (2022-07-21)
+
+- [b4c7edb](https://github.com/craigahobbs/schema-markdown-doc/commit/b4c7edb) - always show type-type in title
+
 ## 1.4.4 (2022-07-21)
 
 - [4a0183e](https://github.com/craigahobbs/schema-markdown-doc/commit/4a0183e) - force union moniker for top-level user type titles
