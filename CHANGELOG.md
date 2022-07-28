@@ -1,3 +1,7 @@
+## 1.5.0 (2022-07-28)
+
+- [9e6b43d](https://github.com/craigahobbs/schema-markdown-doc/commit/9e6b43d) - markdown-model 1.5
+
 ## 1.4.6 (2022-07-28)
 
 - [e210a35](https://github.com/craigahobbs/schema-markdown-doc/commit/e210a35) - use correct definition of ActionURL
