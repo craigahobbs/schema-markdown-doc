@@ -1,3 +1,7 @@
+## 1.4.6 (2022-07-28)
+
+- [e210a35](https://github.com/craigahobbs/schema-markdown-doc/commit/e210a35) - use correct definition of ActionURL
+
 ## 1.4.5 (2022-07-21)
 
 - [b4c7edb](https://github.com/craigahobbs/schema-markdown-doc/commit/b4c7edb) - always show type-type in title
