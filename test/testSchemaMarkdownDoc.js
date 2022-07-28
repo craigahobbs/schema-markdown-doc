@@ -1536,42 +1536,44 @@ test('schemaMarkdownDoc, action', (t) => {
 });
 
 
-const emptyActionErrorElements = [
-    {
-        'html': 'h2',
-        'attr': {'id': 'name=MyAction&type_MyAction_errors'},
-        'elem': {'text': 'Error Codes'}
-    },
-    null,
-    null,
-    [
-        {'html': 'p', 'elem': [{'text': 'If an application error occurs, the response is of the form:'}]},
-        {'html': 'pre', 'elem': {'html': 'code', 'elem': [
-            {'text': '{\n'},
-            {'text': '    "error": "<code>",\n'},
-            {'text': '    "message": "<message>"\n'},
-            {'text': '}\n'}
-        ]}},
-        {'html': 'p', 'elem': [{'text': '"message" is optional. "<code>" is one of the following values:'}]}
-    ],
-    {
-        'html': 'table',
-        'elem': [
-            {'html': 'tr', 'elem': [
-                {'html': 'th', 'elem': {'text': 'Value'}},
-                {'html': 'th', 'elem': {'text': 'Description'}}
-            ]},
-            [
+function emptyActionErrorElements(params = 'name=MyAction') {
+    return [
+        {
+            'html': 'h2',
+            'attr': {'id': `${params !== '' ? `${params}&` : ''}type_MyAction_errors`},
+            'elem': {'text': 'Error Codes'}
+        },
+        null,
+        null,
+        [
+            {'html': 'p', 'elem': [{'text': 'If an application error occurs, the response is of the form:'}]},
+            {'html': 'pre', 'elem': {'html': 'code', 'elem': [
+                {'text': '{\n'},
+                {'text': '    "error": "<code>",\n'},
+                {'text': '    "message": "<message>"\n'},
+                {'text': '}\n'}
+            ]}},
+            {'html': 'p', 'elem': [{'text': '"message" is optional. "<code>" is one of the following values:'}]}
+        ],
+        {
+            'html': 'table',
+            'elem': [
                 {'html': 'tr', 'elem': [
-                    {'html': 'td', 'elem': {'text': 'UnexpectedError'}},
-                    {'html': 'td', 'elem': [
-                        {'html': 'p', 'elem': [{'text': 'An unexpected error occurred while processing the request'}]}
+                    {'html': 'th', 'elem': {'text': 'Value'}},
+                    {'html': 'th', 'elem': {'text': 'Description'}}
+                ]},
+                [
+                    {'html': 'tr', 'elem': [
+                        {'html': 'td', 'elem': {'text': 'UnexpectedError'}},
+                        {'html': 'td', 'elem': [
+                            {'html': 'p', 'elem': [{'text': 'An unexpected error occurred while processing the request'}]}
+                        ]}
                     ]}
-                ]}
+                ]
             ]
-        ]
-    }
-];
+        }
+    ];
+}
 
 
 test('schemaMarkdownDoc, action empty', (t) => {
@@ -1598,7 +1600,39 @@ test('schemaMarkdownDoc, action empty', (t) => {
                 null,
                 null,
                 null,
-                emptyActionErrorElements
+                emptyActionErrorElements()
+            ],
+            null
+        ]
+    );
+});
+
+
+test('schemaMarkdownDoc, action null options', (t) => {
+    const types = {
+        'MyAction': {
+            'action': {
+                'name': 'MyAction'
+            }
+        }
+    };
+    validateTypeModel(types);
+    t.deepEqual(
+        validateElements(schemaMarkdownDoc(types, 'MyAction')),
+        [
+            [
+                {
+                    'html': 'h1',
+                    'attr': {'id': 'type_MyAction'},
+                    'elem': {'text': 'action MyAction'}
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                emptyActionErrorElements('')
             ],
             null
         ]
@@ -1638,7 +1672,7 @@ test('schemaMarkdownDoc, action empty error values', (t) => {
                 null,
                 null,
                 null,
-                emptyActionErrorElements
+                emptyActionErrorElements()
             ],
             null
         ]
@@ -1670,7 +1704,7 @@ test('schemaMarkdownDoc, action no URLs', (t) => {
                 null,
                 null,
                 null,
-                emptyActionErrorElements
+                emptyActionErrorElements()
             ],
             null
         ]
@@ -1692,7 +1726,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
     validateTypeModel(types);
     t.deepEqual(
         validateElements(
-            schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [{'method': 'GET', 'url': '/my_action'}]})
+            schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [{'method': 'GET', 'path': '/my_action'}]})
         ),
         [
             [
@@ -1718,7 +1752,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
                 null,
                 null,
                 null,
-                emptyActionErrorElements
+                emptyActionErrorElements()
             ],
             null
         ]
@@ -1753,7 +1787,7 @@ test('schemaMarkdownDoc, action URL override empty', (t) => {
                 null,
                 null,
                 null,
-                emptyActionErrorElements
+                emptyActionErrorElements()
             ],
             null
         ]
