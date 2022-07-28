@@ -22,7 +22,7 @@
         "test": "ava -v test/"
     },
     "dependencies": {
-        "markdown-model": "~1.4",
+        "markdown-model": "~1.5",
         "schema-markdown": "~1.1"
     },
     "devDependencies": {
