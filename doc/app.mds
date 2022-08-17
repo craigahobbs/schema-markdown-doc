@@ -58,18 +58,19 @@ function indexPage(types, title)
         ixTypeName = ixTypeName + 1
     jumpif (ixTypeName < arrayLength(typeNames)) typeLoop
 
-    # Render the index
+    # Render the index groups
     groupNames = arraySort(objectKeys(groups))
     ixGroupName = 0
     groupLoop:
         groupName = arrayGet(groupNames, ixGroupName)
         markdownPrint('', '## ' + groupName)
 
+        # Render the group type links
         groupTypes = objectGet(groups, groupName)
         ixGroupType = 0
         groupTypeLoop:
             groupType = arrayGet(groupTypes, ixGroupType)
-            groupTypeName = objectGet(groupType, 'name')
+            groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
             groupTypeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + groupTypeName + "'"
             markdownPrint('', '[' + groupTypeName + '](' + groupTypeURL + ')')
             ixGroupType = ixGroupType + 1
