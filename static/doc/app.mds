@@ -43,27 +43,39 @@ function indexPage(types, title)
     setDocumentTitle(title)
     markdownPrint('# ' + title)
 
+    # Group the types
+    groups = objectNew()
+    typeNames = arraySort(objectKeys(types))
+    uncategorizedTypeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
+    ixTypeName = 0
+    typeLoop:
+        typeName = arrayGet(typeNames, ixTypeName)
+        type = objectGet(types, typeName)
+        group = objectGet(type, 'docGroup')
+        group = if(group != null, group, objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0)))
+        if(objectGet(groups, group) == null, objectSet(groups, group, arrayNew()))
+        arrayPush(objectGet(groups, group), type)
+        ixTypeName = ixTypeName + 1
+    jumpif (ixTypeName < arrayLength(typeNames)) typeLoop
+
     # Render the index
-    sections = arrayNew('Actions', 'Enums', 'Structs', 'Typedefs')
-    sectionTypes = arrayNew('action', 'enum', 'struct', 'typedef')
-    typeNames = objectKeys(types)
-    ixSection = 0
-    sectionLoop:
-        hasSection = false
-        ixTypeName = 0
-        typeLoop:
-            typeName = arrayGet(typeNames, ixTypeName)
-            typeType = arrayGet(objectKeys(objectGet(types, typeName)), 0)
-            jumpif (typeType != arrayGet(sectionTypes, ixSection)) skipType
-                if(!hasSection, markdownPrint('', '### ' + arrayGet(sections, ixSection)))
-                hasSection = true
-                typeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + typeName + "'"
-                markdownPrint('', '[' + typeName + '](' + typeURL + ')')
-            skipType:
-            ixTypeName = ixTypeName + 1
-        jumpif (ixTypeName < arrayLength(typeNames)) typeLoop
-        ixSection = ixSection + 1
-    jumpif (ixSection < arrayLength(sections)) sectionLoop
+    groupNames = arraySort(objectKeys(groups))
+    ixGroupName = 0
+    groupLoop:
+        groupName = arrayGet(groupNames, ixGroupName)
+        markdownPrint('', '## ' + groupName)
+
+        groupTypes = objectGet(groups, groupName)
+        ixGroupType = 0
+        groupTypeLoop:
+            groupType = arrayGet(groupTypes, ixGroupType)
+            groupTypeName = objectGet(groupType, 'name')
+            groupTypeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + groupTypeName + "'"
+            markdownPrint('', '[' + groupTypeName + '](' + groupTypeURL + ')')
+            ixGroupType = ixGroupType + 1
+        jumpif (ixGroupType < arrayLength(groupTypes)) groupTypeLoop
+        ixGroupName = ixGroupName + 1
+    jumpif (ixGroupName < arrayLength(groupNames)) groupLoop
 endfunction
 
 
