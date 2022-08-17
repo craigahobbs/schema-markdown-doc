@@ -51,7 +51,7 @@ function indexPage(types, title)
     typeLoop:
         typeName = arrayGet(typeNames, ixTypeName)
         type = objectGet(types, typeName)
-        group = objectGet(type, 'docGroup')
+        group = objectGet(objectGet(type, arrayGet(objectKeys(type), 0)), 'docGroup')
         group = if(group != null, group, objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0)))
         if(objectGet(groups, group) == null, objectSet(groups, group, arrayNew()))
         arrayPush(objectGet(groups, group), type)
