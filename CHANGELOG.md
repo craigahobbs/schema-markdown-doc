@@ -1,3 +1,7 @@
+## 1.5.4 (2022-08-19)
+
+- [ef42484](https://github.com/craigahobbs/schema-markdown-doc/commit/ef42484) - remove schema-markdown dependency
+
 ## 1.5.3 (2022-08-19)
 
 - [410cffc](https://github.com/craigahobbs/schema-markdown-doc/commit/410cffc) - schema-markdown 1.2
