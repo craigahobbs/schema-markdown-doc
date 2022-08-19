@@ -1,3 +1,7 @@
+## 1.5.3 (2022-08-19)
+
+- [410cffc](https://github.com/craigahobbs/schema-markdown-doc/commit/410cffc) - schema-markdown 1.2
+
 ## 1.5.2 (2022-08-17)
 
 - [b46947d](https://github.com/craigahobbs/schema-markdown-doc/commit/b46947d) - move app stub to extra
