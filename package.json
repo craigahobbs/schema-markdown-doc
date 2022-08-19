@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "markdown-model": "~1.6",
-        "schema-markdown": "~1.1"
+        "schema-markdown": "~1.2"
     },
     "devDependencies": {
         "ava": "~4.3",
