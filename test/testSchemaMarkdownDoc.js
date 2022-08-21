@@ -1886,11 +1886,8 @@ test('schemaMarkdownDoc, invalid', (t) => {
 
 test('schemaMarkdownDoc, unknown type', (t) => {
     const types = {};
-    let errorMessage = null;
-    try {
+    const error = t.throws(() => {
         validateElements(schemaMarkdownDoc(types, 'Unknown'));
-    } catch ({message}) {
-        errorMessage = message;
-    }
-    t.is(errorMessage, "Unknown type 'Unknown'");
+    }, {'instanceOf': Error});
+    t.is(error.message, "Unknown type 'Unknown'");
 });
