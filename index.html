@@ -46,14 +46,19 @@
         <article><h1>schema-markdown-doc</h1>
 <p><a href="https://www.npmjs.com/package/schema-markdown-doc"><img src="https://img.shields.io/npm/v/schema-markdown-doc" alt="npm"></a>
 <a href="https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE"><img src="https://img.shields.io/github/license/craigahobbs/schema-markdown-doc" alt="GitHub"></a></p>
-<p><a href="https://craigahobbs.github.io/schema-markdown-doc/">schema-markdown-doc API Documentation</a></p>
 <p>The schema-markdown-doc package generates documentation for
 <a href="https://github.com/craigahobbs/schema-markdown-js">Schema Markdown</a>
 schemas.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://craigahobbs.github.io/schema-markdown-doc/">API Documentation</a></li>
+<li><a href="https://github.com/craigahobbs/schema-markdown-doc">Source code</a></li>
+</ul>
+<h2>The Schema Markdown Documentation Component</h2>
 <p>The
 <a href="https://craigahobbs.github.io/schema-markdown-doc/module-lib_schemaMarkdownDoc.html#.schemaMarkdownDoc">schemaMarkdownDoc</a>
 function generates the
-<a href="https://github.com/craigahobbs/element-model">element model</a>
+<a href="https://github.com/craigahobbs/element-model#readme">element model</a>
 for a Schema Markdown user type's documentation. For example:</p>
 <pre class="prettyprint source lang-javascript"><code>import {parseSchemaMarkdown} from 'schema-markdown/lib/parser.js';
 import {schemaMarkdownDoc} from 'schema-markdown-doc/lib/schemaMarkdownDoc.js';
@@ -76,26 +81,24 @@ renderElements(window.document.body, elements);
 </code></pre>
 <h2>The Schema Markdown Documentation Viewer</h2>
 <p>To host your Schema Markdown type model's documentation, first, download the schema-markdown-doc
-application stub to the directory containing your type model's Schema Markdown file (.smd) or JSON
-type model file:</p>
+application stub to the directory containing your type model's JSON:</p>
 <pre class="prettyprint source"><code>curl -O https://craigahobbs.github.io/schema-markdown-doc/extra/index.html
 </code></pre>
-<p>By default, the schema-markdown-doc application stub displays documentation for &quot;types.smd&quot;. You can
+<p>By default, the schema-markdown-doc application stub displays documentation for &quot;model.json&quot;. You can
 override the resource URL and specify a schema title by updating the schema-markdown-doc application
 stub, &quot;index.html&quot;. For example:</p>
 <pre class="prettyprint source"><code>~~~ markdown-script
 include 'https://craigahobbs.github.io/schema-markdown-doc/doc/app.mds'
-schemaMarkdownDoc('myTypes.smd', 'My Schema')
+schemaMarkdownDoc('myModel.json', 'My Model)
 ~~~
 </code></pre>
 <p>To host locally, start a local static web server:</p>
 <pre class="prettyprint source"><code>python3 -m http.server
 </code></pre>
-<p>You can also override the resource URL by adding the &quot;var.vURL&quot; hash parameter (i.e., &quot;#var.vURL='types.smd'&quot;).</p>
+<p>You can also override the resource URL by adding the &quot;var.vURL&quot; hash parameter (i.e., &quot;#var.vURL='myModel.json'&quot;).</p>
 <h2>Development</h2>
-<p>schema-markdown-doc is an <a href="https://github.com/craigahobbs/element-app#readme">Element Application</a>.
-It is developed using <a href="https://github.com/craigahobbs/javascript-build#readme">javascript-build</a>
-and it was started using <a href="https://github.com/craigahobbs/javascript-template#readme">javascript-template</a>:</p>
+<p>This package is developed using <a href="https://github.com/craigahobbs/javascript-build#readme">javascript-build</a>.
+It was started using <a href="https://github.com/craigahobbs/javascript-template#readme">javascript-template</a> as follows:</p>
 <pre class="prettyprint source"><code>template-specialize javascript-template/template/ schema-markdown-doc/ -k package schema-markdown-doc -k name 'Craig A. Hobbs' -k email 'craigahobbs@gmail.com' -k github 'craigahobbs' -k noapp 1
 </code></pre></article>
     </section>
