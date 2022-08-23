@@ -1,3 +1,7 @@
+## 1.5.5 (2022-08-22)
+
+- [ea5bb5b](https://github.com/craigahobbs/schema-markdown-doc/commit/ea5bb5b) - update readme
+
 ## 1.5.4 (2022-08-19)
 
 - [ef42484](https://github.com/craigahobbs/schema-markdown-doc/commit/ef42484) - remove schema-markdown dependency
