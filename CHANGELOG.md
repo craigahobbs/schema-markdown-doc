@@ -1,3 +1,5 @@
+# Changelog
+
 ## 1.5.5 (2022-08-22)
 
 - [ea5bb5b](https://github.com/craigahobbs/schema-markdown-doc/commit/ea5bb5b) - update readme
