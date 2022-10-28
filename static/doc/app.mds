@@ -92,5 +92,5 @@ function typePage(types, title, typeName)
     typeOK:
 
     # Render the type's documentation
-    schemaPrint(types, typeName)
+    elementModelRender(schemaElements(types, typeName))
 endfunction
