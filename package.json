@@ -25,10 +25,10 @@
         "markdown-model": "~1.7"
     },
     "devDependencies": {
-        "ava": "~5.0",
+        "ava": "~5.1",
         "c8": "~7.12",
         "element-model": "~1.1",
-        "eslint": "~8.27",
+        "eslint": "~8.28",
         "jsdoc": "~4.0",
         "jsdom": "~20.0"
     }
