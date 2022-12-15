@@ -61,12 +61,12 @@ By default, the schema-markdown-doc application stub displays documentation for 
 override the resource URL and specify a schema title by updating the schema-markdown-doc application
 stub, "index.html". For example:
 
-~~~
+```
 ~~~ markdown-script
 include 'https://craigahobbs.github.io/schema-markdown-doc/doc/app.mds'
 schemaMarkdownDoc('myModel.json', 'My Model')
 ~~~
-~~~
+```
 
 To host locally, start a local static web server:
 
