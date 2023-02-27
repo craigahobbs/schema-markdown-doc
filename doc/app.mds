@@ -17,24 +17,35 @@ async function schemaMarkdownDoc(url, title)
     title = if(title != null && vURL == null, title, url)
 
     # If no URL was provided, use the Schema Markdown type model schema
-    jumpif (url != null) urlNotNull
+    if url == null then
         types = schemaTypeModel()
-        jump urlDone
-    urlNotNull:
+    else then
         # Fetch the Schema Markdown resource
-        isJSON = stringEndsWith(url, '.json')
-        schemaResource = if(isJSON, fetch(url), fetch(url, null, true))
-        jumpif (schemaResource != null) schemaMarkdownTextOK
+        if stringEndsWith(url, '.json') then
+            schemaJSON = fetch(url)
+            if schemaJSON != null then
+                types = schemaValidateTypeModel(schemaJSON)
+            endif
+        else then
+            schemaText = fetch(url, null, true)
+            if schemaText != null then
+                types = schemaParse(schemaText)
+            endif
+        endif
+
+        # Error?
+        if types == null then
             markdownPrint('**Error:** Failed to fetch Schema Markdown resource "' + url + '"')
             return
-        schemaMarkdownTextOK:
-
-        # Validate or parse the Schema Markdown resource
-        types = if(isJSON, schemaValidateTypeModel(schemaResource), schemaParse(schemaResource))
-    urlDone:
+        endif
+    endif
 
     # Render the page
-    if(vName != null, typePage(types, title, vName), indexPage(types, title))
+    if vName != null then
+        typePage(types, title, vName)
+    else then
+        indexPage(types, title)
+    endif
 endfunction
 
 
@@ -47,36 +58,31 @@ function indexPage(types, title)
     groups = objectNew()
     typeNames = arraySort(objectKeys(types))
     uncategorizedTypeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
-    ixTypeName = 0
-    typeLoop:
-        typeName = arrayGet(typeNames, ixTypeName)
+    foreach typeName in typeNames do
         type = objectGet(types, typeName)
         group = objectGet(objectGet(type, arrayGet(objectKeys(type), 0)), 'docGroup')
-        group = if(group != null, group, objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0)))
-        if(objectGet(groups, group) == null, objectSet(groups, group, arrayNew()))
+        if group == null then
+            group = objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0))
+        endif
+        if !objectHas(groups, group) then
+            objectSet(groups, group, arrayNew())
+        endif
         arrayPush(objectGet(groups, group), type)
-        ixTypeName = ixTypeName + 1
-    jumpif (ixTypeName < arrayLength(typeNames)) typeLoop
+    endforeach
 
     # Render the index groups
     groupNames = arraySort(objectKeys(groups))
-    ixGroupName = 0
-    groupLoop:
-        groupName = arrayGet(groupNames, ixGroupName)
-        markdownPrint('', '## ' + groupName)
+    foreach groupName in groupNames do
+        markdownPrint('', '## ' + markdownEscape(groupName))
 
         # Render the group type links
         groupTypes = objectGet(groups, groupName)
-        ixGroupType = 0
-        groupTypeLoop:
-            groupType = arrayGet(groupTypes, ixGroupType)
+        foreach groupType in groupTypes do
             groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
             groupTypeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + groupTypeName + "'"
             markdownPrint('', '[' + groupTypeName + '](' + groupTypeURL + ')')
-            ixGroupType = ixGroupType + 1
-        jumpif (ixGroupType < arrayLength(groupTypes)) groupTypeLoop
-        ixGroupName = ixGroupName + 1
-    jumpif (ixGroupName < arrayLength(groupNames)) groupLoop
+        endforeach
+    endforeach
 endfunction
 
 
@@ -86,10 +92,10 @@ function typePage(types, title, typeName)
     markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
 
     # Type exist?
-    jumpif (objectGet(types, typeName) != null) typeOK
+    if !objectHas(types, typeName) then
         markdownPrint('', '**Error:** Unknown type "' + typeName + '"')
         return
-    typeOK:
+    endif
 
     # Render the type's documentation
     elementModelRender(schemaElements(types, typeName))
