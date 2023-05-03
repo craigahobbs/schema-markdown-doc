@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.0 (2023-05-03)
+
+- [9264d21](https://github.com/craigahobbs/schema-markdown-doc/commit/9264d21) - markdown-model 1.8
+
 ## 1.5.6 (2022-11-23)
 
 - [61a03a7](https://github.com/craigahobbs/schema-markdown-doc/commit/61a03a7) - markdown-model 1.7
