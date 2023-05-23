@@ -1,5 +1,9 @@
 # Changelog
 
+## 2023-05-23
+
+- [4a451b6](https://github.com/craigahobbs/schema-markdown-doc/commit/4a451b6) - run tests with node --test
+
 ## 1.6.0 (2023-05-03)
 
 - [9264d21](https://github.com/craigahobbs/schema-markdown-doc/commit/9264d21) - markdown-model 1.8
