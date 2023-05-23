@@ -1,11 +1,9 @@
 // Licensed under the MIT License
 // https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
-/* eslint-disable id-length */
-/* eslint-disable max-len */
-
+import {strict as assert} from 'node:assert';
 import {schemaMarkdownDoc} from '../lib/schemaMarkdownDoc.js';
-import test from 'ava';
+import test from 'node:test';
 import {validateElements} from 'element-model/lib/elementModel.js';
 import {validateTypeModel} from 'schema-markdown/lib/schema.js';
 
@@ -14,7 +12,7 @@ import {validateTypeModel} from 'schema-markdown/lib/schema.js';
 const nbsp = String.fromCharCode(160);
 
 
-test('schemaMarkdownDoc, struct', (t) => {
+test('schemaMarkdownDoc, struct', () => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -43,7 +41,7 @@ test('schemaMarkdownDoc, struct', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
@@ -176,7 +174,7 @@ test('schemaMarkdownDoc, struct', (t) => {
 });
 
 
-test('schemaMarkdownDoc, struct empty', (t) => {
+test('schemaMarkdownDoc, struct empty', () => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -185,7 +183,7 @@ test('schemaMarkdownDoc, struct empty', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
@@ -206,7 +204,7 @@ test('schemaMarkdownDoc, struct empty', (t) => {
 });
 
 
-test('schemaMarkdownDoc, struct bases', (t) => {
+test('schemaMarkdownDoc, struct bases', () => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -243,7 +241,7 @@ test('schemaMarkdownDoc, struct bases', (t) => {
             }
         }
     };
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
@@ -409,7 +407,7 @@ test('schemaMarkdownDoc, struct bases', (t) => {
 });
 
 
-test('schemaMarkdownDoc, struct union', (t) => {
+test('schemaMarkdownDoc, struct union', () => {
     const types = {
         'MyUnion': {
             'struct': {
@@ -419,7 +417,7 @@ test('schemaMarkdownDoc, struct union', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyUnion')),
         [
             [
@@ -440,7 +438,7 @@ test('schemaMarkdownDoc, struct union', (t) => {
 });
 
 
-test('schemaMarkdownDoc, struct collections', (t) => {
+test('schemaMarkdownDoc, struct collections', () => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -486,7 +484,7 @@ test('schemaMarkdownDoc, struct collections', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
@@ -627,7 +625,7 @@ test('schemaMarkdownDoc, struct collections', (t) => {
 });
 
 
-test('schemaMarkdownDoc, struct attrs', (t) => {
+test('schemaMarkdownDoc, struct attrs', () => {
     const types = {
         'MyStruct': {
             'struct': {
@@ -645,7 +643,7 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyStruct')),
         [
             [
@@ -760,7 +758,7 @@ test('schemaMarkdownDoc, struct attrs', (t) => {
 });
 
 
-test('schemaMarkdownDoc, enum', (t) => {
+test('schemaMarkdownDoc, enum', () => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -773,7 +771,7 @@ test('schemaMarkdownDoc, enum', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
@@ -820,7 +818,7 @@ test('schemaMarkdownDoc, enum', (t) => {
 });
 
 
-test('schemaMarkdownDoc, enum no doc', (t) => {
+test('schemaMarkdownDoc, enum no doc', () => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -833,7 +831,7 @@ test('schemaMarkdownDoc, enum no doc', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
@@ -880,7 +878,7 @@ test('schemaMarkdownDoc, enum no doc', (t) => {
 });
 
 
-test('schemaMarkdownDoc, enum empty', (t) => {
+test('schemaMarkdownDoc, enum empty', () => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -889,7 +887,7 @@ test('schemaMarkdownDoc, enum empty', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
@@ -911,7 +909,7 @@ test('schemaMarkdownDoc, enum empty', (t) => {
 });
 
 
-test('schemaMarkdownDoc, enum bases', (t) => {
+test('schemaMarkdownDoc, enum bases', () => {
     const types = {
         'MyEnum': {
             'enum': {
@@ -949,7 +947,7 @@ test('schemaMarkdownDoc, enum bases', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyEnum')),
         [
             [
@@ -1090,7 +1088,7 @@ test('schemaMarkdownDoc, enum bases', (t) => {
 });
 
 
-test('schemaMarkdownDoc, typedef', (t) => {
+test('schemaMarkdownDoc, typedef', () => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1102,7 +1100,7 @@ test('schemaMarkdownDoc, typedef', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
@@ -1142,7 +1140,7 @@ test('schemaMarkdownDoc, typedef', (t) => {
 });
 
 
-test('schemaMarkdownDoc, typedef no attr', (t) => {
+test('schemaMarkdownDoc, typedef no attr', () => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1152,7 +1150,7 @@ test('schemaMarkdownDoc, typedef no attr', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
@@ -1188,7 +1186,7 @@ test('schemaMarkdownDoc, typedef no attr', (t) => {
 });
 
 
-test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
+test('schemaMarkdownDoc, typedef attr gt lt', () => {
     const types = {
         'MyTypedef': {
             'typedef': {
@@ -1199,7 +1197,7 @@ test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyTypedef')),
         [
             [
@@ -1238,7 +1236,7 @@ test('schemaMarkdownDoc, typedef attr gt lt', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action', (t) => {
+test('schemaMarkdownDoc, action', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1300,8 +1298,8 @@ test('schemaMarkdownDoc, action', (t) => {
     validateTypeModel(types);
     const actionErrorValuesOrig = [...types.MyAction_errors.enum.values];
     const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
-    t.deepEqual(types.MyAction_errors.enum.values, actionErrorValuesOrig);
-    t.deepEqual(
+    assert.deepEqual(types.MyAction_errors.enum.values, actionErrorValuesOrig);
+    assert.deepEqual(
         elements,
         [
             [
@@ -1576,7 +1574,7 @@ function emptyActionErrorElements(params = 'name=MyAction') {
 }
 
 
-test('schemaMarkdownDoc, action empty', (t) => {
+test('schemaMarkdownDoc, action empty', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1585,7 +1583,7 @@ test('schemaMarkdownDoc, action empty', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
             [
@@ -1608,7 +1606,7 @@ test('schemaMarkdownDoc, action empty', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action null options', (t) => {
+test('schemaMarkdownDoc, action null options', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1617,7 +1615,7 @@ test('schemaMarkdownDoc, action null options', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction')),
         [
             [
@@ -1640,7 +1638,7 @@ test('schemaMarkdownDoc, action null options', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action empty error values', (t) => {
+test('schemaMarkdownDoc, action empty error values', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1656,8 +1654,8 @@ test('schemaMarkdownDoc, action empty error values', (t) => {
     };
     validateTypeModel(types);
     const elements = validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'}));
-    t.true(!('values' in types.MyAction_errors.enum));
-    t.deepEqual(
+    assert(!('values' in types.MyAction_errors.enum));
+    assert.deepEqual(
         elements,
         [
             [
@@ -1680,7 +1678,7 @@ test('schemaMarkdownDoc, action empty error values', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action no URLs', (t) => {
+test('schemaMarkdownDoc, action no URLs', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1689,7 +1687,7 @@ test('schemaMarkdownDoc, action no URLs', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction'})),
         [
             [
@@ -1712,7 +1710,7 @@ test('schemaMarkdownDoc, action no URLs', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action URL override', (t) => {
+test('schemaMarkdownDoc, action URL override', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1724,7 +1722,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(
             schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [{'method': 'GET', 'path': '/my_action'}]})
         ),
@@ -1760,7 +1758,7 @@ test('schemaMarkdownDoc, action URL override', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action URL override empty', (t) => {
+test('schemaMarkdownDoc, action URL override empty', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1772,7 +1770,7 @@ test('schemaMarkdownDoc, action URL override empty', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
             [
@@ -1795,7 +1793,7 @@ test('schemaMarkdownDoc, action URL override empty', (t) => {
 });
 
 
-test('schemaMarkdownDoc, action unexpected value defined', (t) => {
+test('schemaMarkdownDoc, action unexpected value defined', () => {
     const types = {
         'MyAction': {
             'action': {
@@ -1813,7 +1811,7 @@ test('schemaMarkdownDoc, action unexpected value defined', (t) => {
         }
     };
     validateTypeModel(types);
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': []})),
         [
             [
@@ -1869,7 +1867,7 @@ test('schemaMarkdownDoc, action unexpected value defined', (t) => {
 });
 
 
-test('schemaMarkdownDoc, invalid', (t) => {
+test('schemaMarkdownDoc, invalid', () => {
     const types = {
         'Invalid': {
             'invalid': {
@@ -1877,17 +1875,22 @@ test('schemaMarkdownDoc, invalid', (t) => {
             }
         }
     };
-    t.deepEqual(
+    assert.deepEqual(
         validateElements(schemaMarkdownDoc(types, 'Invalid')),
         [null, null]
     );
 });
 
 
-test('schemaMarkdownDoc, unknown type', (t) => {
+test('schemaMarkdownDoc, unknown type', () => {
     const types = {};
-    const error = t.throws(() => {
-        validateElements(schemaMarkdownDoc(types, 'Unknown'));
-    }, {'instanceOf': Error});
-    t.is(error.message, "Unknown type 'Unknown'");
+    assert.throws(
+        () => {
+            validateElements(schemaMarkdownDoc(types, 'Unknown'));
+        },
+        {
+            'name': 'Error',
+            'message': "Unknown type 'Unknown'"
+        }
+    );
 });
