@@ -1,6 +1,10 @@
 # Changelog
 
-## 2023-05-23
+## 1.6.2 (2023-05-28)
+
+- [8e6ab8c](https://github.com/craigahobbs/schema-markdown-doc/commit/8e6ab8c) - remove jsdom dev dependency
+
+## 1.6.1 (2023-05-23)
 
 - [4a451b6](https://github.com/craigahobbs/schema-markdown-doc/commit/4a451b6) - run tests with node --test
 
