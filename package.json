@@ -25,9 +25,9 @@
         "markdown-model": "~1.8"
     },
     "devDependencies": {
-        "c8": "~7.14",
+        "c8": "~8.0",
         "element-model": "~1.1",
-        "eslint": "~8.41",
+        "eslint": "~8.43",
         "jsdoc": "~4.0"
     }
 }
