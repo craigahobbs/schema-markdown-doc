@@ -17,33 +17,33 @@ async function schemaMarkdownDoc(url, title)
     title = if(title != null && vURL == null, title, url)
 
     # If no URL was provided, use the Schema Markdown type model schema
-    if url == null then
+    if url == null:
         types = schemaTypeModel()
-    else then
+    else:
         # Fetch the Schema Markdown resource
-        if stringEndsWith(url, '.json') then
-            schemaJSON = fetch(url)
-            if schemaJSON != null then
+        if stringEndsWith(url, '.json'):
+            schemaJSON = httpFetch(url)
+            if schemaJSON != null:
                 types = schemaValidateTypeModel(schemaJSON)
             endif
-        else then
-            schemaText = fetch(url, null, true)
-            if schemaText != null then
+        else:
+            schemaText = httpFetch(url, null, true)
+            if schemaText != null:
                 types = schemaParse(schemaText)
             endif
         endif
 
         # Error?
-        if types == null then
+        if types == null:
             markdownPrint('**Error:** Failed to fetch Schema Markdown resource "' + url + '"')
             return
         endif
     endif
 
     # Render the page
-    if vName != null then
+    if vName != null:
         typePage(types, title, vName)
-    else then
+    else:
         indexPage(types, title)
     endif
 endfunction
@@ -51,48 +51,48 @@ endfunction
 
 function indexPage(types, title)
     # Set the page title
-    setDocumentTitle(title)
+    documentSetTitle(title)
     markdownPrint('# ' + title)
 
     # Group the types
     groups = objectNew()
     typeNames = arraySort(objectKeys(types))
     uncategorizedTypeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
-    foreach typeName in typeNames do
+    for typeName in typeNames:
         type = objectGet(types, typeName)
         group = objectGet(objectGet(type, arrayGet(objectKeys(type), 0)), 'docGroup')
-        if group == null then
+        if group == null:
             group = objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0))
         endif
-        if !objectHas(groups, group) then
+        if !objectHas(groups, group):
             objectSet(groups, group, arrayNew())
         endif
         arrayPush(objectGet(groups, group), type)
-    endforeach
+    endfor
 
     # Render the index groups
     groupNames = arraySort(objectKeys(groups))
-    foreach groupName in groupNames do
+    for groupName in groupNames:
         markdownPrint('', '## ' + markdownEscape(groupName))
 
         # Render the group type links
         groupTypes = objectGet(groups, groupName)
-        foreach groupType in groupTypes do
+        for groupType in groupTypes:
             groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
             groupTypeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + groupTypeName + "'"
             markdownPrint('', '[' + groupTypeName + '](' + groupTypeURL + ')')
-        endforeach
-    endforeach
+        endfor
+    endfor
 endfunction
 
 
 function typePage(types, title, typeName)
     # Set the page title
-    setDocumentTitle(title + ' - ' + typeName)
+    documentSetTitle(title + ' - ' + typeName)
     markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
 
     # Type exist?
-    if !objectHas(types, typeName) then
+    if !objectHas(types, typeName):
         markdownPrint('', '**Error:** Unknown type "' + typeName + '"')
         return
     endif
