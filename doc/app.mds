@@ -22,12 +22,12 @@ async function schemaMarkdownDoc(url, title)
     else:
         # Fetch the Schema Markdown resource
         if stringEndsWith(url, '.json'):
-            schemaJSON = httpFetch(url)
+            schemaJSON = systemFetch(url)
             if schemaJSON != null:
                 types = schemaValidateTypeModel(schemaJSON)
             endif
         else:
-            schemaText = httpFetch(url, null, true)
+            schemaText = systemFetch(url, null, true)
             if schemaText != null:
                 types = schemaParse(schemaText)
             endif
