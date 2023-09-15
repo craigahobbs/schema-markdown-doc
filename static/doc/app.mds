@@ -11,7 +11,7 @@
 # url - The Schema Markdown text or JSON resource URL
 # title - The schema title
 #
-async function schemaMarkdownDoc(url, title)
+async function schemaMarkdownDoc(url, title):
     # URL override?
     url = if(vURL != null, vURL, url)
     title = if(title != null && vURL == null, title, url)
@@ -49,7 +49,7 @@ async function schemaMarkdownDoc(url, title)
 endfunction
 
 
-function indexPage(types, title)
+function indexPage(types, title):
     # Set the page title
     documentSetTitle(title)
     markdownPrint('# ' + title)
@@ -86,7 +86,7 @@ function indexPage(types, title)
 endfunction
 
 
-function typePage(types, title, typeName)
+function typePage(types, title, typeName):
     # Set the page title
     documentSetTitle(title + ' - ' + typeName)
     markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
