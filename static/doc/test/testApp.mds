@@ -1,0 +1,20 @@
+# Licensed under the MIT License
+# https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
+
+include '../app.mds'
+
+
+async function testSchemaMarkdownDoc_index_urlError():
+    # Setup mocks
+    unittestMockAll()
+
+    # Render the index
+    schemaMarkdownDoc('model.json', 'The Test Model')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlError')

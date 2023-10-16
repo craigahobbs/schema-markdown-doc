@@ -25,6 +25,7 @@
         "markdown-model": "~1.8"
     },
     "devDependencies": {
+        "bare-script": "~2.2",
         "c8": "~8.0",
         "element-model": "~1.1",
         "eslint": "~8.50",

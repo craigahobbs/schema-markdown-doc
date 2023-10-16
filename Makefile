@@ -19,9 +19,20 @@ $(eval $(call WGET, https://raw.githubusercontent.com/craigahobbs/javascript-bui
 include Makefile.base
 
 
+help:
+	@echo "            [test-doc]"
+
+
 clean:
 	rm -rf Makefile.base jsdoc.json .eslintrc.cjs
 
 
 doc:
 	cp -R static/* build/doc/
+
+
+.PHONY: test-doc
+commit: test-doc
+test-doc: build/npm.build
+	$(NODE_DOCKER) npx bare -s static/doc/*.mds static/doc/test/*.mds
+	$(NODE_DOCKER) npx bare -c "include <markdownUp.bare>" static/doc/test/runTests.mds
