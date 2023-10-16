@@ -4,6 +4,195 @@
 include '../app.mds'
 
 
+# Test schema
+testSchemaMarkdownDocModel = objectNew(\
+    'TestEnum', objectNew( \
+        'enum', objectNew( \
+            'name', 'TestEnum', \
+            'docGroup', 'Test Group' \
+        ) \
+    ), \
+    'TestStruct', objectNew( \
+        'struct', objectNew( \
+            'name', 'TestStruct', \
+            'docGroup', 'Test Group' \
+        ) \
+    ), \
+    'TestTypedef', objectNew( \
+        'typedef', objectNew( \
+            'name', 'TestTypedef', \
+            'docGroup', 'Test Group', \
+            'type', objectNew('builtin', 'string') \
+        ) \
+    ), \
+    'TestAction', objectNew( \
+        'action', objectNew( \
+            'name', 'TestAction', \
+            'docGroup', 'Test Group' \
+        ) \
+    ), \
+    'UncategorizedEnum', objectNew( \
+        'enum', objectNew( \
+            'name', 'UncategorizedEnum' \
+        ) \
+    ), \
+    'UncategorizedStruct', objectNew( \
+        'struct', objectNew( \
+            'name', 'UncategorizedStruct' \
+        ) \
+    ), \
+    'UncategorizedTypedef', objectNew( \
+        'typedef', objectNew( \
+            'name', 'UncategorizedTypedef', \
+            'type', objectNew('builtin', 'string') \
+        ) \
+    ), \
+    'UncategorizedAction', objectNew( \
+        'action', objectNew( \
+            'name', 'UncategorizedAction' \
+        ) \
+    ) \
+)
+
+
+async function testSchemaMarkdownDoc_index():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.json', testSchemaMarkdownDocModel \
+        ) \
+    ))
+
+    # Render the index
+    schemaMarkdownDoc('model.json', 'The Test Model')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('documentSetTitle', arrayNew('The Test Model')), \
+        arrayNew('markdownPrint', arrayNew('# The Test Model')), \
+        arrayNew('markdownPrint', arrayNew('', '## Actions')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef')")) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index')
+
+
+async function testSchemaMarkdownDoc_index_urlArgument():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'other.json', testSchemaMarkdownDocModel \
+        ) \
+    ))
+
+    # Render the index
+    systemGlobalSet('vURL', 'other.json')
+    schemaMarkdownDoc('model.json', 'The Test Model')
+    systemGlobalSet('vURL', null)
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('other.json')), \
+        arrayNew('documentSetTitle', arrayNew('other.json')), \
+        arrayNew('markdownPrint', arrayNew('# other.json')), \
+        arrayNew('markdownPrint', arrayNew('', '## Actions')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vURL='other.json'&var.vName='UncategorizedAction')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vURL='other.json'&var.vName='UncategorizedEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vURL='other.json'&var.vName='UncategorizedStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vURL='other.json'&var.vName='TestAction')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vURL='other.json'&var.vName='TestEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vURL='other.json'&var.vName='TestStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vURL='other.json'&var.vName='TestTypedef')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vURL='other.json'&var.vName='UncategorizedTypedef')")) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlArgument')
+
+
+async function testSchemaMarkdownDoc_index_urlNull():
+    # Setup mocks
+    unittestMockAll()
+
+    # Render the index
+    schemaMarkdownDoc()
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
+        arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
+        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
+        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
+        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action')")), \
+        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
+        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types')")) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNull')
+
+
+async function testSchemaMarkdownDoc_index_urlNullTitle():
+    # Setup mocks
+    unittestMockAll()
+
+    # Render the index
+    schemaMarkdownDoc(null, 'Ignored')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
+        arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
+        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
+        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
+        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action')")), \
+        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType')")), \
+        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
+        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types')")) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNullTitle')
+
+
 async function testSchemaMarkdownDoc_index_urlError():
     # Setup mocks
     unittestMockAll()
@@ -18,3 +207,109 @@ async function testSchemaMarkdownDoc_index_urlError():
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index_urlError')
+
+
+async function testSchemaMarkdownDoc_index_urlInvalid():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.json', objectNew() \
+        ) \
+    ))
+
+    # Render the index
+    schemaMarkdownDoc('model.json', 'The Test Model')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlInvalid')
+
+
+async function testSchemaMarkdownDoc_index_urlTextError():
+    # Setup mocks
+    unittestMockAll()
+
+    # Render the index
+    schemaMarkdownDoc('model.smd', 'The Test Model')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.smd', null, true)), \
+        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlTextError')
+
+
+async function testSchemaMarkdownDoc_index_urlTextInvalid():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.smd', 'syntax error' \
+        ) \
+    ))
+
+    # Render the index
+    schemaMarkdownDoc('model.smd', 'The Test Model')
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.smd', null, true)), \
+        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_urlTextInvalid')
+
+
+async function testSchemaMarkdownDoc_type():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.json', testSchemaMarkdownDocModel \
+        ) \
+    ))
+
+    # Render the index
+    systemGlobalSet('vName', 'TestStruct')
+    schemaMarkdownDoc('model.json', 'The Test Model')
+    systemGlobalSet('vName', null)
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('documentSetTitle', arrayNew('The Test Model - TestStruct')), \
+        arrayNew('markdownPrint', arrayNew('[Index](#var=)')), \
+        arrayNew('elementModelRender', arrayNew( \
+            arrayNew(arrayNew(objectNew('elem', objectNew('text', 'struct TestStruct'), 'html', 'h1'))) \
+        )) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_type')
+
+
+async function testSchemaMarkdownDoc_type_unknown():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.json', testSchemaMarkdownDocModel \
+        ) \
+    ))
+
+    # Render the index
+    systemGlobalSet('vName', 'Unknown')
+    schemaMarkdownDoc('model.json', 'The Test Model')
+    systemGlobalSet('vName', null)
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('documentSetTitle', arrayNew('The Test Model - Unknown')), \
+        arrayNew('markdownPrint', arrayNew('[Index](#var=)')), \
+        arrayNew('markdownPrint', arrayNew('', '**Error:** Unknown type "Unknown"')) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_type_unknown')

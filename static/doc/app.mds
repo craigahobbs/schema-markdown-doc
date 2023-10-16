@@ -8,7 +8,7 @@
 
 
 #
-# url - The Schema Markdown text or JSON resource URL
+# url - The Schema Markdown text or JSON resource URL. If null, the Schema Markdown type model is displayed.
 # title - The schema title
 #
 async function schemaMarkdownDoc(url, title):
@@ -19,6 +19,7 @@ async function schemaMarkdownDoc(url, title):
     # If no URL was provided, use the Schema Markdown type model schema
     if url == null:
         types = schemaTypeModel()
+        title = 'The Schema Markdown Type Model'
     else:
         # Fetch the Schema Markdown resource
         if stringEndsWith(url, '.json'):
