@@ -1,20 +1,21 @@
 # Licensed under the MIT License
 # https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
+include <args.mds>
+
 
 #
-# The Schema Markdown documentation viewer
-#
-
-
+# The Schema Markdown documentation viewer main entry point
 #
 # url - The Schema Markdown text or JSON resource URL. If null, the Schema Markdown type model is displayed.
 # title - The schema title
 #
 async function schemaMarkdownDoc(url, title):
-    # URL override?
-    url = if(vURL != null, vURL, url)
-    title = if(title != null && vURL == null, title, url)
+    # Parse arguments
+    args = argsParse(schemaMarkdownDocArguments)
+    name = objectGet(args, 'name')
+    url = objectGet(args, 'url', url)
+    title = if(title != null && !objectHas(args, 'url'), title, url)
 
     # If no URL was provided, use the Schema Markdown type model schema
     if url == null:
@@ -42,18 +43,26 @@ async function schemaMarkdownDoc(url, title):
     endif
 
     # Render the page
-    if vName != null:
-        typePage(types, title, vName)
+    if name != null:
+        schemaMarkdownDocTypePage(types, title, name)
     else:
-        indexPage(types, title)
+        schemaMarkdownDocIndexPage(types, title)
     endif
 endfunction
 
 
-function indexPage(types, title):
+# The Schema Markdown documentation viewer arguments
+schemaMarkdownDocArguments = argsValidate(arrayNew( \
+    objectNew('name', 'url', 'global', 'vURL'), \
+    objectNew('name', 'name') \
+))
+
+
+# Render the Schema Markdown documentation viewer index page
+function schemaMarkdownDocIndexPage(types, title):
     # Set the page title
     documentSetTitle(title)
-    markdownPrint('# ' + title)
+    markdownPrint('# ' + markdownEscape(title))
 
     # Group the types
     groups = objectNew()
@@ -80,17 +89,17 @@ function indexPage(types, title):
         groupTypes = objectGet(groups, groupName)
         for groupType in groupTypes:
             groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
-            groupTypeURL = '#' + if(vURL != null, "var.vURL='" + vURL + "'&", '') + "var.vName='" + groupTypeName + "'"
-            markdownPrint('', '[' + groupTypeName + '](' + groupTypeURL + ')')
+            markdownPrint('', argsLink(schemaMarkdownDocArguments, groupTypeName, objectNew('name', groupTypeName)))
         endfor
     endfor
 endfunction
 
 
-function typePage(types, title, typeName):
+# Render the Schema Markdown documentation viewer type page
+function schemaMarkdownDocTypePage(types, title, typeName):
     # Set the page title
     documentSetTitle(title + ' - ' + typeName)
-    markdownPrint('[Index](' + if(vURL != null, "#var.vURL='" + vURL + "')", '#var=)'))
+    markdownPrint(argsLink(schemaMarkdownDocArguments, 'Index', objectNew('name', null)))
 
     # Type exist?
     if !objectHas(types, typeName):
