@@ -5,7 +5,7 @@ include '../app.mds'
 
 
 # Test schema
-testSchemaMarkdownDocModel = objectNew(\
+testSchemaMarkdownDocModel = jsonStringify(objectNew(\
     'TestEnum', objectNew( \
         'enum', objectNew( \
             'name', 'TestEnum', \
@@ -52,7 +52,7 @@ testSchemaMarkdownDocModel = objectNew(\
             'name', 'UncategorizedAction' \
         ) \
     ) \
-)
+))
 
 
 async function testSchemaMarkdownDoc_index():
@@ -238,7 +238,7 @@ async function testSchemaMarkdownDoc_index_urlTextError():
 
     # Reset mocks
     unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.smd', null, true)), \
+        arrayNew('systemFetch', arrayNew('model.smd')), \
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
     ))
 endfunction
@@ -258,7 +258,7 @@ async function testSchemaMarkdownDoc_index_urlTextInvalid():
 
     # Reset mocks
     unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.smd', null, true)), \
+        arrayNew('systemFetch', arrayNew('model.smd')), \
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
     ))
 endfunction
