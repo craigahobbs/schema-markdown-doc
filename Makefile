@@ -35,4 +35,4 @@ doc:
 commit: test-doc
 test-doc: build/npm.build
 	$(NODE_DOCKER) npx bare -s static/doc/*.mds static/doc/test/*.mds
-	$(NODE_DOCKER) npx bare -c "include <markdownUp.bare>" static/doc/test/runTests.mds$(if $(TEST), -v vTest "'$(TEST)'")
+	$(NODE_DOCKER) npx bare -c "include <markdownUp.bare>" static/doc/test/runTests.mds$(if $(DEBUG), -d)$(if $(TEST), -v vTest "'$(TEST)'")
