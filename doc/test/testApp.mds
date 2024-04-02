@@ -72,18 +72,18 @@ async function testSchemaMarkdownDoc_index():
         arrayNew('documentSetTitle', arrayNew('The Test Model')), \
         arrayNew('markdownPrint', arrayNew('# The Test Model')), \
         arrayNew('markdownPrint', arrayNew('', '## Actions')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef')")) \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&_top)")) \
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index')
@@ -108,18 +108,18 @@ async function testSchemaMarkdownDoc_index_urlArgument():
         arrayNew('documentSetTitle', arrayNew('other.json')), \
         arrayNew('markdownPrint', arrayNew('# other.json')), \
         arrayNew('markdownPrint', arrayNew('', '## Actions')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vURL='other.json'&var.vName='UncategorizedAction')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vURL='other.json'&var.vName='UncategorizedAction'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vURL='other.json'&var.vName='UncategorizedEnum')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vURL='other.json'&var.vName='UncategorizedEnum'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vURL='other.json'&var.vName='UncategorizedStruct')")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vURL='other.json'&var.vName='UncategorizedStruct'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vURL='other.json'&var.vName='TestAction')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vURL='other.json'&var.vName='TestEnum')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vURL='other.json'&var.vName='TestStruct')")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vURL='other.json'&var.vName='TestTypedef')")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vURL='other.json'&var.vName='TestAction'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vURL='other.json'&var.vName='TestEnum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vURL='other.json'&var.vName='TestStruct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vURL='other.json'&var.vName='TestTypedef'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vURL='other.json'&var.vName='UncategorizedTypedef')")) \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vURL='other.json'&var.vName='UncategorizedTypedef'&_top)")) \
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index_urlArgument')
@@ -137,23 +137,23 @@ async function testSchemaMarkdownDoc_index_urlNull():
         arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
         arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
         arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType')")), \
+        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action')")), \
-        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum')")), \
-        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct')")), \
-        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef')")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase')")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types')")) \
+        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNull')
@@ -171,23 +171,23 @@ async function testSchemaMarkdownDoc_index_urlNullTitle():
         arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
         arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
         arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType')")), \
+        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action')")), \
-        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum')")), \
-        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct')")), \
-        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type')")), \
-        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef')")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase')")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType')")), \
+        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types')")) \
+        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNullTitle')

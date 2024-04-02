@@ -90,7 +90,7 @@ function schemaMarkdownDocIndexPage(types, title):
         groupTypes = objectGet(groups, groupName)
         for groupType in groupTypes:
             groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
-            markdownPrint('', argsLink(schemaMarkdownDocArguments, groupTypeName, objectNew('name', groupTypeName)))
+            markdownPrint('', argsLink(schemaMarkdownDocArguments, groupTypeName, objectNew('name', groupTypeName), false, '_top'))
         endfor
     endfor
 endfunction
