@@ -108,18 +108,18 @@ async function testSchemaMarkdownDoc_index_urlArgument():
         arrayNew('documentSetTitle', arrayNew('other.json')), \
         arrayNew('markdownPrint', arrayNew('# other.json')), \
         arrayNew('markdownPrint', arrayNew('', '## Actions')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vURL='other.json'&var.vName='UncategorizedAction'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction'&var.vURL='other.json'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vURL='other.json'&var.vName='UncategorizedEnum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&var.vURL='other.json'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vURL='other.json'&var.vName='UncategorizedStruct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&var.vURL='other.json'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vURL='other.json'&var.vName='TestAction'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vURL='other.json'&var.vName='TestEnum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vURL='other.json'&var.vName='TestStruct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vURL='other.json'&var.vName='TestTypedef'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&var.vURL='other.json'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&var.vURL='other.json'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&var.vURL='other.json'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&var.vURL='other.json'&_top)")), \
         arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vURL='other.json'&var.vName='UncategorizedTypedef'&_top)")) \
+        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&var.vURL='other.json'&_top)")) \
     ))
 endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index_urlArgument')
