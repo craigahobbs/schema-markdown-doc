@@ -89,6 +89,32 @@ endfunction
 unittestRunTestAsync('testSchemaMarkdownDoc_index')
 
 
+async function testSchemaMarkdownDoc_index_hideNoGroup():
+    # Setup mocks
+    unittestMockAll(objectNew( \
+        'systemFetch', objectNew( \
+            'model.json', testSchemaMarkdownDocModel \
+        ) \
+    ))
+
+    # Render the index
+    schemaMarkdownDoc('model.json', 'The Test Model', true)
+
+    # Reset mocks
+    unittestDeepEqual(unittestMockEnd(), arrayNew( \
+        arrayNew('systemFetch', arrayNew('model.json')), \
+        arrayNew('documentSetTitle', arrayNew('The Test Model')), \
+        arrayNew('markdownPrint', arrayNew('# The Test Model')), \
+        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
+        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&_top)")), \
+        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&_top)")) \
+    ))
+endfunction
+unittestRunTestAsync('testSchemaMarkdownDoc_index_hideNoGroup')
+
+
 async function testSchemaMarkdownDoc_index_urlArgument():
     # Setup mocks
     unittestMockAll(objectNew( \

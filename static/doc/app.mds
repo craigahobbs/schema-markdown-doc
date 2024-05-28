@@ -9,8 +9,9 @@ include <args.mds>
 #
 # url - The Schema Markdown text or JSON resource URL. If null, the Schema Markdown type model is displayed.
 # title - The schema title
+# hideNoGroup - If true, hide types with no group
 #
-async function schemaMarkdownDoc(url, title):
+async function schemaMarkdownDoc(url, title, hideNoGroup):
     # Parse arguments
     args = argsParse(schemaMarkdownDocArguments)
     name = objectGet(args, 'name')
@@ -47,7 +48,7 @@ async function schemaMarkdownDoc(url, title):
     if name != null:
         schemaMarkdownDocTypePage(types, title, name)
     else:
-        schemaMarkdownDocIndexPage(types, title)
+        schemaMarkdownDocIndexPage(types, title, hideNoGroup)
     endif
 endfunction
 
@@ -60,7 +61,7 @@ schemaMarkdownDocArguments = argsValidate(arrayNew( \
 
 
 # Render the Schema Markdown documentation viewer index page
-function schemaMarkdownDocIndexPage(types, title):
+function schemaMarkdownDocIndexPage(types, title, hideNoGroup):
     # Set the page title
     documentSetTitle(title)
     markdownPrint('# ' + markdownEscape(title))
@@ -68,13 +69,20 @@ function schemaMarkdownDocIndexPage(types, title):
     # Group the types
     groups = objectNew()
     typeNames = arraySort(objectKeys(types))
-    uncategorizedTypeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
+    typeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
     for typeName in typeNames:
         type = objectGet(types, typeName)
         group = objectGet(objectGet(type, arrayGet(objectKeys(type), 0)), 'docGroup')
+
+        # No group? Use the type's default group.
         if group == null:
-            group = objectGet(uncategorizedTypeGroups, arrayGet(objectKeys(type), 0))
+            if hideNoGroup:
+                continue
+            endif
+            group = objectGet(typeGroups, arrayGet(objectKeys(type), 0))
         endif
+
+        # Add the type to the group
         if !objectHas(groups, group):
             objectSet(groups, group, arrayNew())
         endif
