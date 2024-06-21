@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.6.3 (2024-06-21)
+
+- [598b659](https://github.com/craigahobbs/schema-markdown-doc/commit/598b659) - fix documentation for empty structs with non-empty bases
+
 ## 1.6.2 (2023-05-28)
 
 - [8e6ab8c](https://github.com/craigahobbs/schema-markdown-doc/commit/8e6ab8c) - remove jsdom dev dependency
