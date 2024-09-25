@@ -1483,12 +1483,7 @@ test('schemaMarkdownDoc, action', () => {
                             'html': 'pre',
                             'elem': {
                                 'html': 'code',
-                                'elem': [
-                                    {'text': '{\n'},
-                                    {'text': '    "error": "<code>",\n'},
-                                    {'text': '    "message": "<message>"\n'},
-                                    {'text': '}\n'}
-                                ]
+                                'elem': {'text': '{\n    "error": "<code>",\n    "message": "<message>"\n}\n'}
                             }
                         },
                         {'html': 'p', 'elem': [{'text': '"message" is optional. "<code>" is one of the following values:'}]}
@@ -1545,12 +1540,13 @@ function emptyActionErrorElements(params = 'name=MyAction') {
         null,
         [
             {'html': 'p', 'elem': [{'text': 'If an application error occurs, the response is of the form:'}]},
-            {'html': 'pre', 'elem': {'html': 'code', 'elem': [
-                {'text': '{\n'},
-                {'text': '    "error": "<code>",\n'},
-                {'text': '    "message": "<message>"\n'},
-                {'text': '}\n'}
-            ]}},
+            {
+                'html': 'pre',
+                'elem': {
+                    'html': 'code',
+                    'elem': {'text': '{\n    "error": "<code>",\n    "message": "<message>"\n}\n'}
+                }
+            },
             {'html': 'p', 'elem': [{'text': '"message" is optional. "<code>" is one of the following values:'}]}
         ],
         {
@@ -1836,12 +1832,13 @@ test('schemaMarkdownDoc, action unexpected value defined', () => {
                     null,
                     [
                         {'html': 'p', 'elem': [{'text': 'If an application error occurs, the response is of the form:'}]},
-                        {'html': 'pre', 'elem': {'html': 'code', 'elem': [
-                            {'text': '{\n'},
-                            {'text': '    "error": "<code>",\n'},
-                            {'text': '    "message": "<message>"\n'},
-                            {'text': '}\n'}
-                        ]}},
+                        {
+                            'html': 'pre',
+                            'elem': {
+                                'html': 'code',
+                                'elem': {'text': '{\n    "error": "<code>",\n    "message": "<message>"\n}\n'}
+                            }
+                        },
                         {'html': 'p', 'elem': [{'text': '"message" is optional. "<code>" is one of the following values:'}]}
                     ],
                     {
