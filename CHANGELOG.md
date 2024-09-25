@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0 (2024-09-25)
+
+- [2901513](https://github.com/craigahobbs/schema-markdown-doc/commit/2901513) - markdown-model 2.0
+
 ## 1.6.3 (2024-06-21)
 
 - [598b659](https://github.com/craigahobbs/schema-markdown-doc/commit/598b659) - fix documentation for empty structs with non-empty bases
