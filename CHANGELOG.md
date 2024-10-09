@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.0 (2024-10-09)
+
+- [b96e49e](https://github.com/craigahobbs/schema-markdown-doc/commit/b96e49e) - markdown-model 2.1
+
 ## 1.7.0 (2024-09-25)
 
 - [2901513](https://github.com/craigahobbs/schema-markdown-doc/commit/2901513) - markdown-model 2.0
