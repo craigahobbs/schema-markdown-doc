@@ -204,6 +204,149 @@ test('schemaMarkdownDoc, struct empty', () => {
 });
 
 
+test('schemaMarkdownDoc, markdownElements options', () => {
+    const types = {
+        'MyStruct': {
+            'struct': {
+                'name': 'MyStruct',
+                'doc': ['This is my struct', '', '~~~barescript', 'markdownPrint("Hello")', '~~~'],
+                'members': [
+                    {
+                        'name': 'a',
+                        'type': {'builtin': 'int'},
+                        'doc': ['The "a" member', '', '~~~barescript', 'markdownPrint("Goodbye")', '~~~']
+                    }
+                ]
+            }
+        }
+    };
+    validateTypeModel(types);
+    const options = {
+        'markdownOptions': {
+            /* c8 ignore next 3 */
+            'copyFn': () => {
+                // Do nothing
+            }
+        }
+    };
+    const elements = validateElements(schemaMarkdownDoc(types, 'MyStruct', options));
+
+    // Remove the copy callbacks
+    const copyElem1 = elements[0][2][1][0].elem;
+    const copyElem2 = elements[0][3].elem[1][0].elem[3].elem[1][0].elem;
+    assert.equal(typeof(copyElem1.callback), 'function');
+    assert.equal(typeof(copyElem2.callback), 'function');
+    delete copyElem1.callback;
+    delete copyElem2.callback;
+
+    assert.deepEqual(
+        elements,
+        [
+            [
+                {
+                    'html': 'h1',
+                    'attr': {'id': 'type_MyStruct'},
+                    'elem': {'text': 'struct MyStruct'}
+                },
+                null,
+                [
+                    {'html': 'p','elem': [{'text': 'This is my struct'}]},
+                    [
+                        {
+                            'html': 'p',
+                            'attr': {'style': 'cursor: pointer; font-size: 0.85em; text-align: right; user-select: none;'},
+                            'elem': {'html': 'a','elem': {'text': 'Copy'}}
+                        },
+                        {
+                            'html': 'pre',
+                            'attr': {'style': 'margin-top: 0.25em'},
+                            'elem': {
+                                'html': 'code',
+                                'elem': [
+                                    {
+                                        'html': 'span',
+                                        'attr': {'style': 'color: var(--markdown-model-color-highlight-builtin);'},
+                                        'elem': {'text': 'markdownPrint'}
+                                    },
+                                    {'text': '('},
+                                    {
+                                        'html': 'span',
+                                        'attr': {'style': 'color: var(--markdown-model-color-highlight-string);'},
+                                        'elem': {'text': '"Hello"'}
+                                    },
+                                    {'text': ')\n'}
+                                ]
+                            }
+                        }
+                    ]
+                ],
+                {
+                    'html': 'table',
+                    'elem': [
+                        {
+                            'html': 'tr',
+                            'elem': [
+                                {'html': 'th','elem': {'text': 'Name'}},
+                                {'html': 'th','elem': {'text': 'Type'}},
+                                null,
+                                {'html': 'th','elem': {'text': 'Description'}}
+                            ]
+                        },
+                        [
+                            {
+                                'html': 'tr',
+                                'elem': [
+                                    {'html': 'td','elem': {'text': 'a'}},
+                                    {'html': 'td','elem': {'text': 'int'}},
+                                    null,
+                                    {
+                                        'html': 'td',
+                                        'elem': [
+                                            {'html': 'p','elem': [{'text': 'The "a" member'}]},
+                                            [
+                                                {
+                                                    'html': 'p',
+                                                    'attr': {
+                                                        'style': 'cursor: pointer; font-size: 0.85em; text-align: right; user-select: none;'
+                                                    },
+                                                    'elem': {'html': 'a','elem': {'text': 'Copy'}}
+                                                },
+                                                {
+                                                    'html': 'pre',
+                                                    'attr': {'style': 'margin-top: 0.25em'},
+                                                    'elem': {
+                                                        'html': 'code',
+                                                        'elem': [
+                                                            {
+                                                                'html': 'span',
+                                                                'attr': {'style': 'color: var(--markdown-model-color-highlight-builtin);'},
+                                                                'elem': {'text': 'markdownPrint'}
+                                                            },
+                                                            {'text': '('},
+                                                            {
+                                                                'html': 'span',
+                                                                'attr': {'style': 'color: var(--markdown-model-color-highlight-string);'},
+                                                                'elem': {'text': '"Goodbye"'}
+                                                            },
+                                                            {'text': ')\n'}
+                                                        ]
+                                                    }
+                                                }
+                                            ]
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    ]
+                }
+            ],
+            null
+        ]
+    );
+});
+
+
 test('schemaMarkdownDoc, struct bases', () => {
     const types = {
         'MyStruct': {
