@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.0 (2024-10-15)
+
+- [3e5a696](https://github.com/craigahobbs/schema-markdown-doc/commit/3e5a696) - markdown-model 2.2
+
 ## 1.9.0 (2024-10-14)
 
 - [a6f64b9](https://github.com/craigahobbs/schema-markdown-doc/commit/a6f64b9) - add markdownOptions option
