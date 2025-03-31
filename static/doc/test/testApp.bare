@@ -1,7 +1,7 @@
 # Licensed under the MIT License
 # https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
-include '../app.mds'
+include '../app.bare'
 
 
 # Test schema
