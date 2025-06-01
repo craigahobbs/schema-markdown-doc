@@ -1,6 +1,0 @@
-# Licensed under the MIT License
-# https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
-
-
-systemLog('schema-markdown-doc: app.mds is now app.bare - please update before 2025-06-01')
-include 'app.bare'
