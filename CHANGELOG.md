@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.0.1 (2025-07-31)
+
+- [712f87b](https://github.com/craigahobbs/schema-markdown-doc/commit/712f87b) - add actionCustom option
+
 ## 2.0.0 (2024-10-15)
 
 - [3e5a696](https://github.com/craigahobbs/schema-markdown-doc/commit/3e5a696) - markdown-model 2.2
