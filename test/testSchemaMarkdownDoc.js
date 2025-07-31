@@ -1657,12 +1657,7 @@ test('schemaMarkdownDoc, action', () => {
                                     'html': 'tr',
                                     'elem': [
                                         {'html': 'td', 'elem': {'text': 'UnexpectedError'}},
-                                        {'html': 'td', 'elem': [
-                                            {
-                                                'html': 'p',
-                                                'elem': [{'text': 'An unexpected error occurred while processing the request'}]
-                                            }
-                                        ]}
+                                        {'html': 'td', 'elem': null}
                                     ]
                                 }
                             ]
@@ -1705,14 +1700,12 @@ function emptyActionErrorElements(params = 'name=MyAction') {
             'elem': [
                 {'html': 'tr', 'elem': [
                     {'html': 'th', 'elem': {'text': 'Value'}},
-                    {'html': 'th', 'elem': {'text': 'Description'}}
+                    null
                 ]},
                 [
                     {'html': 'tr', 'elem': [
                         {'html': 'td', 'elem': {'text': 'UnexpectedError'}},
-                        {'html': 'td', 'elem': [
-                            {'html': 'p', 'elem': [{'text': 'An unexpected error occurred while processing the request'}]}
-                        ]}
+                        null
                     ]}
                 ]
             ]
@@ -1933,6 +1926,41 @@ test('schemaMarkdownDoc, action URL override empty', () => {
                 null,
                 null,
                 emptyActionErrorElements()
+            ],
+            null
+        ]
+    );
+});
+
+
+test('schemaMarkdownDoc, action custom response', () => {
+    const types = {
+        'MyAction': {
+            'action': {
+                'name': 'MyAction',
+                'urls': [
+                    {'method': 'GET'}
+                ]
+            }
+        }
+    };
+    validateTypeModel(types);
+    assert.deepEqual(
+        validateElements(schemaMarkdownDoc(types, 'MyAction', {'params': 'name=MyAction', 'actionURLs': [], 'actionCustom': true})),
+        [
+            [
+                {
+                    'html': 'h1',
+                    'attr': {'id': 'name=MyAction&type_MyAction'},
+                    'elem': {'text': 'action MyAction'}
+                },
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
             ],
             null
         ]
