@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1.0 (2025-09-16)
+
+- [163d970](https://github.com/craigahobbs/schema-markdown-doc/commit/163d970) - element-model 1.2
+
 ## 2.0.1 (2025-07-31)
 
 - [712f87b](https://github.com/craigahobbs/schema-markdown-doc/commit/712f87b) - add actionCustom option
