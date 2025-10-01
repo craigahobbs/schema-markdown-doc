@@ -28,7 +28,7 @@
         "bare-script": "~3.5",
         "c8": "~10.1",
         "element-model": "~1.2",
-        "eslint": "~9.35",
+        "eslint": "~9.36",
         "jsdoc": "~4.0"
     }
 }
