@@ -86,7 +86,7 @@ async function testSchemaMarkdownDoc_index():
         arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&_top)")) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index')
+unittestRunTest('testSchemaMarkdownDoc_index')
 
 
 async function testSchemaMarkdownDoc_index_hideNoGroup():
@@ -112,7 +112,7 @@ async function testSchemaMarkdownDoc_index_hideNoGroup():
         arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&_top)")) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_hideNoGroup')
+unittestRunTest('testSchemaMarkdownDoc_index_hideNoGroup')
 
 
 async function testSchemaMarkdownDoc_index_urlArgument():
@@ -148,7 +148,7 @@ async function testSchemaMarkdownDoc_index_urlArgument():
         arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&var.vURL='other.json'&_top)")) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlArgument')
+unittestRunTest('testSchemaMarkdownDoc_index_urlArgument')
 
 
 async function testSchemaMarkdownDoc_index_urlNull():
@@ -182,7 +182,7 @@ async function testSchemaMarkdownDoc_index_urlNull():
         arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNull')
+unittestRunTest('testSchemaMarkdownDoc_index_urlNull')
 
 
 async function testSchemaMarkdownDoc_index_urlNullTitle():
@@ -216,7 +216,7 @@ async function testSchemaMarkdownDoc_index_urlNullTitle():
         arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlNullTitle')
+unittestRunTest('testSchemaMarkdownDoc_index_urlNullTitle')
 
 
 async function testSchemaMarkdownDoc_index_urlError():
@@ -232,10 +232,12 @@ async function testSchemaMarkdownDoc_index_urlError():
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlError')
+unittestRunTest('testSchemaMarkdownDoc_index_urlError')
 
 
 async function testSchemaMarkdownDoc_index_urlInvalid():
+    systemLogDebug('NOTICE: The following "jsonParse" error is expected:')
+
     # Setup mocks
     unittestMockAll(objectNew( \
         'systemFetch', objectNew( \
@@ -252,7 +254,7 @@ async function testSchemaMarkdownDoc_index_urlInvalid():
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlInvalid')
+unittestRunTest('testSchemaMarkdownDoc_index_urlInvalid')
 
 
 async function testSchemaMarkdownDoc_index_urlTextError():
@@ -268,10 +270,12 @@ async function testSchemaMarkdownDoc_index_urlTextError():
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlTextError')
+unittestRunTest('testSchemaMarkdownDoc_index_urlTextError')
 
 
 async function testSchemaMarkdownDoc_index_urlTextInvalid():
+    systemLogDebug('NOTICE: The following "schemaParse" error is expected:')
+
     # Setup mocks
     unittestMockAll(objectNew( \
         'systemFetch', objectNew( \
@@ -288,7 +292,7 @@ async function testSchemaMarkdownDoc_index_urlTextInvalid():
         arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_index_urlTextInvalid')
+unittestRunTest('testSchemaMarkdownDoc_index_urlTextInvalid')
 
 
 async function testSchemaMarkdownDoc_type():
@@ -314,7 +318,7 @@ async function testSchemaMarkdownDoc_type():
         )) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_type')
+unittestRunTest('testSchemaMarkdownDoc_type')
 
 
 async function testSchemaMarkdownDoc_type_unknown():
@@ -338,4 +342,4 @@ async function testSchemaMarkdownDoc_type_unknown():
         arrayNew('markdownPrint', arrayNew('', '**Error:** Unknown type "Unknown"')) \
     ))
 endfunction
-unittestRunTestAsync('testSchemaMarkdownDoc_type_unknown')
+unittestRunTest('testSchemaMarkdownDoc_type_unknown')
