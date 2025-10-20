@@ -5,123 +5,123 @@ include '../app.bare'
 
 
 # Test schema
-testSchemaMarkdownDocModel = jsonStringify(objectNew(\
-    'TestEnum', objectNew( \
-        'enum', objectNew( \
-            'name', 'TestEnum', \
-            'docGroup', 'Test Group' \
-        ) \
-    ), \
-    'TestStruct', objectNew( \
-        'struct', objectNew( \
-            'name', 'TestStruct', \
-            'docGroup', 'Test Group' \
-        ) \
-    ), \
-    'TestTypedef', objectNew( \
-        'typedef', objectNew( \
-            'name', 'TestTypedef', \
-            'docGroup', 'Test Group', \
-            'type', objectNew('builtin', 'string') \
-        ) \
-    ), \
-    'TestAction', objectNew( \
-        'action', objectNew( \
-            'name', 'TestAction', \
-            'docGroup', 'Test Group' \
-        ) \
-    ), \
-    'UncategorizedEnum', objectNew( \
-        'enum', objectNew( \
-            'name', 'UncategorizedEnum' \
-        ) \
-    ), \
-    'UncategorizedStruct', objectNew( \
-        'struct', objectNew( \
-            'name', 'UncategorizedStruct' \
-        ) \
-    ), \
-    'UncategorizedTypedef', objectNew( \
-        'typedef', objectNew( \
-            'name', 'UncategorizedTypedef', \
-            'type', objectNew('builtin', 'string') \
-        ) \
-    ), \
-    'UncategorizedAction', objectNew( \
-        'action', objectNew( \
-            'name', 'UncategorizedAction' \
-        ) \
-    ) \
-))
+testSchemaMarkdownDocModel = jsonStringify({ \
+    'TestEnum': { \
+        'enum': { \
+            'name': 'TestEnum', \
+            'docGroup': 'Test Group' \
+        } \
+    }, \
+    'TestStruct': { \
+        'struct': { \
+            'name': 'TestStruct', \
+            'docGroup': 'Test Group' \
+        } \
+    }, \
+    'TestTypedef': { \
+        'typedef': { \
+            'name': 'TestTypedef', \
+            'docGroup': 'Test Group', \
+            'type': {'builtin': 'string'} \
+        } \
+    }, \
+    'TestAction': { \
+        'action': { \
+            'name': 'TestAction', \
+            'docGroup': 'Test Group' \
+        } \
+    }, \
+    'UncategorizedEnum': { \
+        'enum': { \
+            'name': 'UncategorizedEnum' \
+        } \
+    }, \
+    'UncategorizedStruct': { \
+        'struct': { \
+            'name': 'UncategorizedStruct' \
+        } \
+    }, \
+    'UncategorizedTypedef': { \
+        'typedef': { \
+            'name': 'UncategorizedTypedef', \
+            'type': {'builtin': 'string'} \
+        } \
+    }, \
+    'UncategorizedAction': { \
+        'action': { \
+            'name': 'UncategorizedAction' \
+        } \
+    } \
+})
 
 
 async function testSchemaMarkdownDoc_index():
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.json', testSchemaMarkdownDocModel \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.json': testSchemaMarkdownDocModel \
+        } \
+    })
 
     # Render the index
     schemaMarkdownDoc('model.json', 'The Test Model')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('documentSetTitle', arrayNew('The Test Model')), \
-        arrayNew('markdownPrint', arrayNew('# The Test Model')), \
-        arrayNew('markdownPrint', arrayNew('', '## Actions')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&_top)")) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['documentSetTitle', ['The Test Model']], \
+        ['markdownPrint', ['# The Test Model']], \
+        ['markdownPrint', ['', '## Actions']], \
+        ['markdownPrint', ['', "[UncategorizedAction](#var.vName='UncategorizedAction'&_top)"]], \
+        ['markdownPrint', ['', '## Enums']], \
+        ['markdownPrint', ['', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&_top)"]], \
+        ['markdownPrint', ['', '## Structs']], \
+        ['markdownPrint', ['', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&_top)"]], \
+        ['markdownPrint', ['', '## Test Group']], \
+        ['markdownPrint', ['', "[TestAction](#var.vName='TestAction'&_top)"]], \
+        ['markdownPrint', ['', "[TestEnum](#var.vName='TestEnum'&_top)"]], \
+        ['markdownPrint', ['', "[TestStruct](#var.vName='TestStruct'&_top)"]], \
+        ['markdownPrint', ['', "[TestTypedef](#var.vName='TestTypedef'&_top)"]], \
+        ['markdownPrint', ['', '## Typedefs']], \
+        ['markdownPrint', ['', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&_top)"]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index')
 
 
 async function testSchemaMarkdownDoc_index_hideNoGroup():
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.json', testSchemaMarkdownDocModel \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.json': testSchemaMarkdownDocModel \
+        } \
+    })
 
     # Render the index
     schemaMarkdownDoc('model.json', 'The Test Model', true)
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('documentSetTitle', arrayNew('The Test Model')), \
-        arrayNew('markdownPrint', arrayNew('# The Test Model')), \
-        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&_top)")) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['documentSetTitle', ['The Test Model']], \
+        ['markdownPrint', ['# The Test Model']], \
+        ['markdownPrint', ['', '## Test Group']], \
+        ['markdownPrint', ['', "[TestAction](#var.vName='TestAction'&_top)"]], \
+        ['markdownPrint', ['', "[TestEnum](#var.vName='TestEnum'&_top)"]], \
+        ['markdownPrint', ['', "[TestStruct](#var.vName='TestStruct'&_top)"]], \
+        ['markdownPrint', ['', "[TestTypedef](#var.vName='TestTypedef'&_top)"]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_hideNoGroup')
 
 
 async function testSchemaMarkdownDoc_index_urlArgument():
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'other.json', testSchemaMarkdownDocModel \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'other.json': testSchemaMarkdownDocModel \
+        } \
+    })
 
     # Render the index
     systemGlobalSet('vURL', 'other.json')
@@ -129,24 +129,24 @@ async function testSchemaMarkdownDoc_index_urlArgument():
     systemGlobalSet('vURL', null)
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('other.json')), \
-        arrayNew('documentSetTitle', arrayNew('other.json')), \
-        arrayNew('markdownPrint', arrayNew('# other.json')), \
-        arrayNew('markdownPrint', arrayNew('', '## Actions')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedAction](#var.vName='UncategorizedAction'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Test Group')), \
-        arrayNew('markdownPrint', arrayNew('', "[TestAction](#var.vName='TestAction'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestEnum](#var.vName='TestEnum'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestStruct](#var.vName='TestStruct'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[TestTypedef](#var.vName='TestTypedef'&var.vURL='other.json'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&var.vURL='other.json'&_top)")) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['other.json']], \
+        ['documentSetTitle', ['other.json']], \
+        ['markdownPrint', ['# other.json']], \
+        ['markdownPrint', ['', '## Actions']], \
+        ['markdownPrint', ['', "[UncategorizedAction](#var.vName='UncategorizedAction'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', '## Enums']], \
+        ['markdownPrint', ['', "[UncategorizedEnum](#var.vName='UncategorizedEnum'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', '## Structs']], \
+        ['markdownPrint', ['', "[UncategorizedStruct](#var.vName='UncategorizedStruct'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', '## Test Group']], \
+        ['markdownPrint', ['', "[TestAction](#var.vName='TestAction'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', "[TestEnum](#var.vName='TestEnum'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', "[TestStruct](#var.vName='TestStruct'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', "[TestTypedef](#var.vName='TestTypedef'&var.vURL='other.json'&_top)"]], \
+        ['markdownPrint', ['', '## Typedefs']], \
+        ['markdownPrint', ['', "[UncategorizedTypedef](#var.vName='UncategorizedTypedef'&var.vURL='other.json'&_top)"]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlArgument')
 
@@ -159,28 +159,28 @@ async function testSchemaMarkdownDoc_index_urlNull():
     schemaMarkdownDoc()
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
-        arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
-        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['documentSetTitle', ['The Schema Markdown Type Model']], \
+        ['markdownPrint', ['# The Schema Markdown Type Model']], \
+        ['markdownPrint', ['', '## Enums']], \
+        ['markdownPrint', ['', "[BuiltinType](#var.vName='BuiltinType'&_top)"]], \
+        ['markdownPrint', ['', '## Structs']], \
+        ['markdownPrint', ['', "[Action](#var.vName='Action'&_top)"]], \
+        ['markdownPrint', ['', "[ActionURL](#var.vName='ActionURL'&_top)"]], \
+        ['markdownPrint', ['', "[Array](#var.vName='Array'&_top)"]], \
+        ['markdownPrint', ['', "[Attributes](#var.vName='Attributes'&_top)"]], \
+        ['markdownPrint', ['', "[Dict](#var.vName='Dict'&_top)"]], \
+        ['markdownPrint', ['', "[Enum](#var.vName='Enum'&_top)"]], \
+        ['markdownPrint', ['', "[EnumValue](#var.vName='EnumValue'&_top)"]], \
+        ['markdownPrint', ['', "[Struct](#var.vName='Struct'&_top)"]], \
+        ['markdownPrint', ['', "[StructMember](#var.vName='StructMember'&_top)"]], \
+        ['markdownPrint', ['', "[Type](#var.vName='Type'&_top)"]], \
+        ['markdownPrint', ['', "[Typedef](#var.vName='Typedef'&_top)"]], \
+        ['markdownPrint', ['', "[UserBase](#var.vName='UserBase'&_top)"]], \
+        ['markdownPrint', ['', "[UserType](#var.vName='UserType'&_top)"]], \
+        ['markdownPrint', ['', '## Typedefs']], \
+        ['markdownPrint', ['', "[Types](#var.vName='Types'&_top)"]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlNull')
 
@@ -193,28 +193,28 @@ async function testSchemaMarkdownDoc_index_urlNullTitle():
     schemaMarkdownDoc(null, 'Ignored')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('documentSetTitle', arrayNew('The Schema Markdown Type Model')), \
-        arrayNew('markdownPrint', arrayNew('# The Schema Markdown Type Model')), \
-        arrayNew('markdownPrint', arrayNew('', '## Enums')), \
-        arrayNew('markdownPrint', arrayNew('', "[BuiltinType](#var.vName='BuiltinType'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Structs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Action](#var.vName='Action'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[ActionURL](#var.vName='ActionURL'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Array](#var.vName='Array'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Attributes](#var.vName='Attributes'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Dict](#var.vName='Dict'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Enum](#var.vName='Enum'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[EnumValue](#var.vName='EnumValue'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Struct](#var.vName='Struct'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[StructMember](#var.vName='StructMember'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Type](#var.vName='Type'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[Typedef](#var.vName='Typedef'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserBase](#var.vName='UserBase'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', "[UserType](#var.vName='UserType'&_top)")), \
-        arrayNew('markdownPrint', arrayNew('', '## Typedefs')), \
-        arrayNew('markdownPrint', arrayNew('', "[Types](#var.vName='Types'&_top)")) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['documentSetTitle', ['The Schema Markdown Type Model']], \
+        ['markdownPrint', ['# The Schema Markdown Type Model']], \
+        ['markdownPrint', ['', '## Enums']], \
+        ['markdownPrint', ['', "[BuiltinType](#var.vName='BuiltinType'&_top)"]], \
+        ['markdownPrint', ['', '## Structs']], \
+        ['markdownPrint', ['', "[Action](#var.vName='Action'&_top)"]], \
+        ['markdownPrint', ['', "[ActionURL](#var.vName='ActionURL'&_top)"]], \
+        ['markdownPrint', ['', "[Array](#var.vName='Array'&_top)"]], \
+        ['markdownPrint', ['', "[Attributes](#var.vName='Attributes'&_top)"]], \
+        ['markdownPrint', ['', "[Dict](#var.vName='Dict'&_top)"]], \
+        ['markdownPrint', ['', "[Enum](#var.vName='Enum'&_top)"]], \
+        ['markdownPrint', ['', "[EnumValue](#var.vName='EnumValue'&_top)"]], \
+        ['markdownPrint', ['', "[Struct](#var.vName='Struct'&_top)"]], \
+        ['markdownPrint', ['', "[StructMember](#var.vName='StructMember'&_top)"]], \
+        ['markdownPrint', ['', "[Type](#var.vName='Type'&_top)"]], \
+        ['markdownPrint', ['', "[Typedef](#var.vName='Typedef'&_top)"]], \
+        ['markdownPrint', ['', "[UserBase](#var.vName='UserBase'&_top)"]], \
+        ['markdownPrint', ['', "[UserType](#var.vName='UserType'&_top)"]], \
+        ['markdownPrint', ['', '## Typedefs']], \
+        ['markdownPrint', ['', "[Types](#var.vName='Types'&_top)"]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlNullTitle')
 
@@ -227,10 +227,10 @@ async function testSchemaMarkdownDoc_index_urlError():
     schemaMarkdownDoc('model.json', 'The Test Model')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['markdownPrint', ['**Error:** Failed to fetch Schema Markdown resource "model.json"']] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlError')
 
@@ -239,20 +239,20 @@ async function testSchemaMarkdownDoc_index_urlInvalid():
     systemLogDebug('NOTICE: The following "jsonParse" error is expected:')
 
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.json', objectNew() \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.json': {} \
+        } \
+    })
 
     # Render the index
     schemaMarkdownDoc('model.json', 'The Test Model')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.json"')) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['markdownPrint', ['**Error:** Failed to fetch Schema Markdown resource "model.json"']] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlInvalid')
 
@@ -265,10 +265,10 @@ async function testSchemaMarkdownDoc_index_urlTextError():
     schemaMarkdownDoc('model.smd', 'The Test Model')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.smd')), \
-        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.smd']], \
+        ['markdownPrint', ['**Error:** Failed to fetch Schema Markdown resource "model.smd"']] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlTextError')
 
@@ -277,31 +277,31 @@ async function testSchemaMarkdownDoc_index_urlTextInvalid():
     systemLogDebug('NOTICE: The following "schemaParse" error is expected:')
 
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.smd', 'syntax error' \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.smd': 'syntax error' \
+        } \
+    })
 
     # Render the index
     schemaMarkdownDoc('model.smd', 'The Test Model')
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.smd')), \
-        arrayNew('markdownPrint', arrayNew('**Error:** Failed to fetch Schema Markdown resource "model.smd"')) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.smd']], \
+        ['markdownPrint', ['**Error:** Failed to fetch Schema Markdown resource "model.smd"']] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_index_urlTextInvalid')
 
 
 async function testSchemaMarkdownDoc_type():
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.json', testSchemaMarkdownDocModel \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.json': testSchemaMarkdownDocModel \
+        } \
+    })
 
     # Render the index
     systemGlobalSet('vName', 'TestStruct')
@@ -309,25 +309,25 @@ async function testSchemaMarkdownDoc_type():
     systemGlobalSet('vName', null)
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('documentSetTitle', arrayNew('The Test Model - TestStruct')), \
-        arrayNew('markdownPrint', arrayNew('[Index](#var=)')), \
-        arrayNew('elementModelRender', arrayNew( \
-            arrayNew(arrayNew(objectNew('elem', objectNew('text', 'struct TestStruct'), 'html', 'h1'))) \
-        )) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['documentSetTitle', ['The Test Model - TestStruct']], \
+        ['markdownPrint', ['[Index](#var=)']], \
+        ['elementModelRender', [ \
+            [[{'elem': {'text': 'struct TestStruct'}, 'html': 'h1'}]] \
+        ]] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_type')
 
 
 async function testSchemaMarkdownDoc_type_unknown():
     # Setup mocks
-    unittestMockAll(objectNew( \
-        'systemFetch', objectNew( \
-            'model.json', testSchemaMarkdownDocModel \
-        ) \
-    ))
+    unittestMockAll({ \
+        'systemFetch': { \
+            'model.json': testSchemaMarkdownDocModel \
+        } \
+    })
 
     # Render the index
     systemGlobalSet('vName', 'Unknown')
@@ -335,11 +335,11 @@ async function testSchemaMarkdownDoc_type_unknown():
     systemGlobalSet('vName', null)
 
     # Reset mocks
-    unittestDeepEqual(unittestMockEnd(), arrayNew( \
-        arrayNew('systemFetch', arrayNew('model.json')), \
-        arrayNew('documentSetTitle', arrayNew('The Test Model - Unknown')), \
-        arrayNew('markdownPrint', arrayNew('[Index](#var=)')), \
-        arrayNew('markdownPrint', arrayNew('', '**Error:** Unknown type "Unknown"')) \
-    ))
+    unittestDeepEqual(unittestMockEnd(), [ \
+        ['systemFetch', ['model.json']], \
+        ['documentSetTitle', ['The Test Model - Unknown']], \
+        ['markdownPrint', ['[Index](#var=)']], \
+        ['markdownPrint', ['', '**Error:** Unknown type "Unknown"']] \
+    ])
 endfunction
 unittestRunTest('testSchemaMarkdownDoc_type_unknown')

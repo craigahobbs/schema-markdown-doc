@@ -54,10 +54,10 @@ endfunction
 
 
 # The Schema Markdown documentation viewer arguments
-schemaMarkdownDocArguments = argsValidate(arrayNew( \
-    objectNew('name', 'url', 'global', 'vURL'), \
-    objectNew('name', 'name') \
-))
+schemaMarkdownDocArguments = argsValidate([ \
+    {'name': 'url', 'global': 'vURL'}, \
+    {'name': 'name'} \
+])
 
 
 # Render the Schema Markdown documentation viewer index page
@@ -67,9 +67,9 @@ function schemaMarkdownDocIndexPage(types, title, hideNoGroup):
     markdownPrint('# ' + markdownEscape(title))
 
     # Group the types
-    groups = objectNew()
+    groups = {}
     typeNames = arraySort(objectKeys(types))
-    typeGroups = objectNew('action', 'Actions', 'enum', 'Enums', 'struct', 'Structs', 'typedef', 'Typedefs')
+    typeGroups = {'action': 'Actions', 'enum': 'Enums', 'struct': 'Structs', 'typedef': 'Typedefs'}
     for typeName in typeNames:
         type = objectGet(types, typeName)
         group = objectGet(objectGet(type, arrayGet(objectKeys(type), 0)), 'docGroup')
@@ -84,7 +84,7 @@ function schemaMarkdownDocIndexPage(types, title, hideNoGroup):
 
         # Add the type to the group
         if !objectHas(groups, group):
-            objectSet(groups, group, arrayNew())
+            objectSet(groups, group, [])
         endif
         arrayPush(objectGet(groups, group), type)
     endfor
@@ -98,7 +98,7 @@ function schemaMarkdownDocIndexPage(types, title, hideNoGroup):
         groupTypes = objectGet(groups, groupName)
         for groupType in groupTypes:
             groupTypeName = objectGet(objectGet(groupType, arrayGet(objectKeys(groupType), 0)), 'name')
-            markdownPrint('', argsLink(schemaMarkdownDocArguments, groupTypeName, objectNew('name', groupTypeName), false, '_top'))
+            markdownPrint('', argsLink(schemaMarkdownDocArguments, groupTypeName, {'name': groupTypeName}, false, '_top'))
         endfor
     endfor
 endfunction
@@ -108,7 +108,7 @@ endfunction
 function schemaMarkdownDocTypePage(types, title, typeName):
     # Set the page title
     documentSetTitle(title + ' - ' + typeName)
-    markdownPrint(argsLink(schemaMarkdownDocArguments, 'Index', objectNew('name', null)))
+    markdownPrint(argsLink(schemaMarkdownDocArguments, 'Index', {'name': null}))
 
     # Type exist?
     if !objectHas(types, typeName):
