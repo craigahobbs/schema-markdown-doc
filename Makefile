@@ -35,5 +35,5 @@ doc:
 .PHONY: test-doc
 commit: test-doc
 test-doc: build/npm.build
-	$(NODE_SHELL) npx bare -s static/doc/*.bare static/doc/test/*.bare
-	$(NODE_SHELL) npx bare -d -m -v vUnittestReport true static/doc/test/runTests.bare$(if $(TEST), -v vUnittestTest "'$(TEST)'")
+	$(NODE_SHELL) npx bare -x -m static/doc/*.bare static/doc/test/*.bare
+	$(NODE_SHELL) npx bare -d -m static/doc/test/runTests.bare$(if $(TEST), -v vUnittestTest "'$(TEST)'")
