@@ -2,6 +2,7 @@
 # https://github.com/craigahobbs/schema-markdown-doc/blob/main/LICENSE
 
 include <args.bare>
+include <schemaDoc.bare>
 
 
 #
@@ -117,5 +118,5 @@ function schemaMarkdownDocTypePage(types, title, typeName):
     endif
 
     # Render the type's documentation
-    elementModelRender(schemaElements(types, typeName))
+    markdownPrint(schemaDocMarkdown(types, typeName))
 endfunction

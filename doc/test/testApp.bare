@@ -316,8 +316,12 @@ async function testSchemaMarkdownDoc_type():
         ['systemFetch', ['model.json']], \
         ['documentSetTitle', ['The Test Model - TestStruct']], \
         ['markdownPrint', ['[Index](#var=)']], \
-        ['elementModelRender', [ \
-            [[{'elem': {'text': 'struct TestStruct'}, 'html': 'h1'}]] \
+        ['markdownPrint', [ \
+            [ \
+                '# struct TestStruct', \
+                '', \
+                'The struct is empty.' \
+            ] \
         ]] \
     ])
 endfunction
