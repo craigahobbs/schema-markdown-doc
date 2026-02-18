@@ -25,10 +25,12 @@
         "markdown-model": "~2.2"
     },
     "devDependencies": {
+        "@eslint/js": "~10.0",
         "bare-script": "~3.8",
         "c8": "~10.1",
         "element-model": "~1.2",
-        "eslint": "~9.39",
+        "eslint": "~10.0",
+        "globals": "^17.3.0",
         "jsdoc": "~4.0"
     }
 }
