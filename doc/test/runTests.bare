@@ -6,13 +6,13 @@ include <unittestMock.bare>
 
 
 # Start coverage
-coverageStart()
+unittestCoverageStart()
 
 # Test includes
 include 'testApp.bare'
 
 # Stop coverage
-coverageStop()
+unittestCoverageStop()
 
 # Test report
 return unittestReport({ \

@@ -3,6 +3,8 @@
 
 include <args.bare>
 include <schemaDoc.bare>
+include <schemaParser.bare>
+include <schemaTypeModel.bare>
 
 
 #
@@ -31,7 +33,7 @@ async function schemaMarkdownDoc(url, title, hideNoGroup):
             if stringEndsWith(url, '.json'):
                 schemaJSON = jsonParse(schemaText)
                 if schemaJSON != null:
-                    types = schemaValidateTypeModel(schemaJSON)
+                    types = schemaTypeModelValidate(schemaJSON)
                 endif
             else:
                 types = schemaParse(schemaText)
